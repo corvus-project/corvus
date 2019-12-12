@@ -45,6 +45,7 @@ class ProductController extends Controller
         return view('admin.products.view_pricing', compact('product', 'pricings'));
     }    
 
+    
     public function view_stocks(Product $product)
     {
         $stocks = $product->stocks()->with('stock_type')->take(10)->orderBy('created_at', 'DESC')->paginate(100);
@@ -59,7 +60,9 @@ class ProductController extends Controller
     }  
     
     public function store_stock(Product $product, StockStoreRequest $request)
-    {
+    { 
+
+        //select * from stocks s where s.from_date >= '2019-07-11' and s.to_date <= '2019-11-15';
         $stock = new Stock();
         $stock->quantity = $request->quantity;
         $stock->from_date = $request->from_date;
