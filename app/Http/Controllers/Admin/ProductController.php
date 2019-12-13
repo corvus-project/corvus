@@ -14,11 +14,10 @@ use App\Http\Requests\StockUpdateRequest;
 use App\Http\Requests\PricingStoreRequest;
 use App\Http\Requests\PricingUpdateRequest;
 use App\Http\Controllers\Controller;
+use DB; 
 
 class ProductController extends Controller
 {   
- 
-
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +47,7 @@ class ProductController extends Controller
     
     public function view_stocks(Product $product)
     {
-        $stocks = $product->stocks()->with('stock_type')->take(10)->orderBy('created_at', 'DESC')->paginate(100);
+        $stocks = $product->stocks()->with('stock_type')->take(10)->orderBy('from_date', 'DESC')->paginate(100);
         return view('admin.products.view_stocks', compact('product', 'stocks'));
     }     
     
@@ -61,8 +60,17 @@ class ProductController extends Controller
     
     public function store_stock(Product $product, StockStoreRequest $request)
     { 
-
-        //select * from stocks s where s.from_date >= '2019-07-11' and s.to_date <= '2019-11-15';
+        $count = DB::table('stocks')
+                        ->where('product_id', $product->id)
+                        ->where('warehouse_id', $request->warehouse_id)
+                        ->where('stock_type_id', $request->stock_type_id)
+                        ->where('from_date', '>=', $request->from_date)
+                        ->where('to_date', '<=', $request->to_date)->count();
+     
+        if ($count > 0){
+            return redirect(route('admin.products.create_stock', $product->id))->withFlashDanger('You can\'t add new stock quantity between these dates')->withInput(); 
+        }
+        
         $stock = new Stock();
         $stock->quantity = $request->quantity;
         $stock->from_date = $request->from_date;
@@ -74,7 +82,7 @@ class ProductController extends Controller
             return redirect(route('admin.products.edit_stock', [$product->id, $stock->id]))->withFlashSuccess(trans('labels.products.stock.created'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('admin.products.create_stock'))->withFlashDanger('error', $error)->withInput(); 
+        return redirect(route('admin.products.create_stock', $product->id))->withFlashDanger('error', $error)->withInput(); 
     }      
 
     public function edit_stock(Product $product, Stock $stock)
@@ -86,6 +94,17 @@ class ProductController extends Controller
 
     public function update_stock(Product $product, Stock $stock, StockUpdateRequest $request)
     {
+        $count = DB::table('stocks')
+                        ->where('product_id', $product->id)
+                        ->where('warehouse_id', $request->warehouse_id)
+                        ->where('stock_type_id', $request->stock_type_id)
+                        ->where('from_date', '>=', $request->from_date)
+                        ->where('to_date', '<=', $request->to_date)->count();
+     
+        if ($count > 0){
+            return redirect(route('admin.products.edit_stock', [$product->id, $stock->id]))->withFlashDanger('You can\'t add new stock quantity between these dates')->withInput(); 
+        }
+
         $stock->quantity = $request->quantity;
         $stock->from_date = $request->from_date;
         $stock->to_date = $request->to_date;
@@ -96,7 +115,7 @@ class ProductController extends Controller
             return redirect(route('admin.products.edit_stock', [$product->id, $stock->id]))->withFlashSuccess(trans('labels.products.stock.updated'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('admin.products.edit_stock'))->withFlashDanger($error)->withInput(); 
+        return redirect(route('admin.products.edit_stock', [$product->id, $stock->id]))->withFlashDanger($error)->withInput(); 
     }
 
     public function delete_stock(Product $product, Stock $stock)
@@ -120,6 +139,16 @@ class ProductController extends Controller
     
     public function store_pricing(Product $product, PricingStoreRequest $request)
     {
+        $count = DB::table('stocks')
+                        ->where('product_id', $product->id)
+                        ->where('pricing_group_id', $request->pricing_group_id)
+                        ->where('from_date', '>=', $request->from_date)
+                        ->where('to_date', '<=', $request->to_date)->count();
+     
+        if ($count > 0){
+            return redirect(route('admin.products.create_pricing', $product->id))->withFlashDanger('You can\'t add new stock quantity between these dates')->withInput(); 
+        }
+
         $pricing = new Pricing();
         $pricing->amount = $request->amount;
         $pricing->from_date = $request->from_date;
@@ -141,6 +170,15 @@ class ProductController extends Controller
 
     public function update_pricing(Product $product, Pricing $pricing, PricingUpdateRequest $request)
     {
+        $count = DB::table('stocks')
+                        ->where('product_id', $product->id)
+                        ->where('pricing_group_id', $request->pricing_group_id)
+                        ->where('from_date', '>=', $request->from_date)
+                        ->where('to_date', '<=', $request->to_date)->count();
+     
+        if ($count > 0){
+            return redirect(route('admin.products.edit_pricing', [$product->id, $pricing->id]))->withFlashDanger('You can\'t add new stock quantity between these dates')->withInput(); 
+        }        
         $pricing->amount = $request->amount;
         $pricing->from_date = $request->from_date;
         $pricing->to_date = $request->to_date;

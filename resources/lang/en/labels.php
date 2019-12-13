@@ -53,7 +53,12 @@ return [
         'pricing'   => [
             'created'   => 'Pricing created',
             'updated'   => 'Pricing update'
+        ],
+        'stock'   => [
+            'created'   => 'Stock created',
+            'updated'   => 'Stock update'
         ]
+
     ],
 
     'pricing_groups' => [

@@ -58,7 +58,7 @@
 
 
                             <input class="form-control" id="from_date" name="from_date" autocomplete="off"
-                                value="{{{ old('from_date', isset($pricing) ? $pricing->from_date : null) }}}"> {!!
+                                value="{{{ old('from_date', isset($pricing) ? $pricing->from_date->format('Y-m-d') : null) }}}"> {!!
                             $errors->first('from_date', '<span class="help-block">:message</span>') !!}
 
                             {!!
@@ -71,7 +71,7 @@
                             class="col-sm-3 col-form-label">{{ trans('labels.products.to_date') }}</label>
                         <div class="col-sm-3">
                             <input class="form-control" id="to_date" name="to_date" autocomplete="off"
-                                value="{{{ old('to_date', isset($pricing) ? $pricing->to_date : null) }}}"> {!!
+                                value="{{{ old('to_date', isset($pricing) ? $pricing->to_date->format('Y-m-d') : null) }}}"> {!!
                             $errors->first('to_date', '<span class="help-block">:message</span>') !!}
 
                         </div>
