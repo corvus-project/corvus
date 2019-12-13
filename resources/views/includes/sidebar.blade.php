@@ -1,9 +1,7 @@
 <div class="sidebar">
     <nav class="sidebar-nav">
         <ul class="nav">
-            <li class="nav-title">
-                 
-            </li>
+  
             <li class="nav-item">
                 <a class="nav-link {{
                     active_class(Route::is('admin/dashboard'))
@@ -55,7 +53,71 @@
                     <i class="nav-icon fas fa-border-all"></i>
                     @lang('menus.categories')
                 </a>
-            </li>                           
+            </li>  
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/customers'))
+                }}" href="{{ route('admin.customers.index') }}">
+                    <i class="nav-icon fas fa-users"></i>
+                    @lang('menus.customers')
+                </a>
+            </li>    
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/api'))
+                }}" href="{{ route('admin.api.index') }}">
+                    <i class="nav-icon fas fa-cloud-download-alt"></i>
+                    @lang('menus.api')
+                </a>
+            </li> 
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/variants'))
+                }}" href="{{ route('admin.variants.index') }}">
+                    <i class="nav-icon fas fa-fan"></i>
+                    @lang('menus.variants')
+                </a>
+            </li>      
+           
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/attributes'))
+                }}" href="{{ route('admin.attributes.index') }}">
+                    <i class="nav-icon fas fa-tags"></i>
+                    @lang('menus.attributes')
+                </a>
+            </li>      
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/orders'))
+                }}" href="{{ route('admin.orders.index') }}">
+                    <i class="nav-icon fas fa-wallet"></i>
+                    @lang('menus.orders')
+                </a>
+            </li>      
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/imports'))
+                }}" href="{{ route('admin.imports.index') }}">
+                    <i class="nav-icon fas fa-file-import"></i>
+                    @lang('menus.imports')
+                </a>
+            </li>    
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/reports'))
+                }}" href="{{ route('admin.reports.index') }}">
+                    <i class="nav-icon far fa-chart-bar"></i>
+                    @lang('menus.reports')
+                </a>
+            </li>                  
+
 
         </ul>
     </nav>

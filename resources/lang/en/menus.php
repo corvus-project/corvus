@@ -20,6 +20,12 @@ return [
     'pricing_groups' => 'Pricing Groups',
     'stock_types' => 'Stock Types',            
     'categories' => 'Categories',
-    'warehouses' => 'Warehouses',           
- 
+    'warehouses' => 'Warehouses',        
+    'customers' => 'Customers', 
+    'api'   => 'Api Control' , 
+    'variants'  => 'Variants',
+    'attributes'    => 'Attributes',
+    'orders'  => 'Orders',
+    'imports'  => 'Import',
+    'reports'   => 'Reports'
 ];
