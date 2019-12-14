@@ -21,18 +21,29 @@ class ProductPriceTableSeeeder extends Seeder
         $products = [];
 
         for ($i = 1; $i < 500; $i++) {
+            $dt = $faker->dateTimeBetween('-300 days',  'now');
+            $from_date = $dt->format("Y-m-d");
+            $to_date = $dt->modify('+15 day')->format("Y-m-d");
+
             $prices[] = [
                 'product_id' => $i,
                 'pricing_group_id' => $faker->numberBetween(1,4),
                 'amount'    => $faker->randomFloat(2, $min = 0, $max = 500),
+                'from_date' => $from_date,
+                'to_date' => $to_date,                
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),                
             ];
 
+            $from_date = $dt->modify('+1 day')->format("Y-m-d");
+            $to_date = $dt->modify('+25 day')->format("Y-m-d");
+
             $prices[] = [
                 'product_id' => $i,
-                'pricing_group_id' => $faker->numberBetween(1,5),
+                'pricing_group_id' => $faker->numberBetween(1,4),
                 'amount'    => $faker->randomFloat(2, $min = 0, $max = 500),
+                'from_date' => $from_date,
+                'to_date' => $to_date,                
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),                
             ];

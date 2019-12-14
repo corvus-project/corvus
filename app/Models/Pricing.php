@@ -52,5 +52,20 @@ class Pricing extends Model
 
         return 'No date limitation';
     }    
- 
+
+    public function getFormatFromDateAttribute()
+    {
+        if ($this->from_date){
+            return (new Carbon($this->from_date))->format('d M Y');
+        }
+        return null;
+    }
+
+    public function getFormatToDateAttribute()
+    {
+        if ($this->to_date){
+            return (new Carbon($this->to_date))->format('d M Y');
+        }
+        return null;
+    }
 }

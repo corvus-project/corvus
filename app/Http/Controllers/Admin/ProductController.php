@@ -139,7 +139,7 @@ class ProductController extends Controller
     
     public function store_pricing(Product $product, PricingStoreRequest $request)
     {
-        $count = DB::table('stocks')
+        $count = DB::table('pricings')
                         ->where('product_id', $product->id)
                         ->where('pricing_group_id', $request->pricing_group_id)
                         ->where('from_date', '>=', $request->from_date)
@@ -170,12 +170,13 @@ class ProductController extends Controller
 
     public function update_pricing(Product $product, Pricing $pricing, PricingUpdateRequest $request)
     {
-        $count = DB::table('stocks')
-                        ->where('product_id', $product->id)
-                        ->where('pricing_group_id', $request->pricing_group_id)
-                        ->where('from_date', '>=', $request->from_date)
-                        ->where('to_date', '<=', $request->to_date)->count();
-     
+        $count = DB::table('pricings')
+            ->where('product_id', $product->id)
+            ->where('pricing_group_id', $request->pricing_group_id)
+            ->where('from_date', '>=', $request->from_date)
+            ->where('to_date', '<=', $request->to_date)
+            ->count();
+                    
         if ($count > 0){
             return redirect(route('admin.products.edit_pricing', [$product->id, $pricing->id]))->withFlashDanger('You can\'t add new stock quantity between these dates')->withInput(); 
         }        
