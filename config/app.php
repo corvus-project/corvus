@@ -164,9 +164,6 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Creativeorange\Gravatar\GravatarServiceProvider::class,
-        DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
         AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
 
         /*
