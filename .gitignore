@@ -8,20 +8,11 @@ vendor/
 node_modules/
 npm-shrinkwrap.json
 bower_components/
-bootstrap/compiled.php
-bootstrap/cache/
-
-storage/
-storage/debugbar/
-storage/framework/views/
-storage/framework/sessions/
 
 composer.phar
 composer.lock
 phpunit.phar
 
-public/assets
-public/mix-manifest.json
 
 .env
 .env.*.php
