@@ -116,6 +116,17 @@
       'Module' => 'Nwidart\\Modules\\Facades\\Module',
     ),
   ),
+  'rollbar/rollbar-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Rollbar\\Laravel\\RollbarServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Rollbar' => 'Rollbar\\Laravel\\Facades\\Rollbar',
+    ),
+  ),
   'spatie/laravel-html' => 
   array (
     'providers' => 
