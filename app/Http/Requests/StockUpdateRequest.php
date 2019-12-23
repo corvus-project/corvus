@@ -24,8 +24,7 @@ class StockUpdateRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'from_date' => 'required',
-            'to_date'   => 'required',
+
         ];
     }
 }

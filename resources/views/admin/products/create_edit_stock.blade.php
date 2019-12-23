@@ -5,30 +5,50 @@
 
 @section('content')
 
-
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                <h4 class="card-title"> {{  __('labels.products.stock_management') }}</h4>
-            </div>
+
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        <h4 class="card-title mb-0">
+                            {{  __('labels.products.stock_management') }}
+                        </h4>
+                    </div>
+                    <!--col-->
+
+                    <div class="col-sm-7">
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="">
-
-                            <a href="{{ route('admin.products.create_stock', $product->id) }}"
-                                class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
-                                    class="fas fa-plus"></i></a>
-
-
                             <a href="{{ route('admin.products.view_stocks', $product->id) }}"
                                 class="btn btn-success btn-sm m-1" data-toggle="tooltip"
                                 title="List the stock history"><i class="fas fa-list"></i></a>
+
+                            <a href="{{ route('admin.products.create_stock', $product->id) }}"
+                                class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
+                                    class="fas fa-plus"></i></a>
+
+                            <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
+                                data-toggle="tooltip" title="Back to product"><i
+                                    class="fas fa-arrow-alt-circle-left"></i></a>
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-5"><b>SKU</b></div>
+                    <div class="col-sm-7">{{ $product->sku }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5"><b>Name</b></div>
+                    <div class="col-sm-7">{{ $product->name }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5"><b>Description</b></div>
+                    <div class="col-sm-7">{{ $product->description }}</div>
+                </div>
+                <br />
 
                 <form autocomplete="off" role="form"
                     action="{{ (isset($stock)) ? route('admin.products.edit_stock.update', [$stock->product_id, $stock->id]) : route('admin.products.create_stock.store', $product->id) }}"
@@ -61,33 +81,7 @@
                             $errors->first('quantity', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
-
-                    <div class="form-group row {!! $errors->first('from_date', 'has-warning') !!}">
-                        <label for="from_date"
-                            class="col-sm-3 col-form-label">{{ trans('labels.products.from_date') }}</label>
-                        <div class="col-sm-3">
-
-
-                            <input class="form-control" id="from_date" name="from_date" autocomplete="off"
-                                value="{{{ old('from_date',  (isset($stock) ? $stock->format_from_date : null) }}}"> {!!
-                            $errors->first('from_date', '<span class="help-block">:message</span>') !!}
-
-                            {!!
-                            $errors->first('from_date', '<span class="help-block">:message</span>') !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group row {!! $errors->first('to_date', 'has-warning') !!}">
-                        <label for="to_date"
-                            class="col-sm-3 col-form-label">{{ trans('labels.products.to_date') }}</label>
-                        <div class="col-sm-3">
-                            <input class="form-control" id="to_date" name="to_date" autocomplete="off"
-                                value="{{{ old('to_date', (isset($stock) ? $stock->format_to_date : null) }}}"> {!!
-                            $errors->first('to_date', '<span class="help-block">:message</span>') !!}
-
-                        </div>
-                    </div>
-
+  
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                         <i class="fas fa-save align-middle"></i> <span
                             class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>
@@ -100,28 +94,5 @@
 
 @endsection
 
-@section('styles')
-<link rel="stylesheet" href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" />
-@parent
-@stop
-@section('scripts')
-@parent
-
-<script type="text/javascript" src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js">
-</script>
-
-<script type="text/javascript">
-$(function() {
-    $('#from_date').datepicker({
-        uiLibrary: 'bootstrap4',
-        format: 'yyyy-mm-dd'
-    });
-
-    $('#to_date').datepicker({
-        uiLibrary: 'bootstrap4',
-        format: 'yyyy-mm-dd'
-    });
-});
-</script>
-
-@stop
+ 
+ 

@@ -26,6 +26,7 @@ class PricingStoreRequest extends FormRequest
         return [
             'from_date' => 'required',
             'to_date'   => 'required',
+            'amount'    => 'required|numeric'
         ];
     }
 }

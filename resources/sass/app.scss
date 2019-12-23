@@ -13,5 +13,9 @@
     padding-bottom: map-get($spacers, 3);
 }
 
+.welcome{
+    background-color: #6474E8;
+}
+
 table.dataTable tr.odd { background-color: #E2E4FF; cursor: pointer; }
 table.dataTable tr.even { background-color: white; cursor: pointer;}

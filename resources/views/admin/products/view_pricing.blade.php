@@ -15,7 +15,7 @@
 
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="">
-                    <a href="{{ route('admin.products.create_stock', $product->id) }}"
+                    <a href="{{ route('admin.products.create_pricing', $product->id) }}"
                         class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
                             class="fas fa-plus"></i></a>
 

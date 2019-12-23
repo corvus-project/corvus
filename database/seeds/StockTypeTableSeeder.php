@@ -29,6 +29,12 @@ class StockTypeTableSeeder extends Seeder
                 'slug' => 'Available_Stock',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Pre-Order',
+                'slug' => 'PRE_ORDER',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]                          
         ];
 

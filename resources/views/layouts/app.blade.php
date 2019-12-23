@@ -15,7 +15,7 @@
     @stack('after-styles')
     @yield('styles')
 </head>
-<body class="flex-row align-items-center">
+<body class="flex-row align-items-center welcome">
     <div class="container">
         @include('includes.partials.messages')
         @yield('content')

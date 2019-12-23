@@ -7,26 +7,48 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                <h4 class="card-title"> {{  __('labels.products.pricing_management') }}</h4>
-            </div>
+
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        <h4 class="card-title mb-0">
+                        {{  __('labels.products.pricing_management') }}
+                        </h4>
+                    </div>
+                    <!--col-->
+
+                    <div class="col-sm-7">
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="">
-
-                            <a href="{{ route('admin.products.create_pricing', $product->id) }}"
-                                class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="Create a pricing"><i
-                                    class="fas fa-plus"></i></a>
-
-
                             <a href="{{ route('admin.products.view_pricing', $product->id) }}"
                                 class="btn btn-success btn-sm m-1" data-toggle="tooltip"
                                 title="List the pricing history"><i class="fas fa-list"></i></a>
+
+                            <a href="{{ route('admin.products.create_pricing', $product->id) }}"
+                                class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a pricing"><i
+                                    class="fas fa-plus"></i></a>
+
+                           <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
+                                data-toggle="tooltip" title="Back to product"><i
+                                    class="fas fa-arrow-alt-circle-left"></i></a>
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-5"><b>SKU</b></div>
+                    <div class="col-sm-7">{{ $product->sku }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5"><b>Name</b></div>
+                    <div class="col-sm-7">{{ $product->name }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5"><b>Description</b></div>
+                    <div class="col-sm-7">{{ $product->description }}</div>
+                </div>
+                <br />
+  
 
                 <form autocomplete="off" role="form"
                     action="{{ (isset($pricing)) ? route('admin.products.edit_pricing.update', [$pricing->product_id, $pricing->id]) : route('admin.products.create_pricing.store', $product->id) }}"
@@ -55,8 +77,6 @@
                         <label for="from_date"
                             class="col-sm-3 col-form-label">{{ trans('labels.products.from_date') }}</label>
                         <div class="col-sm-3">
-
-
                             <input class="form-control" id="from_date" name="from_date" autocomplete="off"
                                 value="{{{ old('from_date', isset($pricing) ? $pricing->format_from_date : null) }}}"> {!!
                             $errors->first('from_date', '<span class="help-block">:message</span>') !!}

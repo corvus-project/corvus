@@ -30,13 +30,6 @@ class Stock extends Model
   
     protected $dateFormat = 'Y-m-d';
 
-    protected $dates = ['from_date', 'to_date'];
-
-    protected $casts = [
-        'from_date' => 'date:d M Y',
-        'to_date' => 'date:d M Y',
-    ];
-
     public function stock_type()
     {
         return $this->belongsTo(StockType::class);
@@ -46,30 +39,4 @@ class Stock extends Model
     {
         return $this->belongsTo(Warehouse::class);
     }
-    
-    public function getFromToAttribute()
-    {
-        if ($this->from_date || $this->to_date){
-            return "from " .(new Carbon($this->from_date))->format('d M Y') . " to ". (new Carbon($this->to_date))->format('d M Y');
-        }
-
-        return 'No date limitation';
-    }    
-
-    public function getFormatFromDateAttribute()
-    {
-        if (($this->from_date)){
-            return (new Carbon($this->from_date))->format('d M Y');
-        }
-        return null;
-    }
-
-    public function getFormatToDateAttribute()
-    {
-        if (($this->to_date != null)){
-            return (new Carbon($this->to_date))->format('d M Y');
-        }
-        return null;
-    }    
- 
 }
