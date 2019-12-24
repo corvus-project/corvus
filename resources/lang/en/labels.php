@@ -41,9 +41,11 @@ return [
         'management' => 'Product Management',
         'stock_management' => 'Stock Management',
         'pricing_management'    => 'Pricing Management',
+        'category_management'   => 'Category Management',
         'pricing_history'   => 'Pricing History',
         'stock_history'   => 'Stock History',
         'amount'  => 'Amount',
+         
         'warehouse' => 'Warehouse',
         'stock_type' => 'Stock Type',
         'pricing_group' => 'Pricing Group',
@@ -52,13 +54,21 @@ return [
         'to_date'  => 'to date',
         'pricing'   => [
             'created'   => 'Pricing created',
-            'updated'   => 'Pricing update'
+            'updated'   => 'Pricing update',
+            'deleted'   => 'Pricing deleted',
         ],
         'stock'   => [
             'created'   => 'Stock created',
-            'updated'   => 'Stock update'
+            'updated'   => 'Stock update',
+            'deleted'   => 'Stock deleted',
+        ],
+        'categories'   => [
+            'all'   => 'Categories',
+            'created'   => 'Category added to product',
+            'exist'   => 'The category existing in the product',
+            'deleted'   => 'The category removed from the product',
+            
         ]
-
     ],
 
     'pricing_groups' => [

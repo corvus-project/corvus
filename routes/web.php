@@ -27,6 +27,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'ProductController@view']);
     Route::get('/products/{product}/pricing', ['as' => 'products.view_pricing', 'uses' => 'ProductController@view_pricing']);
     Route::get('/products/{product}/stocks', ['as' => 'products.view_stocks', 'uses' => 'ProductController@view_stocks']);
+    Route::get('/products/{product}/categories', ['as' => 'products.view_categories', 'uses' => 'ProductController@view_categories']);
+
+    // Category CRUD
+    Route::get('/products/{product}/create/categories', ['as' => 'products.create_category', 'uses' => 'ProductController@create_category']);
+    Route::post('/products/{product}/create/categories', ['as' => 'products.create_category.store', 'uses' => 'ProductController@store_category']);    
+    Route::get('/products/{product}/delete/{category}/categories', ['as' => 'products.delete_category', 'uses' => 'ProductController@delete_category']);
+    Route::post('/products/{product}/delete/{category}/categories', ['as' => 'products.delete_category.destroy', 'uses' => 'ProductController@destroy_category']);
+
 
     // Stock CRUD
     Route::get('/products/{product}/create/stocks', ['as' => 'products.create_stock', 'uses' => 'ProductController@create_stock']);

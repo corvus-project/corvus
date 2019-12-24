@@ -55,12 +55,12 @@
                     method="post">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
-                    <div class="form-group row {!! $errors->first('name', 'has-warning') !!}">
-                        <label for="name"
+                    <div class="form-group row {!! $errors->first('warehouse_id', 'has-warning') !!}">
+                        <label for="warehouse_id"
                             class="col-sm-3 col-form-label">{{ trans('labels.products.warehouse') }}</label>
                         <div class="col-sm-9">
                             {{ Form::select('warehouse_id', $warehouses, (isset($stock) ? $stock->warehouse_id : null), ['class'=>'form-control col-sm-3']) }}
-                            {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                            {!! $errors->first('warehouse_id', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
 

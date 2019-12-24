@@ -119,6 +119,46 @@
                 @endforeach
             </tbody>
         </table>
+
+
+        <br />
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Categories</h4>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                    <a href="{{ route('admin.products.view_categories', $product->id) }}"
+                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the Categories"><i
+                            class="fas fa-list"></i></a>
+                </div>
+            </div>
+        </div>        
+        <table class="table table-light table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Category Name</th>
+                    <th>Taxonomy ID</th>                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($product->categories()->take(10)->get() as
+                $category)
+                <tr>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->taxonomy_id }}</td>
+                    <td> 
+                        <a href="{{ route('admin.products.delete_category', [$product->id, $category->id]) }}" class="btn btn-danger btn-sm m-1 float-right"
+                        data-toggle="tooltip" title="Delete category"><i class="fas fa-trash"></i></a>
+                    
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+
     </div>
 </div>
 @endsection

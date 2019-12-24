@@ -46,4 +46,10 @@ class Product extends Model
     {
         return $this->hasMany(Stock::class);
     }    
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'product_categories')->withPivot(['product_id', 'category_id'])
+        ->withTimestamps();
+    }    
 }

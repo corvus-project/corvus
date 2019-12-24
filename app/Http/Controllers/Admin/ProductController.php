@@ -8,12 +8,14 @@ use App\Models\StockType;
 use App\Models\Stock;
 use App\Models\Pricing;
 use App\Models\PricingGroup;
+use App\Models\Category;
 
 use App\Http\Requests\StockStoreRequest;
 use App\Http\Requests\StockUpdateRequest;
 use App\Http\Requests\PricingStoreRequest;
 use App\Http\Requests\PricingUpdateRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use DB; 
 
 class ProductController extends Controller
@@ -40,17 +42,22 @@ class ProductController extends Controller
 
     public function view_pricing(Product $product)
     {
-        $pricings = $product->pricing()->with('pricing_group')->take(10)->orderBy('created_at', 'DESC')->paginate(100);
+        $pricings = $product->pricing()->with('pricing_group')->orderBy('created_at', 'DESC')->paginate(100);
         return view('admin.products.view_pricing', compact('product', 'pricings'));
     }    
 
-    
     public function view_stocks(Product $product)
     {
-        $stocks = $product->stocks()->with('stock_type')->take(10)->orderBy('from_date', 'DESC')->paginate(100);
+        $stocks = $product->stocks()->with('stock_type')->orderBy('from_date', 'DESC')->paginate(100);
         return view('admin.products.view_stocks', compact('product', 'stocks'));
-    }     
-    
+    }   
+
+    public function view_categories(Product $product)
+    {
+        $categories = $product->categories()->orderBy('created_at', 'DESC')->get();
+        return view('admin.products.view_categories', compact('product', 'categories'));
+    }   
+        
     public function create_stock(Product $product)
     {
         $warehouses = Warehouse::all()->pluck('name', 'id');
@@ -183,4 +190,32 @@ class ProductController extends Controller
         $pricing->delete();
         return redirect(route('admin.products.view_pricing', $product->id))->withFlashSuccess(trans('labels.products.pricing.deleted'));
     }    
+
+    public function create_category(Product $product)
+    {
+        $categories = Category::all()->pluck('name', 'id');
+        return view('admin.products.create_category', compact('product', 'categories'));
+    }
+
+    public function store_category(Product $product, Request $request)
+    {
+        $hasCategory = $product->categories()->where('category_id', $request->category_id)->exists();
+        if ($hasCategory){
+            return redirect(route('admin.products.view_categories', $product->id))->withFlashDanger(trans('labels.products.categories.exist'));            
+        }
+        $product->categories()->attach($request->category_id);
+        return redirect(route('admin.products.view_categories', $product->id))->withFlashSuccess(trans('labels.products.categories.created'));
+    }
+
+    public function delete_category(Product $product, Category $category)
+    {
+        return view('admin.products.delete_category', compact('product', 'category'));
+    }
+
+    public function destroy_category(Product $product, Category $category)
+    {
+        $product->categories()->detach($category->id);
+        return redirect(route('admin.products.view_categories', $product->id))->withFlashSuccess(trans('labels.products.categories.deleted'));
+    } 
+
 }
