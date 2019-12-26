@@ -14,5 +14,15 @@ return [
 
     'customers' => [
         'portal'  => 'Customer Portal',
-    ]
+        'view'  => 'Customer details',
+        'management' => 'Customer Management',
+        'name'  => 'Name',
+        'email' => 'Email',
+        'password'  => 'Password',
+        'password_confirmation' => 'Confirm',
+        'created'   => 'Customer created',
+        'updated'   => 'Customer updated',
+
+        
+    ]   
 ];

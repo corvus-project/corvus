@@ -44,7 +44,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
         ],
     ],
@@ -125,25 +125,7 @@ return [
          */
         'change_email' => false,
     ],
-
-    /**
-     * Configurations for the socialite
-     */
-    'socialite' => [
-
-        /**
-         * Disable social login for roles
-         */
-        'except_roles' => ['administrator'],
-
-        /*
-        * Socialite session variable name
-        * Contains the name of the currently logged in provider in the users session
-        * Makes it so social logins can not change passwords, etc.
-        */
-        'session_name' => 'socialite_provider',
-    ],
-
+ 
     /*
      * Application captcha specific settings
      */

@@ -16,27 +16,22 @@ class UsersRolesSeeder extends Seeder
     public function run()
     {
         $this->disableForeignKeys();
-        $this->truncate('users_roles');
+        $this->truncate('role_user');
 
-        $data = [
-            'admin@example.com' => ['administrator'],
-            'demo@example.com' => 'user',
-			'customer@example.com' => 'customer',
-        ];
+        $user = \App\Models\User::whereEmail('admin@gazatem.com')->first();
+        $role = \App\Models\Role::where('name', 'administrator')->first();
+        $user->attachRole($role);
+          $role = \App\Models\Role::where('name', 'customer')->first();
 
-        foreach ($data as $email => $role) {
-            /** @var  $user \App\Models\Auth\User\User */
-            $user = \App\Models\Auth\User\User::whereEmail($email)->first();
+        $users = \App\Models\Auth\User\User::where('email', '!=' ,'admin@gazatem.com')->get();
+        foreach ($users as $user) {
+            
+            $user = \App\Models\User::whereEmail($user->email)->first();
 
             if (!$user) continue;
-
-            $role = !is_array($role) ? [$role] : $role;
-
-            $roles = \App\Models\Auth\Role\Role::whereIn('name', $role)->get();
-
-            $user->roles()->attach($roles);
-        }
-
+            $user->attachRole($role);
+        } 
+ 
         $this->enableForeignKeys();
     }
 }

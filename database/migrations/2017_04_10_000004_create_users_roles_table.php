@@ -13,27 +13,69 @@ class CreateUsersRolesTable extends Migration
      */
     public function up()
     {
-        /**
-         * User and roles relation table
-         */
-        Schema::create('users_roles', function (Blueprint $table) {
+        Schema::create('roles', function ($table) {
+            $table->increments('id')->unsigned();
+            $table->string('name');
+            $table->string('display_name');
+            $table->boolean('all')->default(false);
+            $table->smallInteger('sort')->default(0)->unsigned();
+            $table->timestamps();
+
+            /*
+             * Add Foreign/Unique/Index
+             */
+            $table->unique('name');
+        });
+
+        Schema::create('role_user', function ($table) {
+            $table->increments('id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();
 
             /*
              * Add Foreign/Unique/Index
              */
-            $table->foreign('user_id', 'foreign_user')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->foreign('role_id', 'foreign_role')
+            $table->foreign('role_id')
                 ->references('id')
                 ->on('roles')
                 ->onDelete('cascade');
+        });
 
-            $table->unique(['user_id', 'role_id']);
+        Schema::create('permissions', function ($table) {
+            $table->increments('id')->unsigned();
+            $table->string('name');
+            $table->string('display_name');
+            $table->smallInteger('sort')->default(0)->unsigned();
+            $table->timestamps();
+
+            /*
+             * Add Foreign/Unique/Index
+             */
+            $table->unique('name');
+        });
+
+        Schema::create('permission_role', function ($table) {
+            $table->increments('id')->unsigned();
+            $table->integer('permission_id')->unsigned();
+            $table->integer('role_id')->unsigned();
+
+            /*
+             * Add Foreign/Unique/Index
+             */
+            $table->foreign('permission_id')
+                ->references('id')
+                ->on('permissions')
+                ->onDelete('cascade');
+
+            $table->foreign('role_id')
+                ->references('id')
+                ->on('roles')
+                ->onDelete('cascade');
         });
     }
 
@@ -44,14 +86,14 @@ class CreateUsersRolesTable extends Migration
      */
     public function down()
     {
-        Schema::table('users_roles', function (Blueprint $table) {
-            $table->dropForeign('foreign_user');
-            $table->dropForeign('foreign_role');
-        });
-
         /*
          * Drop tables
          */
-        Schema::dropIfExists('users_roles');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('role_user');
+        Schema::dropIfExists('permission_role');
+        Schema::dropIfExists('roles');
+        Schema::dropIfExists('permissions');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
