@@ -5,13 +5,7 @@ namespace App\Models\Traits;
 
 trait UserAttribute
 {
-    public function getCompanyNameAttribute()
-    {
-        if ($this->company) {
-            return $this->company->name;
-        }
-        return '';
-    }
+ 
 
     public function getUserRoleAttribute()
     {

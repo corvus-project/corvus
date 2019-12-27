@@ -44,14 +44,14 @@
 
 
         <form autocomplete="off" role="form"
-                    action="{{ route('admin.customers.store') }}"
+                    action="{{ route('admin.customers.profile.update', $user->id)  }}"
                     method="post">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
  
                     <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
                         <label for="pricing_group_id" class="col-sm-3 col-form-label">{{ trans('labels.products.pricing_group') }}</label>
                         <div class="col-sm-9">
-                            {{ Form::select('pricing_group_id', $pricing_groups, (isset($pricing) ? $pricing->pricing_group_id : null), ['class'=>'form-control col-sm-3']) }}
+                            {{ Form::select('pricing_group_id', $pricing_groups, (isset($profile) ? $profile->pricing_group_id : null), ['class'=>'form-control col-sm-3']) }}
                             {!! $errors->first('pricing_group_id', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
@@ -59,8 +59,8 @@
                     <div class="form-group row {!! $errors->first('name', 'has-warning') !!}">
                         <label for="name" class="col-sm-3 col-form-label">{{ trans('labels.products.name') }}</label>
                         <div class="col-sm-9">
-                            {{ Form::select('stock_type_id', $stock_types, (isset($stock) ? $stock->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
-                            {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                            {{ Form::select('stock_type_id', $stock_types, (isset($profile) ? $profile->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
+                            {!! $errors->first('stock_type_id', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">

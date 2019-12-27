@@ -19,5 +19,5 @@ Route::group(['prefix' => 'admin/customers', 'as' => 'admin.', 'middleware' => [
     Route::post('/create', ['as' => 'customers.store', 'uses' => 'CustomerController@store']);     
     Route::get('/{user}/edit', ['as' => 'customers.edit', 'uses' => 'CustomerController@edit']);     
     Route::post('/{user}/edit', ['as' => 'customers.update', 'uses' => 'CustomerController@update']);     
-    
+    Route::post('/{user}/profile', ['as' => 'customers.profile.update', 'uses' => 'CustomerController@profile_update']);     
 });

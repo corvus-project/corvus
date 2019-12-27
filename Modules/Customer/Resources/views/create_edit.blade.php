@@ -26,17 +26,23 @@
                             <a href="{{ route('admin.customers.create') }}" class="btn btn-primary btn-sm m-1"
                                 data-toggle="tooltip" title="New Customer"><i class="fas fa-plus"></i></a>
 
+                            @if($user)
+                            <a href="{{ route('admin.customers.view', $user->id) }}" class="btn btn-info btn-sm m-1"
+                                data-toggle="tooltip" title="Back to customer"><i
+                                    class="fas fa-arrow-alt-circle-left"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
- 
+
                 <form autocomplete="off" role="form"
                     action="{{ (isset($user)) ? route('admin.customers.edit', [$user->id]) : route('admin.customers.store') }}"
                     method="post">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
                     <div class="form-group row {!! $errors->first('name', 'has-warning') !!}">
-                        <label for="name" class="col-sm-3 col-form-label">{{ trans('customer::labels.customers.name') }}</label>
+                        <label for="name"
+                            class="col-sm-3 col-form-label">{{ trans('customer::labels.customers.name') }}</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" id="name" name="name" autocomplete="off"
                                 value="{{{ old('name', isset($user) ? $user->name : null) }}}"> {!!
@@ -45,7 +51,8 @@
                     </div>
 
                     <div class="form-group row {!! $errors->first('email', 'has-warning') !!}">
-                        <label for="email" class="col-sm-3 col-form-label">{{ trans('customer::labels.customers.email') }}</label>
+                        <label for="email"
+                            class="col-sm-3 col-form-label">{{ trans('customer::labels.customers.email') }}</label>
                         <div class="col-sm-6">
                             <input type="email" class="form-control" id="email" name="email" autocomplete="off"
                                 value="{{{ old('email', isset($user) ? $user->email : null) }}}"> {!!
@@ -54,7 +61,8 @@
                     </div>
 
                     <div class="form-group row {!! $errors->first('password', 'has-warning') !!}">
-                        <label for="password" class="col-sm-3 col-form-label">{{ trans('customer::labels.customers.password') }}</label>
+                        <label for="password"
+                            class="col-sm-3 col-form-label">{{ trans('customer::labels.customers.password') }}</label>
                         <div class="col-sm-3">
                             <input type="password" class="form-control" id="password" name="password" />
                             {!! $errors->first('password', '<span class="help-block">:message</span>') !!}

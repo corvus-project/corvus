@@ -31,17 +31,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function appointments()
-    {
-        return $this->hasMany(Appointment::class);
-    }
-
-    public function services()
-    {
-        return $this->belongsToMany(Service::class, 'service_team')
-                ->withPivot(['user_id', 'service_id'])
-                ->withTimestamps();
-    }    
+ 
 
 }
