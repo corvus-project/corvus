@@ -19,7 +19,7 @@
                     <a href="{{ route('admin.customers.create') }}" class="btn btn-primary btn-sm m-1"
                         data-toggle="tooltip" title="New Customer"><i class="fas fa-plus"></i></a>
 
-                        <a href="{{ route('admin.customers.edit', $user->id) }}" class="btn btn-info btn-sm m-1"
+                    <a href="{{ route('admin.customers.edit', $user->id) }}" class="btn btn-info btn-sm m-1"
                         data-toggle="tooltip" title="Edit the Customer"><i class="fas fa-pen"></i></a>
                 </div>
             </div>
@@ -43,32 +43,54 @@
         <br />
 
 
-        <form autocomplete="off" role="form"
-                    action="{{ route('admin.customers.profile.update', $user->id)  }}"
-                    method="post">
-                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+        <form autocomplete="off" role="form" action="{{ route('admin.customers.profile.update', $user->id)  }}"
+            method="post">
+            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+
+            <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
+                <label for="pricing_group_id"
+                    class="col-sm-3 col-form-label">{{ trans('labels.products.pricing_group') }}</label>
+                <div class="col-sm-9">
+                    {{ Form::select('pricing_group_id', $pricing_groups, (isset($profile) ? $profile->pricing_group_id : null), ['class'=>'form-control col-sm-3']) }}
+                    {!! $errors->first('pricing_group_id', '<span class="help-block">:message</span>') !!}
+                </div>
+            </div>
+
+            <div class="form-group row {!! $errors->first('name', 'has-warning') !!}">
+                <label for="name" class="col-sm-3 col-form-label">{{ trans('labels.products.stock_type') }}</label>
+                <div class="col-sm-9">
+                    {{ Form::select('stock_type_id', $stock_types, (isset($profile) ? $profile->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
+                    {!! $errors->first('stock_type_id', '<span class="help-block">:message</span>') !!}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
+                <i class="fas fa-save align-middle"></i> <span
+                    class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>
+            </button>
+        </form>
+        <br />
+        <hr/>
+        <br />
+        <form autocomplete="off" role="form" action="{{ route('admin.customers.token.regenerate', $user->id)  }}"
+            method="post">
+            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+
+            <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
+                <label for="pricing_group_id"
+                    class="col-sm-3 col-form-label">Token</label>
+                <div class="col-sm-9">
+
+                <input type="text" class="form-control" id="token" name="token" autocomplete="off"
+                                value="{{{ old('token', isset($user) ? $user->token : null) }}}"> {!!
+                            $errors->first('token', '<span class="help-block">:message</span>') !!}
+                </div>
+            </div>
  
-                    <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
-                        <label for="pricing_group_id" class="col-sm-3 col-form-label">{{ trans('labels.products.pricing_group') }}</label>
-                        <div class="col-sm-9">
-                            {{ Form::select('pricing_group_id', $pricing_groups, (isset($profile) ? $profile->pricing_group_id : null), ['class'=>'form-control col-sm-3']) }}
-                            {!! $errors->first('pricing_group_id', '<span class="help-block">:message</span>') !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group row {!! $errors->first('name', 'has-warning') !!}">
-                        <label for="name" class="col-sm-3 col-form-label">{{ trans('labels.products.name') }}</label>
-                        <div class="col-sm-9">
-                            {{ Form::select('stock_type_id', $stock_types, (isset($profile) ? $profile->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
-                            {!! $errors->first('stock_type_id', '<span class="help-block">:message</span>') !!}
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
-                        <i class="fas fa-save align-middle"></i> <span
-                            class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>
-                    </button>
-                </form>
-
+            <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
+                <i class="fas fa-save align-middle"></i> <span
+                    class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>
+            </button>
+        </form>
 
     </div>
 </div>

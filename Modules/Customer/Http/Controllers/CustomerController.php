@@ -13,6 +13,8 @@ use Modules\Customer\Http\Requests\UserUpdateRequest;
 use Modules\Customer\Http\Requests\ProfileRequest;
 use App\Models\StockType; 
 use App\Models\PricingGroup;
+use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
 
 class CustomerController extends Controller
 {
@@ -103,4 +105,26 @@ class CustomerController extends Controller
         $profile->save();        
         return redirect(route('admin.customers.view', $user->id))->withFlashSuccess(__('customer::labels.customers.updated'));        
     }
+
+    public function token_regenerate(User $user)
+    {
+        $user->token = $this->createToken($user->id);
+        $user->save();
+        return redirect(route('admin.customers.view', $user->id))->withFlashSuccess(__('customer::labels.customers.updated'));        
+    }
+
+    private function createToken($user_id = 0)
+    {
+        $signer = new Sha256();
+        $token = (new Builder())->setIssuer(env('APP_URL', 'http://intellect.test'))// Configures the issuer (iss claim)
+        ->setAudience(env('APP_URL', 'http://intellect.test'))// Configures the audience (aud claim)
+        ->setId('4f1g23a12aa', true)// Configures the id (jti claim), replicating as a header item
+        ->setIssuedAt(time())// Configures the time that the token was issue (iat claim)
+        ->setNotBefore(time() + 60)// Configures the time that the token can be used (nbf claim)
+        //->setExpiration(time() + 3600)// Configures the expiration time of the token (exp claim)
+        ->set('user_id', "$user_id")// Configures a new claim, called "uid"
+        ->sign($signer, env('JWT_SIGNATURE', '4A4A4A4A4A4'))// creates a signature using "testing" as key
+        ->getToken(); // Retrieves the generated token
+        return (string)$token;
+    }    
 }

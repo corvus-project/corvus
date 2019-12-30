@@ -26,7 +26,7 @@
                             <a href="{{ route('admin.customers.create') }}" class="btn btn-primary btn-sm m-1"
                                 data-toggle="tooltip" title="New Customer"><i class="fas fa-plus"></i></a>
 
-                            @if($user)
+                            @if(!empty($user))
                             <a href="{{ route('admin.customers.view', $user->id) }}" class="btn btn-info btn-sm m-1"
                                 data-toggle="tooltip" title="Back to customer"><i
                                     class="fas fa-arrow-alt-circle-left"></i></a>

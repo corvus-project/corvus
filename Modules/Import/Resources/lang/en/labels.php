@@ -14,5 +14,8 @@ return [
 
     'imports' => [
         'management'  => 'Import Management',
+        'file'  => [
+            'uploaded' => 'File uploaded'
+        ]
     ]
 ];

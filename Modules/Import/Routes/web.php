@@ -10,13 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::prefix('import')->group(function() {
-    Route::get('/', 'ImportController@index');
-});
-
-
-
 Route::group(['prefix' => 'admin/imports', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified']], function () {    
-    Route::get('/', 'ImportController@index')->name('imports.index');
+    Route::get('/', 'ImportController@index')->name('import.index');
+    Route::post('/csv_file', ['as' => 'import.csv_file', 'uses' => 'ImportController@csv_file']);    
 });
