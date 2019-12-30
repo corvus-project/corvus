@@ -1,0 +1,13 @@
+{
+    "Attributes": true,
+    "Variants": true,
+    "Import": true,
+    "Reporting": true,
+    "Api": true,
+    "Customer": true,
+    "Orders": true,
+    "Attribute": true,
+    "Variant": true,
+    "Report": true,
+    "Order": true
+}
