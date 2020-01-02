@@ -28,7 +28,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = ['name', 'sku', 'description'];
-
+ 
     /**
      * The attributes that should be mutated to dates.
      *

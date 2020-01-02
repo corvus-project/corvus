@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Log;
-use App\Models\Auth\User\User;
+use App\Models\User;
 use Lcobucci\JWT\Parser;
 
 class JwtAuth
@@ -47,6 +47,7 @@ class JwtAuth
             ], 400);
         }
  
+        \Log::debug('User', (array)$user->email);
         app()->instance('user', $user);
 
         return $next($request); 

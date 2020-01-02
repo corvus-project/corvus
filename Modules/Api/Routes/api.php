@@ -18,7 +18,6 @@ Route::middleware('auth:api')->get('/api', function (Request $request) {
 });
 
 Route::group(['middleware' => ['jwt.auth'], 'prefix' => '/', 'as' => 'modules.api.',], function () {
-    Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@products']);
-/*        Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']); Route::get('/channels', ['as' => 'api.channels', 'uses' => '\Api\Controllers\DiagramController@channels']);    
-    Route::get('/daily', ['as' => 'api.daily', 'uses' => '\Api\Controllers\DiagramController@daily']);         */
+    Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']);
+    Route::get('/products/{product}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 });

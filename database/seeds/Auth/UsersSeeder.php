@@ -38,7 +38,7 @@ class UsersSeeder extends Seeder
         ];
         DB::table('users')->insert($user);
         $users = [];
-        for($i = 0; $i < 100; $i++){
+        for($i = 0; $i < 10; $i++){
             $users[] = [
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
