@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use DB; 
 use Carbon\Carbon;
 use Auth;
+use App\Http\Resources\Products;
 
 class ProductController extends Controller
 {
@@ -27,16 +28,39 @@ class ProductController extends Controller
     {
         $user = \App::make('user');
         $profile = $user->profile;
-        $stock_type_id = $profile->stock_type_id;
 
-        $stocks = Product::whereHas('stocks', function($query) use ($stock_type_id){
-           $query->where('stock_type_id', $stock_type_id);
-        })->get();
-        return response()->json(['data' => $stocks], 200);
+        $stocks = DB::table('products')
+                        ->leftJoin('pricings', 'products.id', '=', 'pricings.product_id')
+                        ->leftJoin('stocks', 'products.id', '=', 'stocks.product_id')
+                        ->leftJoin('warehouses', 'warehouses.id', '=', 'stocks.warehouse_id')
+                        ->where('pricings.pricing_group_id', $profile->pricing_group_id)
+                        ->where('stocks.stock_type_id', $profile->stock_type_id)
+                        ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
+                        ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
+                        ->get();        
+
+        return Products::collection($stocks);
     }
 
     public function show(Product $product)
     {
-        return ['date' => Carbon::now()];
+        $user = \App::make('user');
+        $profile = $user->profile;
+         
+        $selected = DB::table('products')
+                        ->leftJoin('pricings', 'products.id', '=', 'pricings.product_id')
+                        ->leftJoin('stocks', 'products.id', '=', 'stocks.product_id')
+                        ->leftJoin('warehouses', 'warehouses.id', '=', 'stocks.warehouse_id')
+                        ->where('products.id', $product->id)
+                        ->where('pricings.pricing_group_id', $profile->pricing_group_id)
+                        ->where('stocks.stock_type_id', $profile->stock_type_id)
+                        ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
+                        ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
+                        ->first();        
+        
+        if (!$selected){
+            return response()->json([], 404);
+        }
+        return new Products($selected);
     }    
 }

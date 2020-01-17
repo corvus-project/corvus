@@ -37,6 +37,7 @@ return [
     ],
  
     'products' => [
+        'name'  => 'Name',
         'view'  => 'Product details',
         'management' => 'Product Management',
         'stock_management' => 'Stock Management',
