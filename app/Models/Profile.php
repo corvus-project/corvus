@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     protected $table = "customer_profiles";
-    protected $fillable = ['stock_type_id', 'pricing_group_id'];
+    protected $fillable = ['stock_type_id', 'pricing_group_id', 'warehouse_id'];
 
     public function user(){
         return $this->belongsTo(User::class);

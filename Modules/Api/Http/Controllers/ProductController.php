@@ -2,19 +2,6 @@
 
 namespace Modules\Api\Http\Controllers;
  
-use App\Models\Product;
-use App\Models\Warehouse;
-use App\Models\StockType; 
-use App\Models\Stock;
-use App\Models\Pricing;
-use App\Models\PricingGroup;
-use App\Models\Category;
-use App\Models\User;
-
-use App\Http\Requests\StockStoreRequest;
-use App\Http\Requests\StockUpdateRequest;
-use App\Http\Requests\PricingStoreRequest;
-use App\Http\Requests\PricingUpdateRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB; 
@@ -57,9 +44,8 @@ class ProductController extends Controller
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
                         ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
                         ->first();        
-        
         if (!$selected){
-            return response()->json([], 404);
+            return response()->json(null, 404);
         }
         return new Products($selected);
     }    

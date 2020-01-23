@@ -56,20 +56,29 @@
                 </div>
             </div>
 
-            <div class="form-group row {!! $errors->first('name', 'has-warning') !!}">
+            <div class="form-group row {!! $errors->first('stock_type_id', 'has-warning') !!}">
                 <label for="name" class="col-sm-3 col-form-label">{{ trans('labels.products.stock_type') }}</label>
                 <div class="col-sm-9">
                     {{ Form::select('stock_type_id', $stock_types, (isset($profile) ? $profile->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
                     {!! $errors->first('stock_type_id', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
+
+            <div class="form-group row {!! $errors->first('warehouse_id', 'has-warning') !!}">
+                <label for="warehouse_id" class="col-sm-3 col-form-label">{{ trans('labels.products.warehouse') }}</label>
+                <div class="col-sm-9">
+                    {{ Form::select('warehouse_id', $warehouses, (isset($profile) ? $profile->warehouse_id : null), ['class'=>'form-control col-sm-3']) }}
+                    {!! $errors->first('warehouse_id', '<span class="help-block">:message</span>') !!}
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                 <i class="fas fa-save align-middle"></i> <span
                     class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>
             </button>
         </form>
         <br />
-        <hr/>
+       
         <br />
         <form autocomplete="off" role="form" action="{{ route('admin.customers.token.regenerate', $user->id)  }}"
             method="post">

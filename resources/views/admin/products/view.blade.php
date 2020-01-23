@@ -95,7 +95,6 @@
                     <th>Stock Type</th>
                     <th>Warehouse</th>                    
                     <th>Quantity</th>
-                    <th>Dates</th>
                     <th></th>
                 </tr>
             </thead>
@@ -106,7 +105,6 @@
                     <td>{{ $stock->stock_type->name }}</td>
                     <td>{{ $stock->warehouse->name }}</td>
                     <td>{{ $stock->quantity }}</td>
-                    <td>{{ $stock->from_to }}</td>
                     <td>
                     <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}" class="btn btn-info btn-sm m-1 float-right"
                         data-toggle="tooltip" title="Update stock"><i class="fas fa-pen"></i></a>

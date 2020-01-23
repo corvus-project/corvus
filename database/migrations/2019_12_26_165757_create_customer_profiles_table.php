@@ -18,6 +18,7 @@ class CreateCustomerProfilesTable extends Migration
             $table->integer('user_id')->unsigned()->unique();
             $table->integer('stock_type_id')->nullable()->unsigned();
             $table->integer('pricing_group_id')->nullable()->unsigned();
+            $table->integer('warehouse_id')->nullable()->unsigned();
 
             /*
              * Add Foreign/Unique/Index
@@ -36,6 +37,11 @@ class CreateCustomerProfilesTable extends Migration
                 ->references('id')
                 ->on('pricing_groups')
                 ->onDelete('cascade');
+
+            $table->foreign('warehouse_id')
+                ->references('id')
+                ->on('warehouses')
+                ->onDelete('cascade');                
             
             $table->timestamps();
         });

@@ -13,6 +13,7 @@ use Modules\Customer\Http\Requests\UserUpdateRequest;
 use Modules\Customer\Http\Requests\ProfileRequest;
 use App\Models\StockType; 
 use App\Models\PricingGroup;
+use App\Models\Warehouse;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 
@@ -40,8 +41,10 @@ class CustomerController extends Controller
         $stock_types->prepend('Select stock type');
         $pricing_groups = PricingGroup::all()->pluck('name', 'id');
         $pricing_groups->prepend('Select pricing group');
+        $warehouses = Warehouse::all()->pluck('name', 'id');
+        $warehouses->prepend('Select warehouse');
         $profile = $user->profile;
-        return view('customer::view', compact('user', 'stock_types', 'pricing_groups', 'profile'));
+        return view('customer::view', compact('user', 'warehouses', 'stock_types', 'pricing_groups', 'profile'));
     }   
 
     public function create()
@@ -93,6 +96,7 @@ class CustomerController extends Controller
             $user->profile()->save(
                 new Profile(
                         [
+                            "warehouse_id" => $request->warehouse_id,
                             "stock_type_id" => $request->stock_type_id,
                             "pricing_group_id" => $request->pricing_group_id,
                         ])
@@ -102,6 +106,7 @@ class CustomerController extends Controller
         $profile = $user->profile;
         $profile->stock_type_id = $request->stock_type_id;
         $profile->pricing_group_id = $request->pricing_group_id;
+        $profile->warehouse_id = $request->warehouse_id;
         $profile->save();        
         return redirect(route('admin.customers.view', $user->id))->withFlashSuccess(__('customer::labels.customers.updated'));        
     }

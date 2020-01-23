@@ -22,8 +22,6 @@ class CreateStocksTable extends Migration
             $table->integer('warehouse_id')->nullable()->unsigned();
             $table->foreign('warehouse_id')->references('id')->onDelete('cascade')->on('warehouses');            
             $table->integer('quantity')->default(0);
-            $table->date('from_date')->nullable();
-            $table->date('to_date')->nullable(); 
             $table->softDeletes();          
             $table->timestamps();
         });
