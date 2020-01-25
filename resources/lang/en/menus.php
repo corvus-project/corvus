@@ -27,5 +27,10 @@ return [
     'attributes'    => 'Attributes',
     'orders'  => 'Orders',
     'imports'  => 'Import',
-    'reports'   => 'Reports'
+    'reports'   => 'Reports',
+    'reports_warehouses_stock' => 'Warehouse Stock',
+    'reports_warehouses_orders' => 'Warehouse Orders',
+    'reports_product_orders' => 'Product Orders',
+    'reports_product_stock' => 'Product Stock Changes',
+    'reports_product_pricing' => 'Product Pricing Changes',
 ];

@@ -33,6 +33,7 @@ class OrderController extends Controller
         }
 
         DB::table('order_lines')->insert($orderlines);
+        ProcessOrder::dispatch($order);
         return response()->json(['order_id' => $order_id], 201);
     }    
 }

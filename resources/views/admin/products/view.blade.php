@@ -35,7 +35,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <h4>Pricing History</h4>
+                <h4>Pricing Groups</h4>
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
@@ -79,7 +79,7 @@
         <br />
         <div class="row">
             <div class="col-sm-6">
-                <h4>Stock History</h4>
+                <h4>Stock Groups</h4>
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">

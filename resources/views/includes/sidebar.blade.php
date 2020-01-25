@@ -19,8 +19,6 @@
                 </a>
 
                 <ul class="nav-dropdown-items">
-
-
                     <li class="nav-item">
                         <a class="nav-link {{
                     active_class(Route::is('admin/pricing-groups'))
@@ -115,15 +113,59 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{
+            <li class="nav-item nav-dropdown ">
+                <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/reports'))
                 }}" href="{{ route('admin.reports.index') }}">
                     <i class="nav-icon far fa-chart-bar"></i>
                     @lang('menus.reports')
                 </a>
-            </li>
 
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(Route::is('admin/pricing-groups'))
+                }}" href="{{ route('admin.reports.warehouse.stock') }}">
+                            @lang('menus.reports_warehouses_stock')
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(Route::is('admin/pricing-groups'))
+                }}" href="{{ route('admin.pricing_groups.index') }}">
+                            @lang('menus.reports_warehouses_orders')
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(Route::is('admin/pricing-groups'))
+                }}" href="{{ route('admin.pricing_groups.index') }}">
+                            @lang('menus.reports_product_orders')
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(Route::is('admin/pricing-groups'))
+                }}" href="{{ route('admin.pricing_groups.index') }}">
+                            @lang('menus.reports_product_stock')
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(Route::is('admin/pricing-groups'))
+                }}" href="{{ route('admin.pricing_groups.index') }}">
+                            @lang('menus.reports_product_pricing')
+                        </a>
+                    </li>
+
+
+            </li>
+        </ul>
 
         </ul>
     </nav>

@@ -69,6 +69,9 @@ return [
             'exist'   => 'The category existing in the product',
             'deleted'   => 'The category removed from the product',
             
+        ],
+        'orders'    => [
+            'management'    => 'Order Management'
         ]
     ],
 
