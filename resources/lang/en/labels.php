@@ -36,6 +36,9 @@ return [
         'logout'    => 'Logout'
     ],
  
+    'customers' => [
+        'title' => 'Customers'
+    ],
     'products' => [
         'name'  => 'Name',
         'view'  => 'Product details',

@@ -125,7 +125,7 @@
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
                         <a class="nav-link {{
-                    active_class(Route::is('admin/pricing-groups'))
+                    active_class(Route::is('admin/reports/warehouse/stock'))
                 }}" href="{{ route('admin.reports.warehouse.stock') }}">
                             @lang('menus.reports_warehouses_stock')
                         </a>
@@ -133,9 +133,9 @@
 
                     <li class="nav-item">
                         <a class="nav-link {{
-                    active_class(Route::is('admin/pricing-groups'))
-                }}" href="{{ route('admin.pricing_groups.index') }}">
-                            @lang('menus.reports_warehouses_orders')
+                    active_class(Route::is('admin/reports/customer/order'))
+                }}" href="{{ route('admin.reports.customer.order') }}">
+                            @lang('menus.reports_customers_orders')
                         </a>
                     </li>
 
@@ -146,23 +146,6 @@
                             @lang('menus.reports_product_orders')
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/pricing-groups'))
-                }}" href="{{ route('admin.pricing_groups.index') }}">
-                            @lang('menus.reports_product_stock')
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/pricing-groups'))
-                }}" href="{{ route('admin.pricing_groups.index') }}">
-                            @lang('menus.reports_product_pricing')
-                        </a>
-                    </li>
-
 
             </li>
         </ul>

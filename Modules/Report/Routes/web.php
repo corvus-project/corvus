@@ -15,4 +15,7 @@ Route::group(['prefix' => 'admin/reports', 'as' => 'admin.', 'middleware' => ['w
     Route::get('/', 'ReportController@index')->name('reports.index');
     Route::get('/warehouse/stock', 'WarehouseController@stock')->name('reports.warehouse.stock');
     Route::get('/warehouse/stock/data', 'WarehouseController@stock_data')->name('reports.warehouse.stock.data');
+
+    Route::get('/customer/order', 'CustomerController@orders')->name('reports.customer.order');
+    Route::get('/customer/order/data', 'CustomerController@order_data')->name('reports.customer.order.data');    
 });

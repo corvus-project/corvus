@@ -31,8 +31,7 @@ class WarehouseController extends Controller
             $stock_types_json .= '{ value: "'. $w->id .'", label: "'. $w->name . '"},'; 
         }
 
-
-        return view('report::warehouse.list', compact('warehouses', 'warehouses_json', 'stock_types_json'));
+        return view('report::warehouse.stocks', compact('warehouses', 'warehouses_json', 'stock_types_json'));
     }
  
     public function stock_data()
@@ -48,8 +47,10 @@ class WarehouseController extends Controller
                         'products.name as product_name', 
                         'stocks.quantity', 'stock_types.name as stock_type_name', 
                         'warehouses.name as warehouse_name'
+
                     );
 
         return datatables()->of($stocks)->toJson();
     }    
+ 
 }

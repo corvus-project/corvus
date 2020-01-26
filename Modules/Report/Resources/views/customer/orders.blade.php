@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="card mt-2">
-    <div class="card-body">
+    <div class="card-body"> 
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('report::labels.reports.portal')  }} {{ __('labels.warehouses.title') }}
+                    {{ __('report::labels.reports.portal')  }} {{ __('labels.customers.title') }}
                 </h4>
             </div>
             <!--col-->
@@ -26,9 +26,10 @@
                     <thead>
                         <tr>
                             <th>SKU</th>
-                            <th>Name</th>
-                            <th>Warehouse</th>
-                            <th>Stock Type</th>
+                            <th>Order Date</th>
+                            <th>Customer</th>
+                            <th>Processed Date</th>
+                            <th>Status</th>
                             <th>Quantity</th>
                         </tr>
                     </thead>
@@ -56,53 +57,54 @@ $(document).ready(function() {
         responsive: true,
         serverSide: true,
         pageLength: 50,
-        ajax: "/admin/reports/warehouse/stock/data",
-         
+        ajax: "/admin/reports/customer/order/data",
+
         columns: [{
-                name: 'sku',
-                data: 'product_sku'
+                name: 'order_header_id',
+                data: 'order_header_id'
             },
             {
-                name: 'name',
-                data: 'product_name'
+                name: 'order_date',
+                data: 'order_date'
             },
             {
-                name: 'warehouse_id',
-                data: 'warehouse_name'
+                name: 'user_id',
+                data: 'customer_name'
+            },            
+            {
+                name: 'processed_date',
+                data: 'processed_date'
             },
             {
-                name: 'stock_type_id',
-                data: 'stock_type_name'
+                name: 'status',
+                data: 'order_status_name'
             },
             {
-                name: 'quantity',
-                data: 'quantity'
+                name: 'order_amount',
+                data: 'order_amount'
             }
 
         ]
     });
 
     yadcf.init(table, [{
-        column_number: 2,
-        filter_type: "select",
-        
-        data: [{!! $warehouses_json !!}],        
-    }, {
-        column_number: 3,
-        filter_type: "select",
-        
-        data: [{!! $stock_types_json !!}],        
-    }
-    
-    
+            column_number: 2,
+            filter_type: "select",
+            data: [{!!$customers_json!!}],
+        },
+        {
+            column_number: 4,
+            filter_type: "select",
+            data: [{!! $status_json !!}]
+        }
     ]);
 
 
 
     $('#products tbody').on('click', 'tr', function() {
         var data = table.row(this).data();
-        var template = "{{ route('admin.products.view', '000') }}"
-        var redirect_url = template.replace('000', data.pid);
+        var template = "{{ route('admin.orders.view', '000') }}"
+        var redirect_url = template.replace('000', data.order_header_id);
         window.location.href = redirect_url
     });
 });
