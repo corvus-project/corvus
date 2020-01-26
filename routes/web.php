@@ -89,8 +89,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/warehouses/{warehouse}/delete', ['as' => 'warehouses.delete', 'uses' => 'WarehouseController@delete']);
     Route::post('/warehouses/{warehouse}/delete', ['as' => 'warehouses.destroy', 'uses' => 'WarehouseController@destroy']);
  
-    //
-    Route::get('/categories', ['as' => 'categories.index', 'uses' => 'CategoryController@index']);
+    // Tools
+    Route::get('/tools', ['as' => 'tools.index', 'uses' => 'ToolController@index']);
 
     // Profile
     Route::get('/profile', ['as' => 'profile.form', 'uses' => 'ProfileController@form']);

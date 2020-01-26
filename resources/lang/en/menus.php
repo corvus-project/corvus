@@ -26,6 +26,7 @@ return [
     'variants'  => 'Variants',
     'attributes'    => 'Attributes',
     'orders'  => 'Orders',
+    'tools' => 'Tools',
     'imports'  => 'Import',
     'reports'   => 'Reports',
     'reports_warehouses_stock' => 'Warehouse Stock',

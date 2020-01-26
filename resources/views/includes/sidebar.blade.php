@@ -10,6 +10,8 @@
                     @lang('menus.dashboard')
                 </a>
             </li>
+
+
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/products'))
@@ -88,15 +90,6 @@
 
             <li class="nav-item">
                 <a class="nav-link {{
-                    active_class(Route::is('admin/api'))
-                }}" href="{{ route('admin.api.index') }}">
-                    <i class="nav-icon fas fa-cloud-download-alt"></i>
-                    @lang('menus.api')
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link {{
                     active_class(Route::is('admin/orders'))
                 }}" href="{{ route('admin.orders.index') }}">
                     <i class="nav-icon fas fa-wallet"></i>
@@ -104,19 +97,12 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{
-                    active_class(Route::is('admin/import'))
-                }}" href="{{ route('admin.import.index') }}">
-                    <i class="nav-icon fas fa-file-import"></i>
-                    @lang('menus.imports')
-                </a>
-            </li>
 
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/reports'))
                 }}" href="{{ route('admin.reports.index') }}">
+
                     <i class="nav-icon far fa-chart-bar"></i>
                     @lang('menus.reports')
                 </a>
@@ -146,9 +132,37 @@
                             @lang('menus.reports_product_orders')
                         </a>
                     </li>
-
+                </ul>
             </li>
-        </ul>
+
+            <li class="nav-item nav-dropdown ">
+                <a class="nav-link nav-dropdown-toggle {{
+                    active_class(Route::is('admin/tools'))
+                }}" href="{{ route('admin.tools.index') }}">
+                    <i class="nav-icon fas fa-tools"></i>
+                    @lang('menus.tools')
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(Route::is('admin/api'))
+                }}" href="{{ route('admin.api.index') }}">
+                            <i class="nav-icon fas fa-cloud-download-alt"></i>
+                            @lang('menus.api')
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(Route::is('admin/import'))
+                }}" href="{{ route('admin.import.index') }}">
+                            <i class="nav-icon fas fa-file-import"></i>
+                            @lang('menus.imports')
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
     </nav>
