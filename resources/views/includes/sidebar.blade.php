@@ -21,6 +21,16 @@
                 </a>
 
                 <ul class="nav-dropdown-items">
+
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Route::is('admin/products'))
+                }}" href="{{ route('admin.products.index') }}">
+                            <i class="nav-icon fas fa-list"></i>
+                            @lang('menus.products')
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {{
                     active_class(Route::is('admin/pricing-groups'))
@@ -155,10 +165,19 @@
 
                     <li class="nav-item">
                         <a class="nav-link {{
-                    active_class(Route::is('admin/import'))
-                }}" href="{{ route('admin.import.index') }}">
+                    active_class(Route::is('admin/tools/import'))
+                }}" href="{{ route('admin.tools.import.index') }}">
                             <i class="nav-icon fas fa-file-import"></i>
                             @lang('menus.imports')
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(Route::is('admin/tools/export'))
+                }}" href="{{ route('admin.tools.export.index') }}">
+                            <i class="nav-icon fas fa-file-export"></i>
+                            @lang('menus.export')
                         </a>
                     </li>
                 </ul>

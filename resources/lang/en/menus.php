@@ -28,6 +28,7 @@ return [
     'orders'  => 'Orders',
     'tools' => 'Tools',
     'imports'  => 'Import',
+    'export'    => 'Export',
     'reports'   => 'Reports',
     'reports_warehouses_stock' => 'Warehouse Stock',
     'reports_customers_orders' => 'Customer Orders',

@@ -91,6 +91,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
  
     // Tools
     Route::get('/tools', ['as' => 'tools.index', 'uses' => 'ToolController@index']);
+    Route::get('/tools/imports', 'ImportController@index')->name('tools.import.index');
+    Route::post('/tools/imports/csv_file', ['as' => 'tools.import.csv_file', 'uses' => 'ImportController@csv_file']);   
+    
+    Route::get('/tools/exports', 'ExportController@index')->name('tools.export.index');
+    
+    Route::post('/tools/exports/product_list', ['as' => 'tools.exports.product_list', 'uses' => 'ExportController@product_list']);      
+    Route::post('/tools/exports/price_list', ['as' => 'tools.exports.price_list', 'uses' => 'ExportController@price_list']);      
+    Route::post('/tools/exports/order_list', ['as' => 'tools.exports.order_list', 'uses' => 'ExportController@order_list']);      
+    Route::post('/tools/exports/stock_list', ['as' => 'tools.exports.stock_list', 'uses' => 'ExportController@stock_list']);      
+
 
     // Profile
     Route::get('/profile', ['as' => 'profile.form', 'uses' => 'ProfileController@form']);

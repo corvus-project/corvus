@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('import::labels.imports.management'))
+@section('title', app_name() . ' | ' . __('labels.imports.management'))
 
 
 @section('content')
@@ -31,7 +31,7 @@
 
                 <div class="row">
                     <div class="col">
-                        <form autocomplete="off" role="form" action="{{ route('admin.import.csv_file')  }}"
+                        <form autocomplete="off" role="form" action="{{ route('admin.tools.import.csv_file')  }}"
                             method="post" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <input type="hidden" name="model" value="product" />

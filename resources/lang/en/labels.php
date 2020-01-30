@@ -24,6 +24,7 @@ return [
             'save' => 'Save',
             'update' => 'Update',
             'delete' => 'Delete',
+            'export'    => 'Export'
         ],
         'hide' => 'Hide',
         'inactive' => 'Inactive',
@@ -127,6 +128,14 @@ return [
         'password'  => 'Password',
         'password_confirmation' => 'Confirmation'
 
+    ],
+
+    'imports' => [
+        'management'    => "Import"
+    ],
+
+    'exports' => [
+        'management'    => "Export"
     ],
  
     'auth'  => [

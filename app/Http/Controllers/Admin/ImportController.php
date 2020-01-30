@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Import\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Import\Http\Requests\CsvImportRequest;
+use App\Http\Requests\CsvImportRequest;
 use Storage;
 use Illuminate\Http\UploadedFile;
 use App\Imports\ProductsImport;
@@ -19,7 +19,7 @@ class ImportController extends Controller
      */
     public function index()
     {
-        return view('import::index');
+        return view('admin.tools.import');
     }
  
     public function csv_file(CsvImportRequest  $request)
@@ -35,7 +35,7 @@ class ImportController extends Controller
             }
         }
  
-        return redirect(route('admin.import.index'))->withFlashSuccess(trans('import::labels.file.uploaded'));
+        return redirect(route('admin.tools.import.index'))->withFlashSuccess(trans('import::labels.file.uploaded'));
     }
 
     public function upload(UploadedFile $uploadedFile, $folder = null, $disk = 'local', $name)

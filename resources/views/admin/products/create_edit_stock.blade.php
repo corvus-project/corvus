@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="form-group row {!! $errors->first('name', 'has-warning') !!}">
-                        <label for="name" class="col-sm-3 col-form-label">{{ trans('labels.products.name') }}</label>
+                        <label for="name" class="col-sm-3 col-form-label">Stock Type</label>
                         <div class="col-sm-9">
                             {{ Form::select('stock_type_id', $stock_types, (isset($stock) ? $stock->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
                             {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
