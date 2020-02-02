@@ -47,7 +47,6 @@ class WarehouseController extends Controller
                         'products.name as product_name', 
                         'stocks.quantity', 'stock_types.name as stock_type_name', 
                         'warehouses.name as warehouse_name'
-
                     );
 
         return datatables()->of($stocks)->toJson();

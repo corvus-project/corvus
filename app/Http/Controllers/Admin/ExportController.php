@@ -12,6 +12,8 @@ use App\Models\StockType;
 use App\Models\User;
 use DB;
 use App\Exports\ProductsExport;
+use App\Exports\PricesExport;
+use App\Exports\StocksExport;
 
 class ExportController extends Controller
 {
@@ -45,11 +47,22 @@ class ExportController extends Controller
     }
 
     public function product_list(){
-        return (new ProductsExport)->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
+        return (new ProductsExport())->download('products.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
-    public function price_list(){}
+    public function price_list(Request $request){
+        $date_selection = $request->date_selection;
+        $pricing_group_id = $request->pricing_group_id;
+        return (new PricesExport($date_selection, $pricing_group_id))->download('prices.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+
+    public function stock_list(Request $request){
+        $warehouse_id = $request->warehouse_id;
+        $stock_type_id = $request->stock_type_id;
+        return (new StocksExport($warehouse_id, $stock_type_id))->download('stocks.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+
     public function order_list(){}
-    public function stock_list(){}
+
 
 }

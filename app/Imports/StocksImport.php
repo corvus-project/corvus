@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Product;
+use App\Models\Stock;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\SkipsErrors; 
 use Carbon\Carbon as Carbon;
 
-class ProductsImport implements ToModel, WithCustomCsvSettings, SkipsOnError, ShouldQueue, WithChunkReading
+class StocksImport implements ToModel, WithCustomCsvSettings, SkipsOnError, ShouldQueue, WithChunkReading
 {
     use Importable, SkipsFailures, SkipsErrors;
 
@@ -24,9 +24,9 @@ class ProductsImport implements ToModel, WithCustomCsvSettings, SkipsOnError, Sh
     */
     public function model(array $row)
     {
-        return Product::updateOrCreate(
-            ['sku' => $row[0]],
-            ['name' => $row[1], 'description' =>  (empty($row[2]) ? null : $row[2])]
+        return Stock::updateOrCreate(
+            ['product_id' => $row[0], 'warehouse_id' => $row[1], 'stock_type_id' => $row[2]],
+            ['quantity' => $row[5]]
         );
     }
 

@@ -24,7 +24,8 @@ return [
             'save' => 'Save',
             'update' => 'Update',
             'delete' => 'Delete',
-            'export'    => 'Export'
+            'export'    => 'Export',
+            'import'    => 'Import',
         ],
         'hide' => 'Hide',
         'inactive' => 'Inactive',

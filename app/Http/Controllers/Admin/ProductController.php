@@ -154,7 +154,7 @@ class ProductController extends Controller
         }
 
         $pricing = new Pricing();
-        $pricing->amount = intval($request->amount);
+        $pricing->amount = $request->amount;
         $pricing->from_date = $request->from_date;
         $pricing->to_date = $request->to_date;
         $pricing->product_id = $product->id;

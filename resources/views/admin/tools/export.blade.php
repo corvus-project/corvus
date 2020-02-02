@@ -76,7 +76,7 @@
                             <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
                                 <label for="pricing_group_id" class="col-sm-3 col-form-label">Date Availability</label>
                                 <div class="col-sm-9">
-                                    {{ Form::select('date_selection', ['current_date' => 'Current Date', 'last' => 'Last Price'], null, ['class'=>'form-control col-sm-3']) }}
+                                    {{ Form::select('date_selection', ['current_date' => 'Current Date', 'last' => 'Historical Price List'], null, ['class'=>'form-control col-sm-3']) }}
                                     {!! $errors->first('pricing_group_id', '<span class="help-block">:message</span>')
                                     !!}
                                 </div>
@@ -93,8 +93,6 @@
             </div>
 
             <div class="tab-pane fade" id="nav-stock-list" role="tabpanel" aria-labelledby="nav-stock-list-tab">
-
-
                 <div class="row">
                     <div class="col">
                         <form autocomplete="off" role="form" action="{{ route('admin.tools.exports.stock_list') }}"

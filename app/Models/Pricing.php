@@ -17,18 +17,11 @@ class Pricing extends Model
     protected $table = 'pricings';
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['product_id', 'pricing_group_id', 'amount', 'from_date', 'to_date'];
   
     protected $dateFormat = 'Y-m-d';
 

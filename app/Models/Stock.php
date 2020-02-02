@@ -26,7 +26,7 @@ class Stock extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['product_id', 'stock_type_id', 'warehouse_id', 'quantity'];
   
     protected $dateFormat = 'Y-m-d';
 
