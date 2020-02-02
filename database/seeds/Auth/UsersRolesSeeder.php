@@ -21,9 +21,9 @@ class UsersRolesSeeder extends Seeder
         $user = \App\Models\User::whereEmail('admin@gazatem.com')->first();
         $role = \App\Models\Role::where('name', 'administrator')->first();
         $user->attachRole($role);
-          $role = \App\Models\Role::where('name', 'customer')->first();
+        $role = \App\Models\Role::where('name', 'customer')->first();
 
-        $users = \App\Models\Auth\User\User::where('email', '!=' ,'admin@gazatem.com')->get();
+        $users = \App\Models\User::where('email', '!=' ,'admin@gazatem.com')->get();
         foreach ($users as $user) {
             
             $user = \App\Models\User::whereEmail($user->email)->first();

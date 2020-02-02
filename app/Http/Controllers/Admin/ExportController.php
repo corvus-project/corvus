@@ -14,6 +14,7 @@ use DB;
 use App\Exports\ProductsExport;
 use App\Exports\PricesExport;
 use App\Exports\StocksExport;
+use App\Exports\OrdersExport;
 
 class ExportController extends Controller
 {
@@ -62,8 +63,11 @@ class ExportController extends Controller
         return (new StocksExport($warehouse_id, $stock_type_id))->download('stocks.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
-    public function order_list(){
-        
+    public function order_list(Request $request){
+        $customer_id = $request->customer_id;
+        $process_date = $request->process_date;
+        $order_date = $request->order_date;
+        return (new OrdersExport($customer_id, $process_date, $order_date))->download('orders.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
 

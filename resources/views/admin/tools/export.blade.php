@@ -30,7 +30,7 @@
                 <a class="nav-item nav-link" id="nav-stock-list-tab" data-toggle="tab" href="#nav-stock-list" role="tab"
                     aria-controls="nav-stock-list" aria-selected="true">Export Stock List</a>
 
-                <a class="nav-item nav-link" style="display:none" id="nav-order-list-tab" data-toggle="tab" href="#nav-order-list" role="tab"
+                <a class="nav-item nav-link" id="nav-order-list-tab" data-toggle="tab" href="#nav-order-list" role="tab"
                     aria-controls="nav-order-list" aria-selected="true">Export Orders</a>
 
 
@@ -122,51 +122,52 @@
                         </form>
                     </div>
                 </div>
-
             </div>
 
 
             <div class="tab-pane fade" id="nav-order-list" role="tabpanel" aria-labelledby="nav-order-list-tab">
+                <div class="row">
+                    <div class="col">
+                        <form autocomplete="off" role="form" action="{{ route('admin.tools.exports.order_list') }}"
+                            method="post">
+                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
-                <form autocomplete="off" role="form" action="{{ route('admin.tools.exports.order_list') }}"
-                    method="post">
-                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                            <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
+                                <label for="pricing_group_id" class="col-sm-3 col-form-label">Customers</label>
+                                <div class="col-sm-9">
+                                    {{ Form::select('customer_id', $customers, null, ['class'=>'form-control col-sm-3']) }}
+                                    {!! $errors->first('customer_id', '<span class="help-block">:message</span>')
+                                    !!}
+                                </div>
+                            </div>
 
-                    <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
-                        <label for="pricing_group_id" class="col-sm-3 col-form-label">Customers</label>
-                        <div class="col-sm-9">
-                            {{ Form::select('customer_id', $customers, null, ['class'=>'form-control col-sm-3']) }}
-                            {!! $errors->first('customer_id', '<span class="help-block">:message</span>')
-                            !!}
-                        </div>
+                            <div class="form-group row {!! $errors->first('process_date', 'has-warning') !!}">
+                                <label for="process_date" class="col-sm-3 col-form-label">Process Date</label>
+                                <div class="col-sm-3">
+                                    <input class="form-control" id="process_date" name="process_date" autocomplete="off"
+                                        value=""> {!!
+                                    $errors->first('process_date', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row {!! $errors->first('order_date', 'has-warning') !!}">
+                                <label for="order_date" class="col-sm-3 col-form-label">Order Date</label>
+                                <div class="col-sm-3">
+                                    <input class="form-control" id="order_date" name="order_date" autocomplete="off"
+                                        value=""> {!!
+                                    $errors->first('order_date', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
+                                <i class="fas fa-file-export align-middle"></i> <span
+                                    class="align-middle"><strong>{{__('labels.general.buttons.export')}}</strong></span>
+                            </button>
+                        </form>
                     </div>
-
-                    <div class="form-group row {!! $errors->first('process_date', 'has-warning') !!}">
-                        <label for="process_date" class="col-sm-3 col-form-label">Process Date</label>
-                        <div class="col-sm-3">
-                            <input class="form-control" id="process_date" name="process_date" autocomplete="off"
-                                value=""> {!!
-                            $errors->first('process_date', '<span class="help-block">:message</span>') !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group row {!! $errors->first('order_date', 'has-warning') !!}">
-                        <label for="order_date" class="col-sm-3 col-form-label">Order Date</label>
-                        <div class="col-sm-3">
-                            <input class="form-control" id="order_date" name="order_date" autocomplete="off"
-                                value=""> {!!
-                            $errors->first('order_date', '<span class="help-block">:message</span>') !!}
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
-                        <i class="fas fa-file-export align-middle"></i> <span
-                            class="align-middle"><strong>{{__('labels.general.buttons.export')}}</strong></span>
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
-
     </div>
 
 
