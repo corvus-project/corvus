@@ -62,7 +62,9 @@ class ExportController extends Controller
         return (new StocksExport($warehouse_id, $stock_type_id))->download('stocks.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
-    public function order_list(){}
+    public function order_list(){
+        
+    }
 
 
 }

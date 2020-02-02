@@ -30,7 +30,7 @@
                 <a class="nav-item nav-link" id="nav-stock-list-tab" data-toggle="tab" href="#nav-stock-list" role="tab"
                     aria-controls="nav-stock-list" aria-selected="true">Export Stock List</a>
 
-                <a class="nav-item nav-link" id="nav-order-list-tab" data-toggle="tab" href="#nav-order-list" role="tab"
+                <a class="nav-item nav-link" style="display:none" id="nav-order-list-tab" data-toggle="tab" href="#nav-order-list" role="tab"
                     aria-controls="nav-order-list" aria-selected="true">Export Orders</a>
 
 
