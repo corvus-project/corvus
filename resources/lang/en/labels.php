@@ -37,7 +37,15 @@ return [
         'more' => 'More',
         'logout'    => 'Logout'
     ],
- 
+    'import' => [
+        'sucess' => 'File imported',
+        'failes' => 'File failed',
+    ],
+    'export' => [
+        'sucess' => 'File exported',
+        'failes' => 'File failed',
+    ],
+
     'customers' => [
         'title' => 'Customers'
     ],

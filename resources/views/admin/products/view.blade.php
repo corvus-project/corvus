@@ -5,31 +5,23 @@
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
-        <div class="row">
-            <div class="col-sm-5">
-
-            </div>
-            <!--col-->
-
-            <div class="col-sm-7">
-
-            </div>
-            <!--col-->
-        </div>
         <!--row-->
+        <div class="card">
+            <div class="card-body">
 
-
-        <div class="row">
-            <div class="col-sm-5"><b>SKU</b></div>
-            <div class="col-sm-7">{{ $product->sku }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-5"><b>Name</b></div>
-            <div class="col-sm-7">{{ $product->name }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-5"><b>Description</b></div>
-            <div class="col-sm-7">{{ $product->description }}</div>
+                <div class="row">
+                    <div class="col-sm-5"><b>SKU</b></div>
+                    <div class="col-sm-7">{{ $product->sku }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5"><b>Name</b></div>
+                    <div class="col-sm-7">{{ $product->name }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5"><b>Description</b></div>
+                    <div class="col-sm-7">{{ $product->description }}</div>
+                </div>
+            </div>
         </div>
         <br />
 
@@ -40,18 +32,18 @@
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                     <a href="{{ route('admin.products.view_pricing', $product->id) }}"
-                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the Pricing History"><i
+                        class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Pricing History"><i
                             class="fas fa-list"></i></a>
                 </div>
             </div>
         </div>
-        <table class="table table-light table-hover">
+        <table class="table table-hover table-bordered">
             <thead class="thead-light">
                 <tr>
-                    <th>Price Group</th>
-                    <th>Amount</th>
-                    <th>Dates</th>
-                    <th></th>
+                    <th scope="col">Price Group</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Dates</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -62,13 +54,13 @@
                     <td>{{ $pricing->amount }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
-                    <a href="{{ route('admin.products.edit_pricing', [$product->id, $pricing->id]) }}"
-                            class="btn btn-info btn-sm m-1 float-right" data-toggle="tooltip" title="Update pricing"><i
+                        <a href="{{ route('admin.products.edit_pricing', [$product->id, $pricing->id]) }}"
+                            class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update pricing"><i
                                 class="fas fa-pen"></i></a>
 
                         <a href="{{ route('admin.products.delete_pricing', [$product->id, $pricing->id]) }}"
-                            class="btn btn-danger btn-sm m-1 float-right" data-toggle="tooltip"
-                            title="Delete pricing"><i class="fas fa-trash"></i></a>                    
+                            class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip"
+                            title="Delete pricing"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -84,18 +76,18 @@
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                     <a href="{{ route('admin.products.view_stocks', $product->id) }}"
-                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the Stock History"><i
+                        class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Stock History"><i
                             class="fas fa-list"></i></a>
                 </div>
             </div>
-        </div>        
-        <table class="table table-light table-hover">
+        </div>
+        <table class="table table-hover table-bordered">
             <thead class="thead-light">
                 <tr>
-                    <th>Stock Type</th>
-                    <th>Warehouse</th>                    
-                    <th>Quantity</th>
-                    <th></th>
+                    <th scope="col">Stock Type</th>
+                    <th scope="col">Warehouse</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -106,12 +98,14 @@
                     <td>{{ $stock->warehouse->name }}</td>
                     <td>{{ $stock->quantity }}</td>
                     <td>
-                    <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}" class="btn btn-info btn-sm m-1 float-right"
-                        data-toggle="tooltip" title="Update stock"><i class="fas fa-pen"></i></a>
-                    
-                        <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}" class="btn btn-danger btn-sm m-1 float-right"
-                        data-toggle="tooltip" title="Delete stock"><i class="fas fa-trash"></i></a>
-                    
+                        <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}"
+                            class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update stock"><i
+                                class="fas fa-pen"></i></a>
+
+                        <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}"
+                            class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete stock"><i
+                                class="fas fa-trash"></i></a>
+
                     </td>
                 </tr>
                 @endforeach
@@ -127,17 +121,17 @@
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                     <a href="{{ route('admin.products.view_categories', $product->id) }}"
-                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the Categories"><i
+                        class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Categories"><i
                             class="fas fa-list"></i></a>
                 </div>
             </div>
-        </div>        
+        </div>
         <table class="table table-light table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th>Category Name</th>
-                    <th>Taxonomy ID</th>                    
-                    <th></th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Taxonomy ID</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -146,10 +140,11 @@
                 <tr>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->taxonomy_id }}</td>
-                    <td> 
-                        <a href="{{ route('admin.products.delete_category', [$product->id, $category->id]) }}" class="btn btn-danger btn-sm m-1 float-right"
-                        data-toggle="tooltip" title="Delete category"><i class="fas fa-trash"></i></a>
-                    
+                    <td>
+                        <a href="{{ route('admin.products.delete_category', [$product->id, $category->id]) }}"
+                            class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip"
+                            title="Delete category"><i class="fas fa-trash"></i></a>
+
                     </td>
                 </tr>
                 @endforeach

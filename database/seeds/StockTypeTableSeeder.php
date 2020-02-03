@@ -35,7 +35,13 @@ class StockTypeTableSeeder extends Seeder
                 'slug' => 'PRE_ORDER',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ]                          
+            ],
+            [
+                'name' => 'Out of Order',
+                'slug' => 'OUT_OF_ORDER',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]                                        
         ];
 
         DB::table('stock_types')->insert($groups);

@@ -65,7 +65,7 @@ class ImportController extends Controller
             }
         }
  
-        return redirect(route('admin.tools.import.index'))->withFlashSuccess(trans('import::labels.file.uploaded'));
+        return redirect(route('admin.tools.import.index'))->withFlashSuccess(trans('labels.import.sucess'));
     }
 
     public function upload(UploadedFile $uploadedFile, $folder = null, $disk = 'local', $name)
