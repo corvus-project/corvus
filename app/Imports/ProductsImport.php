@@ -24,10 +24,14 @@ class ProductsImport implements ToModel, WithCustomCsvSettings, SkipsOnError, Sh
     */
     public function model(array $row)
     {
-        return Product::updateOrCreate(
-            ['sku' => $row[0]],
-            ['name' => $row[1], 'description' =>  (empty($row[2]) ? null : $row[2])]
-        );
+        try{
+            return Product::updateOrCreate(
+                ['sku' => $row[0]],
+                ['name' => $row[1], 'description' =>  (empty($row[2]) ? null : $row[2])]
+            );
+        }catch(Exception $x){
+            new Exception('Can\'t create or update this row:'. $row_data);
+        }
     }
 
     public function chunkSize(): int

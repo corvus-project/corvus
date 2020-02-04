@@ -28,8 +28,8 @@ class PricesExport implements FromQuery
                 'products.sku as product_sku', 
                 'products.name as product_name', 
                 'pricings.amount as amount',
-                'pricings.from_date as from_date',
-                'pricings.to_date as to_date',
+                'pricings.from_date as DATE_FORMAT(from_date, "Y-m-d")',
+                'pricings.to_date as (to_date, "Y-m-d")',
                 'pricing_groups.name as pricing_group_name'
                 )
             ->where(function ($query) use ($date_selection) {
