@@ -135,6 +135,10 @@
                 </tr>
             </thead>
             <tbody>
+            @if($product->categories()->count() < 1) <div class="alert alert-warning" role="alert">
+                        There is no any categories to display!
+                </div>
+                @else
                 @foreach($product->categories()->take(10)->get() as
                 $category)
                 <tr>
@@ -148,6 +152,8 @@
                     </td>
                 </tr>
                 @endforeach
+                @endif
+
             </tbody>
         </table>
 

@@ -47,7 +47,7 @@ class ProductController extends Controller
 
     public function view_stocks(Product $product)
     {
-        $stocks = $product->stocks()->with('stock_type')->orderBy('from_date', 'DESC')->paginate(100);
+        $stocks = $product->stocks()->with('stock_type')->orderBy('created_at', 'DESC')->paginate(100);
         return view('admin.products.view_stocks', compact('product', 'stocks'));
     }
 

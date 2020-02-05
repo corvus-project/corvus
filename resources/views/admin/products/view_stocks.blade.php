@@ -25,17 +25,22 @@
             </div>
             <!--col-->
         </div>
-        <div class="row">
-            <div class="col-sm-5"><b>SKU</b></div>
-            <div class="col-sm-7">{{ $product->sku }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-5"><b>Name</b></div>
-            <div class="col-sm-7">{{ $product->name }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-5"><b>Description</b></div>
-            <div class="col-sm-7">{{ $product->description }}</div>
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-5"><b>SKU</b></div>
+                    <div class="col-sm-7">{{ $product->sku }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5"><b>Name</b></div>
+                    <div class="col-sm-7">{{ $product->name }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5"><b>Description</b></div>
+                    <div class="col-sm-7">{{ $product->description }}</div>
+                </div>
+            </div>
         </div>
         <br />
         <!--row-->
@@ -48,7 +53,7 @@
             </div>
         </div>
 
-        <table class="table table-light table-hover">
+        <table class="table table-light table-bordered table-striped table-hover">
             <thead class="thead-light">
                 <tr>
                     <th>Stock Type</th>
