@@ -29,7 +29,7 @@
                                     <td>{{ $product->sku }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td><a class="btn btn-sm btn-primary btn-flat m-b-10 m-l-5"
-                                            href="{{ route('admin.products.view', $product->id) }}">
+                                            href="{{ route('portal.products.view', $product->id) }}">
                                             <i class="fas fa-eye"></i>
                                             View</a>
                                     </td>
@@ -73,7 +73,7 @@
                             <td>{{ $order->status_name }}</td>
                             <td>{{ Carbon\Carbon::parse($order->order_date)->format('d M Y H:i') }}</td>
                             <td><a class="btn btn-sm btn-primary"
-                                    href="{{ route('admin.orders.view', $order->order_id) }}">
+                                    href="{{ route('portal.orders.view', $order->order_id) }}">
                                     <i class="fas fa-eye"></i>
                                     View</a>
                             </td>

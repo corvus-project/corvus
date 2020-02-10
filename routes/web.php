@@ -15,6 +15,13 @@ Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:customer'], 'namespace' => 'Portal'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
+    
+    // Products
+    Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']);
+    Route::get('/products/data', ['as' => 'products.data', 'uses' => 'ProductController@data']);
+    Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'ProductController@view']);
+
+
 });
 
 /**
@@ -38,7 +45,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/products/{product}/create/categories', ['as' => 'products.create_category.store', 'uses' => 'ProductController@store_category']);    
     Route::get('/products/{product}/delete/{category}/categories', ['as' => 'products.delete_category', 'uses' => 'ProductController@delete_category']);
     Route::post('/products/{product}/delete/{category}/categories', ['as' => 'products.delete_category.destroy', 'uses' => 'ProductController@destroy_category']);
-
 
     // Stock CRUD
     Route::get('/products/{product}/create/stocks', ['as' => 'products.create_stock', 'uses' => 'ProductController@create_stock']);

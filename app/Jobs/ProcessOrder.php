@@ -83,7 +83,7 @@ class ProcessOrder implements ShouldQueue
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
                         ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name', 'warehouses.id as warehouse_id', 'stocks.id as stock_id')
                         ->first();
-                        DB::table('stocks')->where('id', $product->stock_id)->update(['quantity' => ($product->quantity - intval($orderline->quantity))]); 
+            DB::table('stocks')->where('id', $product->stock_id)->update(['quantity' => ($product->quantity - intval($orderline->quantity))]); 
             }
     }
 

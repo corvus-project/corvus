@@ -10,6 +10,16 @@
                     @lang('menus.dashboard')
                 </a>
             </li>
+
+            <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Route::is('portal/products'))
+                }}" href="{{ route('portal.products.index') }}">
+                            <i class="nav-icon fas fa-list"></i>
+                            @lang('menus.products')
+                        </a>
+                    </li>
+
         @endif
         @if (Auth::user()->hasRole('administrator'))
             <li class="nav-item">
