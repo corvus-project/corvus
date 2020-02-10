@@ -13,10 +13,14 @@
 
 Auth::routes(['verify' => true]);
 
+Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:customer'], 'namespace' => 'Portal'], function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+});
+
 /**
  * Backend routes
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified'], 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator'], 'namespace' => 'Admin'], function () {
 
     // Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
@@ -87,7 +91,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/warehouses/{warehouse}/edit', ['as' => 'warehouses.update', 'uses' => 'WarehouseController@update']);
     Route::get('/warehouses/{warehouse}/delete', ['as' => 'warehouses.delete', 'uses' => 'WarehouseController@delete']);
     Route::post('/warehouses/{warehouse}/delete', ['as' => 'warehouses.destroy', 'uses' => 'WarehouseController@destroy']);
- 
+    Route::get('/warehouses/{warehouse}/products', ['as' => 'warehouses.products', 'uses' => 'WarehouseController@products']);
+    Route::get('/warehouses/{warehouse}/products/data', ['as' => 'warehouses.products.data', 'uses' => 'WarehouseController@data']);
+    
     // Tools
     Route::get('/tools', ['as' => 'tools.index', 'uses' => 'ToolController@index']);
     Route::get('/tools/imports', 'ImportController@index')->name('tools.import.index');
@@ -106,3 +112,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
 
 
 Route::get('/', 'HomeController@index');
+Route::get('/redirect', 'HomeController@redirect');
+

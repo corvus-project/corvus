@@ -27,5 +27,14 @@ class HomeController extends Controller
         return view('welcome');
     }
 
+    public function redirect()
+    {
+        $user = Auth::user();
+        if ($user->hasRole('customer')){
+            return redirect(route('portal.dashboard'));
+        }
+        return redirect(route('admin.dashboard'));
+    }
+
      
 }

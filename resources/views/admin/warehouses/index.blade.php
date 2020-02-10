@@ -43,6 +43,10 @@
                         <a href="{{ route('admin.warehouses.edit', $warehouse->id) }}"
                             class="btn btn-info btn-sm ml-1 float-right" title="Edit the warehouse"><i
                                 class="fas fa-pen"></i></a>
+                        <a href="{{ route('admin.warehouses.products', $warehouse->id) }}"
+                            class="btn btn-primary btn-sm ml-1 float-right" title="List products in the warehouse"><i
+                                class="fas fa-list"></i></a>
+
                     </td>
                 </tr>
                 @endforeach

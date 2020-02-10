@@ -1,7 +1,17 @@
 <div class="sidebar">
     <nav class="sidebar-nav">
         <ul class="nav">
-
+        @if (Auth::user()->hasRole('customer'))
+        <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('portal/dashboard'))
+                }}" href="{{ route('portal.dashboard') }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    @lang('menus.dashboard')
+                </a>
+            </li>
+        @endif
+        @if (Auth::user()->hasRole('administrator'))
             <li class="nav-item">
                 <a class="nav-link {{
                     active_class(Route::is('admin/dashboard'))
@@ -182,7 +192,7 @@
                     </li>
                 </ul>
             </li>
-
+            @endif
         </ul>
     </nav>
 
