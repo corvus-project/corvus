@@ -24,25 +24,20 @@
 
                 <div class="row">
                     <div class="col-sm-5"><b>Price</b></div>
-                    <div class="col-sm-7">{{ $price->amount }}</div>
+                    <div class="col-sm-7">{{ (!empty($price)) ? $price->amount : 'No Price defined' }}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-5"><b>Stock Level</b></div>
-                    <div class="col-sm-7">{{ $stock->quantity }}</div>
+                    <div class="col-sm-7">{{ (!empty($stock)) ? $stock->quantity : 'Stock not defined'}}</div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-5"><b>Warehouse</b></div>
-                    <div class="col-sm-7">{{ $stock->warehouse_name }}</div>
+                    <div class="col-sm-7">{{  (!empty($stock)) ? $stock->warehouse_name : 'No Warehouse defined'}}</div>
                 </div>                
-
-
             </div>
         </div>
-      
-
-
     </div>
 </div>
 @endsection

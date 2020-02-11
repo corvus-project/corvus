@@ -33,7 +33,11 @@ class HomeController extends Controller
         if ($user->hasRole('customer')){
             return redirect(route('portal.dashboard'));
         }
-        return redirect(route('admin.dashboard'));
+        if ($user->hasRole('administrator')){
+            return redirect(route('admin.dashboard'));
+        }
+
+        return redirect('/');
     }
 
      

@@ -20,6 +20,15 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Route::is('portal/orders'))
+                }}" href="{{ route('portal.orders.index') }}">
+                            <i class="nav-icon fas fa-list"></i>
+                            @lang('menus.orders')
+                        </a>
+                    </li>                    
+
         @endif
         @if (Auth::user()->hasRole('administrator'))
             <li class="nav-item">

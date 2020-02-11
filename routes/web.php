@@ -21,7 +21,17 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', '
     Route::get('/products/data', ['as' => 'products.data', 'uses' => 'ProductController@data']);
     Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'ProductController@view']);
 
+    // Orders
+    Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
+    Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
+    Route::get('/orders/{order}/view', ['as' => 'orders.view', 'uses' => 'OrderController@view']);
+});
 
+
+Route::group(['as' => 'user.', 'middleware' => ['web', 'auth', 'verified']], function () {
+    // Profile
+    Route::get('/profile', ['as' => 'profile.form', 'uses' => 'ProfileController@form']);
+    Route::post('/profile', ['as' => 'profile.save', 'uses' => 'ProfileController@save']);
 });
 
 /**
@@ -111,10 +121,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/tools/exports/order_list', ['as' => 'tools.exports.order_list', 'uses' => 'ExportController@order_list']);      
     Route::post('/tools/exports/stock_list', ['as' => 'tools.exports.stock_list', 'uses' => 'ExportController@stock_list']);      
 
-    // Profile
-    Route::get('/profile', ['as' => 'profile.form', 'uses' => 'ProfileController@form']);
-    Route::post('/profile', ['as' => 'profile.save', 'uses' => 'ProfileController@save']);
 });
+
 
 
 Route::get('/', 'HomeController@index');

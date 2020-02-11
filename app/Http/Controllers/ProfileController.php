@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Auth\User\User;
@@ -18,7 +18,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        return view('admin.profile', compact('user'));
+        return view('profile', compact('user'));
     }
 
     public function save(ProfileRequest $request)
@@ -28,7 +28,7 @@ class ProfileController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-        return redirect(route('admin.profile.form'))->with('success', trans('Your profile has been updated!'));
+        return redirect(route('user.profile.form'))->with('success', trans('Your profile has been updated!'));
     }
 
 }

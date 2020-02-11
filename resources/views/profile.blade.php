@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
  
-                <form autocomplete="off" role="form" action="{{ route('admin.profile.save') }}" method="post">
+                <form autocomplete="off" role="form" action="{{ route('user.profile.save') }}" method="post">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
                     <div class="form-group {!! $errors->first('name', 'has-warning') !!}">
