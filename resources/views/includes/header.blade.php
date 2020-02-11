@@ -37,7 +37,7 @@
             My Profile
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="{{ route('admin.profile.form') }}">
+          <a class="dropdown-item" href="{{ route('user.profile.form') }}">
                 <i class="fas fa-user"></i> Profile
             </a>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -13,10 +13,31 @@
 
 Auth::routes(['verify' => true]);
 
+Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:customer'], 'namespace' => 'Portal'], function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+    
+    // Products
+    Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']);
+    Route::get('/products/data', ['as' => 'products.data', 'uses' => 'ProductController@data']);
+    Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'ProductController@view']);
+
+    // Orders
+    Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
+    Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
+    Route::get('/orders/{order}/view', ['as' => 'orders.view', 'uses' => 'OrderController@view']);
+});
+
+
+Route::group(['as' => 'user.', 'middleware' => ['web', 'auth', 'verified']], function () {
+    // Profile
+    Route::get('/profile', ['as' => 'profile.form', 'uses' => 'ProfileController@form']);
+    Route::post('/profile', ['as' => 'profile.save', 'uses' => 'ProfileController@save']);
+});
+
 /**
  * Backend routes
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified'], 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator'], 'namespace' => 'Admin'], function () {
 
     // Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
@@ -34,7 +55,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/products/{product}/create/categories', ['as' => 'products.create_category.store', 'uses' => 'ProductController@store_category']);    
     Route::get('/products/{product}/delete/{category}/categories', ['as' => 'products.delete_category', 'uses' => 'ProductController@delete_category']);
     Route::post('/products/{product}/delete/{category}/categories', ['as' => 'products.delete_category.destroy', 'uses' => 'ProductController@destroy_category']);
-
 
     // Stock CRUD
     Route::get('/products/{product}/create/stocks', ['as' => 'products.create_stock', 'uses' => 'ProductController@create_stock']);
@@ -87,7 +107,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/warehouses/{warehouse}/edit', ['as' => 'warehouses.update', 'uses' => 'WarehouseController@update']);
     Route::get('/warehouses/{warehouse}/delete', ['as' => 'warehouses.delete', 'uses' => 'WarehouseController@delete']);
     Route::post('/warehouses/{warehouse}/delete', ['as' => 'warehouses.destroy', 'uses' => 'WarehouseController@destroy']);
- 
+    Route::get('/warehouses/{warehouse}/products', ['as' => 'warehouses.products', 'uses' => 'WarehouseController@products']);
+    Route::get('/warehouses/{warehouse}/products/data', ['as' => 'warehouses.products.data', 'uses' => 'WarehouseController@data']);
+    
     // Tools
     Route::get('/tools', ['as' => 'tools.index', 'uses' => 'ToolController@index']);
     Route::get('/tools/imports', 'ImportController@index')->name('tools.import.index');
@@ -99,10 +121,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/tools/exports/order_list', ['as' => 'tools.exports.order_list', 'uses' => 'ExportController@order_list']);      
     Route::post('/tools/exports/stock_list', ['as' => 'tools.exports.stock_list', 'uses' => 'ExportController@stock_list']);      
 
-    // Profile
-    Route::get('/profile', ['as' => 'profile.form', 'uses' => 'ProfileController@form']);
-    Route::post('/profile', ['as' => 'profile.save', 'uses' => 'ProfileController@save']);
 });
 
 
+
 Route::get('/', 'HomeController@index');
+Route::get('/redirect', 'HomeController@redirect');
+

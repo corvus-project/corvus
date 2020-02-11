@@ -36,8 +36,19 @@ class UsersSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'name' => 'Test Customer',
+                'email' => 'customer@gazatem.com',
+                'password' => bcrypt('customer'),
+                'active' => true,
+                'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
+                'confirmed' => true,
+                'token' => null,
+                'email_verified_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
+            ]            
         ];
-        DB::table('users')->insert($user);
+        DB::table('users')->insert($users);
         $users = [];
         for($i = 0; $i < 10; $i++){
             $users[] = [
