@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerProfilesTable extends Migration
+class CreateAccountProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateCustomerProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_profiles', function (Blueprint $table) {
+        Schema::create('account_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned()->unique();
             $table->integer('stock_type_id')->nullable()->unsigned();
             $table->integer('pricing_group_id')->nullable()->unsigned();
             $table->integer('warehouse_id')->nullable()->unsigned();
-
+            $table->string('account_number')->nullable();
+            $table->string('account_group')->nullable();
+            
             /*
              * Add Foreign/Unique/Index
              */
@@ -54,6 +56,6 @@ class CreateCustomerProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_profiles');
+        Schema::dropIfExists('account_profiles');
     }
 }

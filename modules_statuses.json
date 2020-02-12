@@ -4,7 +4,6 @@
     "Import": true,
     "Reporting": true,
     "Api": true,
-    "Customer": true,
     "Orders": true,
     "Attribute": true,
     "Variant": true,

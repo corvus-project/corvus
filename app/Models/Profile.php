@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
  
 class Profile extends Model
 {
-    protected $table = "customer_profiles";
+    protected $table = "account_profiles";
     
-    protected $fillable = ['stock_type_id', 'pricing_group_id', 'warehouse_id'];
+    protected $fillable = ['user_id','stock_type_id', 'pricing_group_id', 'warehouse_id'];
 
     public function user(){
         return $this->belongsTo(User::class);

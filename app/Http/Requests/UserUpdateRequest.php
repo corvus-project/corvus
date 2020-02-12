@@ -1,10 +1,10 @@
 <?php
-namespace Modules\Customer\Http\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-class ProfileRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,9 @@ class ProfileRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
+            'email' => 'required|string|email|max:255|unique:users,email,'. $this->user->id,
+            "password" => "required_if:password_confirmation,!=,null|nullable|confirmed|min:6",
+            'name'  => 'required|min:3|max:100',
             'stock_type_id' => 'required|exists:stock_types,id',
             'pricing_group_id' => 'required|exists:pricing_groups,id',
         ];

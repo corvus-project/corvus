@@ -87,7 +87,17 @@ return [
             'management'    => 'Order Management'
         ]
     ],
-
+    'accounts' => [
+        'portal'  => 'Account Portal',
+        'view'  => 'Account details',
+        'management' => 'Account Management',
+        'name'  => 'Name',
+        'email' => 'Email',
+        'password'  => 'Password',
+        'password_confirmation' => 'Confirm',
+        'created'   => 'Account created',
+        'updated'   => 'Account updated',
+    ]   ,
     'pricing_groups' => [
         'title' => 'Definition Pricing Groups',
         'management' => 'Pricing Group Management',

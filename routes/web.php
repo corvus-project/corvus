@@ -121,6 +121,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/tools/exports/order_list', ['as' => 'tools.exports.order_list', 'uses' => 'ExportController@order_list']);      
     Route::post('/tools/exports/stock_list', ['as' => 'tools.exports.stock_list', 'uses' => 'ExportController@stock_list']);      
 
+    // Accounts
+    Route::get('/accounts/', 'AccountController@index')->name('accounts.index');
+    Route::get('/accounts/data', ['as' => 'accounts.data', 'uses' => 'AccountController@data']);
+    Route::get('/accounts/{user}/view', ['as' => 'accounts.view', 'uses' => 'AccountController@view']);    
+    Route::get('/accounts/create', ['as' => 'accounts.create', 'uses' => 'AccountController@create']);     
+    Route::post('/accounts/create', ['as' => 'accounts.store', 'uses' => 'AccountController@store']);     
+    Route::get('/accounts/{user}/edit', ['as' => 'accounts.edit', 'uses' => 'AccountController@edit']);     
+    Route::post('/accounts/{user}/edit', ['as' => 'accounts.update', 'uses' => 'AccountController@update']);     
+    Route::post('/accounts/{user}/token', ['as' => 'accounts.token.regenerate', 'uses' => 'AccountController@token_regenerate']);    
 });
 
 

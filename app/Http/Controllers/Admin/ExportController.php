@@ -28,8 +28,8 @@ class ExportController extends Controller
         $warehouses = Warehouse::all()->pluck('name', 'id');
         $stock_types = StockType::all()->pluck('name', 'id');
 
-        $customers = User::query()->whereHas('roles', function($q) {
-            $q->where('name', 'customer');
+        $accounts = User::query()->whereHas('roles', function($q) {
+            $q->where('name', 'account');
         })->get()->pluck('name', 'id');
 
         $pricing_groups->put(0, 'Select');
@@ -38,13 +38,13 @@ class ExportController extends Controller
         $stock_types->put(0, 'Select');
         $stock_types = $stock_types->reverse();
 
-        $customers->put(0, 'Select');
-        $customers = $customers->reverse();
+        $accounts->put(0, 'Select');
+        $accounts = $accounts->reverse();
 
         $warehouses->put(0, 'Select');
         $warehouses = $warehouses->reverse();
 
-        return view('admin.tools.export', compact('pricing_groups', 'warehouses', 'stock_types', 'customers'));
+        return view('admin.tools.export', compact('pricing_groups', 'warehouses', 'stock_types', 'accounts'));
     }
 
     public function product_list(){
@@ -64,10 +64,10 @@ class ExportController extends Controller
     }
 
     public function order_list(Request $request){
-        $customer_id = $request->customer_id;
+        $account_id = $request->account_id;
         $process_date = $request->process_date;
         $order_date = $request->order_date;
-        return (new OrdersExport($customer_id, $process_date, $order_date))->download('orders.csv', \Maatwebsite\Excel\Excel::CSV);
+        return (new OrdersExport($account_id, $process_date, $order_date))->download('orders.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
 

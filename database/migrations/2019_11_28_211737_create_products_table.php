@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('sku')->unique();
             $table->string('description')->nullable();
             $table->integer('parent_id')->default(0)->unsigned();
+            $table->integer('status')->default(0)->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

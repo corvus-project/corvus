@@ -120,10 +120,10 @@
 
             <li class="nav-item">
                 <a class="nav-link {{
-                    active_class(Route::is('admin/customers'))
-                }}" href="{{ route('admin.customers.index') }}">
+                    active_class(Route::is('admin/accounts'))
+                }}" href="{{ route('admin.accounts.index') }}">
                     <i class="nav-icon fas fa-users"></i>
-                    @lang('menus.customers')
+                    @lang('menus.accounts')
                 </a>
             </li>
 

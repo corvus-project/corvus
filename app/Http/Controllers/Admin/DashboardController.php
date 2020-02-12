@@ -32,8 +32,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $customers = User::query()->whereHas('roles', function($q) {
-            $q->where('name', 'customer');
+        $accounts = User::query()->whereHas('roles', function($q) {
+            $q->where('name', 'account');
         })->orderBy('created_at', 'desc')->take(10)->get();        
  
         $orders = Order::query()
@@ -50,6 +50,6 @@ class DashboardController extends Controller
                 )->orderBy('order_headers.created_at', 'desc')->take(10)->get();     
 
         $products = Product::take(10)->orderBy('created_at', 'desc')->get();     
-        return view('admin.dashboard', compact('customers', 'products', 'orders'));
+        return view('admin.dashboard', compact('accounts', 'products', 'orders'));
     }
 }
