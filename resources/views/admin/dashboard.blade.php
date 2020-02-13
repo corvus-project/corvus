@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Lastest Customers List</h4>
+                    <h4 class="card-title"> Lastest accounts List</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
@@ -25,13 +25,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($customers as $customer)
+                                @foreach($accounts as $customer)
                                 <tr>
                                     <td>{{ $customer->id }}</td>
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->account_number }}</td>
                                     <td>{{ $customer->account_group }}</td>
-                                    <td><a class="btn btn-sm btn-primary btn-flat m-b-10 m-l-5" href="{{ route('admin.customers.view', $customer->id) }}">
+                                    <td><a class="btn btn-sm btn-primary btn-flat m-b-10 m-l-5" href="{{ route('admin.accounts.view', $customer->id) }}">
                                             <i class="fas fa-eye"></i>
                                             View</a>
                                     </td>

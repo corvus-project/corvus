@@ -133,10 +133,10 @@
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
                             <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
-                                <label for="pricing_group_id" class="col-sm-3 col-form-label">Customers</label>
+                                <label for="pricing_group_id" class="col-sm-3 col-form-label">Accounts</label>
                                 <div class="col-sm-9">
-                                    {{ Form::select('customer_id', $customers, null, ['class'=>'form-control col-sm-3']) }}
-                                    {!! $errors->first('customer_id', '<span class="help-block">:message</span>')
+                                    {{ Form::select('account_id', $accounts, null, ['class'=>'form-control col-sm-3']) }}
+                                    {!! $errors->first('account_id', '<span class="help-block">:message</span>')
                                     !!}
                                 </div>
                             </div>

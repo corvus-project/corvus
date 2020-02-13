@@ -163,14 +163,7 @@
                             @lang('menus.reports_customers_orders')
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/pricing-groups'))
-                }}" href="{{ route('admin.pricing_groups.index') }}">
-                            @lang('menus.reports_product_orders')
-                        </a>
-                    </li>
+ 
                 </ul>
             </li>
 

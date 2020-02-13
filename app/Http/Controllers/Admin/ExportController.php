@@ -29,7 +29,7 @@ class ExportController extends Controller
         $stock_types = StockType::all()->pluck('name', 'id');
 
         $accounts = User::query()->whereHas('roles', function($q) {
-            $q->where('name', 'account');
+            $q->where('name', 'vendor');
         })->get()->pluck('name', 'id');
 
         $pricing_groups->put(0, 'Select');

@@ -1,6 +1,4 @@
 {
-    "Attributes": true,
-    "Variants": true,
     "Import": true,
     "Reporting": true,
     "Api": true,
