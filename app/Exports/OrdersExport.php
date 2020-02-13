@@ -10,16 +10,16 @@ class OrdersExport implements FromQuery
 {
     use Exportable;
 
-    public function __construct($customer_id, $processed_date, $order_date)
+    public function __construct($account_id, $processed_date, $order_date)
     {
-        $this->customer_id = $customer_id;
+        $this->account_id = $account_id;
         $this->processed_date = $processed_date;
         $this->order_date = $order_date;
     }
 
     public function query()
     {
-        $customer_id = $this->customer_id;
+        $account_id = $this->account_id;
         $processed_date = $this->processed_date;
         $order_date = $this->order_date;
 
@@ -34,9 +34,9 @@ class OrdersExport implements FromQuery
 
                 'order_status.name as status_name'
                 )
-            ->where(function ($query) use ($customer_id) {
-                if ($customer_id > 0){
-                    $query->where('user_id', $customer_id);
+            ->where(function ($query) use ($account_id) {
+                if ($account_id > 0){
+                    $query->where('user_id', $account_id);
                 }
             })
             ->where(function ($query) use ($processed_date) {

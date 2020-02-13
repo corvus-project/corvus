@@ -22,6 +22,7 @@ return [
     'categories' => 'Categories',
     'warehouses' => 'Warehouses',        
     'customers' => 'Customers', 
+    'accounts' => 'Accounts', 
     'api'   => 'Api Control' , 
     'variants'  => 'Variants',
     'attributes'    => 'Attributes',
