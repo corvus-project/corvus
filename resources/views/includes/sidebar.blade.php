@@ -78,7 +78,6 @@
                         </a>
                     </li>
 
-
                     <li class="nav-item">
                         <a class="nav-link {{
                     active_class(Route::is('admin/categories'))
@@ -87,25 +86,7 @@
                             @lang('menus.categories')
                         </a>
                     </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/variants'))
-                }}" href="{{ route('admin.variants.index') }}">
-                            <i class="nav-icon fas fa-fan"></i>
-                            @lang('menus.variants')
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/attributes'))
-                }}" href="{{ route('admin.attributes.index') }}">
-                            <i class="nav-icon fas fa-tags"></i>
-                            @lang('menus.attributes')
-                        </a>
-                    </li>
+ 
                 </ul>
             </li>
 
