@@ -13,7 +13,7 @@
 
 Auth::routes(['verify' => true]);
 
-Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:customer'], 'namespace' => 'Portal'], function () {
+Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:vendor'], 'namespace' => 'Portal'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
     
     // Products
@@ -25,6 +25,10 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', '
     Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
     Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
     Route::get('/orders/{order}/view', ['as' => 'orders.view', 'uses' => 'OrderController@view']);
+
+    Route::get('/orders/upload', ['as' => 'orders.upload', 'uses' => 'OrderController@upload']);
+    Route::post('/orders/upload', ['as' => 'orders.save_file', 'uses' => 'OrderController@save_file']);
+
 });
 
 

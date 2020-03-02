@@ -27,6 +27,7 @@ return [
     'variants'  => 'Variants',
     'attributes'    => 'Attributes',
     'orders'  => 'Orders',
+    'orders.upload'  => 'Upload Order',
     'tools' => 'Tools',
     'imports'  => 'Import',
     'export'    => 'Export',
