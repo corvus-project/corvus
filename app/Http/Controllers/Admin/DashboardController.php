@@ -33,7 +33,7 @@ class DashboardController extends Controller
     public function index()
     {
         $accounts = User::query()->whereHas('roles', function($q) {
-            $q->where('name', 'account');
+            $q->where('name', 'vendor');
         })->orderBy('created_at', 'desc')->take(10)->get();        
  
         $orders = Order::query()

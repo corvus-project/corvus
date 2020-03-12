@@ -16,6 +16,7 @@ use App\Models\PricingGroup;
 use App\Models\Warehouse;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
+use DB;
 
 class AccountController extends Controller
 {
@@ -30,9 +31,15 @@ class AccountController extends Controller
 
     public function data()
     {
-        return datatables()->of(User::query()->whereHas('roles', function($q) {
-            $q->where('name', 'vendor');
-        }))->toJson();        
+        $users = User::query()->whereHas('roles', function($q) {
+                    $q->where('name', 'vendor');
+                })
+                ->leftJoin('account_profiles', 'users.id', '=', 'account_profiles.user_id')
+                ->select('users.id','users.name', 'users.email', 'account_profiles.account_number', 'account_profiles.account_group');                
+
+        return datatables()->of($users)->toJson();
+
+ 
     }    
 
     public function view(User $user)

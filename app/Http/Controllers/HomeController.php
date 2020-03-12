@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function redirect()
     {
         $user = Auth::user();
-        if ($user->hasRole('account')){
+        if ($user->hasRole('vendor')){
             return redirect(route('portal.dashboard'));
         }
         if ($user->hasRole('administrator')){

@@ -31,9 +31,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('admin.products.view_pricing', $product->id) }}"
-                        class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Pricing History"><i
-                            class="fas fa-list"></i></a>
+                    <a href="{{ route('admin.products.view_pricing', $product->id) }}" class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Pricing History"><i class="fas fa-list"></i></a>
                 </div>
             </div>
         </div>
@@ -54,13 +52,9 @@
                     <td>{{ $pricing->amount }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
-                        <a href="{{ route('admin.products.edit_pricing', [$product->id, $pricing->id]) }}"
-                            class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update pricing"><i
-                                class="fas fa-pen"></i></a>
+                        <a href="{{ route('admin.products.edit_pricing', [$product->id, $pricing->id]) }}" class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update pricing"><i class="fas fa-pen"></i></a>
 
-                        <a href="{{ route('admin.products.delete_pricing', [$product->id, $pricing->id]) }}"
-                            class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip"
-                            title="Delete pricing"><i class="fas fa-trash"></i></a>
+                        <a href="{{ route('admin.products.delete_pricing', [$product->id, $pricing->id]) }}" class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete pricing"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -75,9 +69,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('admin.products.view_stocks', $product->id) }}"
-                        class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Stock History"><i
-                            class="fas fa-list"></i></a>
+                    <a href="{{ route('admin.products.view_stocks', $product->id) }}" class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Stock History"><i class="fas fa-list"></i></a>
                 </div>
             </div>
         </div>
@@ -98,13 +90,9 @@
                     <td>{{ $stock->warehouse->name }}</td>
                     <td>{{ $stock->quantity }}</td>
                     <td>
-                        <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}"
-                            class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update stock"><i
-                                class="fas fa-pen"></i></a>
+                        <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}" class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update stock"><i class="fas fa-pen"></i></a>
 
-                        <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}"
-                            class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete stock"><i
-                                class="fas fa-trash"></i></a>
+                        <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}" class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete stock"><i class="fas fa-trash"></i></a>
 
                     </td>
                 </tr>
@@ -120,45 +108,43 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('admin.products.view_categories', $product->id) }}"
-                        class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Categories"><i
-                            class="fas fa-list"></i></a>
+                    <a href="{{ route('admin.products.view_categories', $product->id) }}" class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Categories"><i class="fas fa-list"></i></a>
                 </div>
             </div>
         </div>
-        <table class="table table-light table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Category Name</th>
-                    <th scope="col">Taxonomy ID</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-            @if($product->categories()->count() < 1) <div class="alert alert-warning" role="alert">
-                        There is no any categories to display!
-                </div>
-                @else
-                @foreach($product->categories()->take(10)->get() as
-                $category)
-                <tr>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->taxonomy_id }}</td>
-                    <td>
-                        <a href="{{ route('admin.products.delete_category', [$product->id, $category->id]) }}"
-                            class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip"
-                            title="Delete category"><i class="fas fa-trash"></i></a>
 
-                    </td>
-                </tr>
-                @endforeach
-                @endif
-
-            </tbody>
-        </table>
-
-
+        @if($product->categories()->count() < 1) <div class="alert alert-warning" role="alert">
+            There is no any categories to display!
     </div>
+    @else
+    <table class="table table-light table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Category Name</th>
+                <th scope="col">Taxonomy ID</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach($product->categories()->take(10)->get() as
+            $category)
+            <tr>
+                <td>{{ $category->name }}</td>
+                <td>{{ $category->taxonomy_id }}</td>
+                <td>
+                    <a href="{{ route('admin.products.delete_category', [$product->id, $category->id]) }}" class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete category"><i class="fas fa-trash"></i></a>
+
+                </td>
+            </tr>
+            @endforeach
+
+
+        </tbody>
+    </table>
+
+    @endif
+</div>
 </div>
 @endsection
 @section('styles')

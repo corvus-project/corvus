@@ -17,7 +17,7 @@ class CustomerController extends Controller
     public function orders()
     {
         $customers = User::query()->whereHas('roles', function($q) {
-            $q->where('name', 'customer');
+            $q->where('name', 'vendor');
         })->get();
 
         $customers_json = null;

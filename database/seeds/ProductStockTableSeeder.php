@@ -24,7 +24,7 @@ class ProductStockTableSeeder extends Seeder
         for ($i = 1; $i < 500; $i++) {
             $stocks[] = [
                 'product_id' => $i,
-                'stock_type_id' => $faker->numberBetween(1,5),
+                'stock_type_id' => $faker->numberBetween(1,4),
                 'warehouse_id' => $faker->numberBetween(1,3),
                 'quantity'    => $faker->numberBetween(0, 500),
                 'created_at' => Carbon::now(),

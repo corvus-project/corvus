@@ -34,7 +34,8 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-
+                            <th>Account Number</th>
+                            <th>Account Group</th>
                         </tr>
                     </thead>
                 </table>
@@ -72,6 +73,14 @@ $(document).ready(function() {
                 name: 'email',
                 data: 'email'
             },
+            {
+                name: 'account_number',
+                data: 'account_number'
+            },
+            {
+                name: 'account_group',
+                data: 'account_group'
+            }           
         ]
     });
 
