@@ -5,8 +5,6 @@ namespace App\Models\Traits;
 
 trait UserAttribute
 {
- 
-
     public function getUserRoleAttribute()
     {
         $role = [];

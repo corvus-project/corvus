@@ -10,7 +10,7 @@
  
     @stack('before-styles')
 
-    {{ style(mix('css/backend.css')) }}
+    {{ style(mix('css/panel.css')) }}
 
     @stack('after-styles')
     @yield('styles')
@@ -50,7 +50,7 @@
     @stack('before-scripts')
     {!! script(mix('js/manifest.js')) !!}
     {!! script(mix('js/vendor.js')) !!}
-    {!! script(mix('js/backend.js')) !!}
+    {!! script(mix('js/panel.js')) !!}
     @stack('after-scripts')
      
     @yield('scripts')
