@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Report\Http\Controllers;
+namespace App\Http\Controllers\Admin\Reports;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -31,7 +31,7 @@ class CustomerController extends Controller
             $status_json .= '{ value: "'. $status->id .'", label: "'. $status->name . '"},'; 
         }
         
-        return view('report::customer.orders', compact('customers_json', 'status_json'));
+        return view('admin.reports.customer.orders', compact('customers_json', 'status_json'));
     }
 
     public function order_data()

@@ -98,8 +98,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/categories', ['as' => 'categories.index', 'uses' => 'Catalogue\CategoryController@index']);
     Route::get('/categories/{category}/products', ['as' => 'categories.products', 'uses' => 'Catalogue\CategoryController@products']);
     Route::get('/categories/{category}/data', ['as' => 'categories.products.data', 'uses' => 'Catalogue\CategoryController@data']);
-
-
     Route::get('/categories/create', ['as' => 'categories.create', 'uses' => 'Catalogue\CategoryController@create']);
     Route::post('/categories/create', ['as' => 'categories.store', 'uses' => 'Catalogue\CategoryController@store']);
     Route::get('/categories/{category}/edit', ['as' => 'categories.edit', 'uses' => 'Catalogue\CategoryController@edit']);
@@ -122,7 +120,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/tools', ['as' => 'tools.index', 'uses' => 'ToolController@index']);
     Route::get('/tools/imports', 'ImportController@index')->name('tools.import.index');
     Route::post('/tools/imports/csv_file', ['as' => 'tools.import.csv_file', 'uses' => 'ImportController@csv_file']);   
-    
     Route::get('/tools/exports', 'ExportController@index')->name('tools.export.index');
     Route::post('/tools/exports/product_list', ['as' => 'tools.exports.product_list', 'uses' => 'ExportController@product_list']);      
     Route::post('/tools/exports/price_list', ['as' => 'tools.exports.price_list', 'uses' => 'ExportController@price_list']);      
@@ -145,7 +142,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
     Route::get('/orders/{order}/view', ['as' => 'orders.view', 'uses' => 'OrderController@view']);    
-    Route::get('/orders/{order}/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);            
+    Route::get('/orders/{order}/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);   
+    
+    // Reports
+    Route::get('/reports', 'ReportController@index')->name('reports.index');
+    Route::get('/reports/warehouse/stock', ['as' => 'reports.warehouse.stock', 'uses' => 'Reports\WarehouseController@stock']);
+    Route::get('/reports/warehouse/stock/data', ['as' => 'reports.warehouse.stock', 'uses' => 'Reports\WarehouseController@stock_data']);
+    Route::get('/reports/customer/order', ['as' => 'reports.customer.order', 'uses' => 'Reports\CustomerController@orders']);
+    Route::get('/reports/customer/order/data', ['as' => 'reports.customer.order.data', 'uses' => 'Reports\CustomerController@order_data']);
 
 });
 

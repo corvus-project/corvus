@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Report\Http\Controllers;
+namespace App\Http\Controllers\Admin\Reports;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,7 +15,7 @@ class ProductController extends Controller
 { 
     public function orders()
     {
-        return view('report::product.list');
+        return view('admin.reports.product.list');
     }
 
     public function order_data()

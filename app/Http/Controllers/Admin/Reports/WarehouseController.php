@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Report\Http\Controllers;
+namespace App\Http\Controllers\Admin\Reports;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -31,7 +31,7 @@ class WarehouseController extends Controller
             $stock_types_json .= '{ value: "'. $w->id .'", label: "'. $w->name . '"},'; 
         }
 
-        return view('report::warehouse.stocks', compact('warehouses', 'warehouses_json', 'stock_types_json'));
+        return view('admin.reports.warehouse.stocks', compact('warehouses', 'warehouses_json', 'stock_types_json'));
     }
  
     public function stock_data()

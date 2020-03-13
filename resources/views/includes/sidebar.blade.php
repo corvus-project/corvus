@@ -37,7 +37,7 @@
                     <i class="nav-icon fas fa-upload"></i>
                     @lang('menus.orders.upload')
                 </a>
-            </li>            
+            </li>
 
             @endif
             @if (Auth::user()->hasRole('administrator'))
@@ -167,15 +167,6 @@
                 </a>
 
                 <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/api'))
-                }}" href="{{ route('admin.api.index') }}">
-                            <i class="nav-icon fas fa-cloud-download-alt"></i>
-                            @lang('menus.api')
-                        </a>
-                    </li>
-
                     <li class="nav-item">
                         <a class="nav-link {{
                     active_class(Route::is('admin/tools/import'))

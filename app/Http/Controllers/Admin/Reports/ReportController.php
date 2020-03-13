@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Report\Http\Controllers;
+namespace App\Http\Controllers\Admin\Reports;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,7 +14,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return view('report::index');
+        return view('admin.reports.index');
     }
  
 }

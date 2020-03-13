@@ -1,13 +1,13 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('order::labels.orders.management'))
+@section('title', app_name() . ' | ' . __('labels.orders.management'))
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('order::labels.orders.management') }}
+                    {{ __('labels.orders.management') }}
                 </h4>
             </div>
             <!--col-->
