@@ -44,6 +44,11 @@
         </div>
 
         <div class="row  border-bottom">
+            <div class="col-sm-3 bg-light p-2"><b>Account Type</b></div>
+            <div class="col-sm-9 p-2">{{ $user->roles()->first()->name }}</div>
+        </div>
+
+        <div class="row  border-bottom">
             <div class="col-sm-3 bg-light p-2"><b>Account Number</b></div>
             <div class="col-sm-9 p-2">{{ $user->account_number }}</div>
         </div>

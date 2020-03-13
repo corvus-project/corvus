@@ -140,6 +140,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/accounts/{user}/edit', ['as' => 'accounts.edit', 'uses' => 'AccountController@edit']);     
     Route::post('/accounts/{user}/edit', ['as' => 'accounts.update', 'uses' => 'AccountController@update']);     
     Route::post('/accounts/{user}/token', ['as' => 'accounts.token.regenerate', 'uses' => 'AccountController@token_regenerate']);    
+
+    // Orders
+    Route::get('/orders', 'OrderController@index')->name('orders.index');
+    Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
+    Route::get('/orders/{order}/view', ['as' => 'orders.view', 'uses' => 'OrderController@view']);    
+    Route::get('/orders/{order}/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);            
+
 });
 
 

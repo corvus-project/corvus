@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Order\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
 use App\Models\OrderStatus;
@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('order::index');
+        return view('admin.orders.index');
     }
 
     public function view(Order $order)
@@ -26,7 +26,7 @@ class OrderController extends Controller
         $allowed_status = $status->whereNotIn('slug', ['CANCELED', 'APPROVED'])->pluck('id')->toArray();
 
         $orderlines = $order->order_lines()->orderBy('created_at', 'DESC')->get();
-        return view('order::view', compact('order', 'orderlines','allowed_status'));
+        return view('admin.orders.view', compact('order', 'orderlines','allowed_status'));
     }
 
     public function update(Order $order)
