@@ -37,6 +37,11 @@
                 <tr>
                     <td>{{ $category->name }}</td>
                     <td>
+
+                        <a href="{{ route('admin.categories.products', $category->id) }}"
+                            class="btn btn-primary btn-sm ml-1 float-right" title="List products"><i
+                                class="nav-icon fas fa-list"></i></a>
+
                         <a href="{{ route('admin.categories.delete', $category->id) }}"
                             class="btn btn-danger btn-sm ml-1 float-right" title="Delete the category"><i
                                 class="fas fa-trash"></i></a>

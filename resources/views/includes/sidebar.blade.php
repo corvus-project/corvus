@@ -16,7 +16,7 @@
                             active_class(Route::is('portal/products'))
                 }}" href="{{ route('portal.products.index') }}">
                     <i class="nav-icon fas fa-list"></i>
-                    @lang('menus.products')
+                    @lang('menus.catalogue')
                 </a>
             </li>
 
@@ -55,8 +55,8 @@
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/products'))
                 }}" href="{{ route('admin.products.index') }}">
-                    <i class="nav-icon fas fa-list"></i>
-                    @lang('menus.products')
+                    <i class="nav-icon fas fa-list-alt"></i>
+                    @lang('menus.catalogue')
                 </a>
 
                 <ul class="nav-dropdown-items">

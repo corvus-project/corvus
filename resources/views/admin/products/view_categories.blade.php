@@ -62,6 +62,7 @@
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->taxonomy_id }}</td>
                     <td>
+
                         <a href="{{ route('admin.products.delete_category', [$product->id, $category->id]) }}"
                             class="btn btn-danger btn-sm m-1 float-right" data-toggle="tooltip"
                             title="Delete category"><i class="fas fa-trash"></i></a>

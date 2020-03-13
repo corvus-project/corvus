@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Catalogue;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
- 
+use DB; 
+
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -17,6 +18,26 @@ class CategoryController extends Controller
         $categories = Category::all();
         return view('admin.categories.index', compact('categories'));
     }
+
+    public function products(Category $category)
+    {
+        return view('admin.categories.products', compact('category'));        
+    }
+
+    public function data(Category $category)
+    {
+        $products = DB::table('products')
+            ->leftJoin('product_categories', 'products.id', '=', 'product_categories.product_id')
+            ->leftJoin('categories', 'categories.id', '=', 'product_categories.category_id')
+            ->where('categories.id', $category->id)
+            ->select( [
+                'products.id as pid', 
+                'products.sku as product_sku', 
+                'products.name as product_name' 
+            ]);
+
+        return datatables()->of($products)->toJson();
+    } 
 
     public function create()
     {

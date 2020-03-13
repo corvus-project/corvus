@@ -15,6 +15,8 @@ return [
     'dashboard' => 'Dashboard',
     'general' => 'General',
     'history' => 'History',
+    'catalogue' => 'Catalogue',
+
     'system' => 'System',
     'products' => 'Products',        
     'pricing_groups' => 'Pricing Groups',
