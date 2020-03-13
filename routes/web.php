@@ -99,7 +99,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/categories/{category}/products', ['as' => 'categories.products', 'uses' => 'Catalogue\CategoryController@products']);
     Route::get('/categories/{category}/data', ['as' => 'categories.products.data', 'uses' => 'Catalogue\CategoryController@data']);
 
-    
+
     Route::get('/categories/create', ['as' => 'categories.create', 'uses' => 'Catalogue\CategoryController@create']);
     Route::post('/categories/create', ['as' => 'categories.store', 'uses' => 'Catalogue\CategoryController@store']);
     Route::get('/categories/{category}/edit', ['as' => 'categories.edit', 'uses' => 'Catalogue\CategoryController@edit']);
@@ -133,6 +133,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/accounts/', 'AccountController@index')->name('accounts.index');
     Route::get('/accounts/data', ['as' => 'accounts.data', 'uses' => 'AccountController@data']);
     Route::get('/accounts/{user}/view', ['as' => 'accounts.view', 'uses' => 'AccountController@view']);    
+    Route::get('/accounts/{user}/orders', ['as' => 'accounts.orders', 'uses' => 'AccountController@orders']);     
+    Route::get('/accounts/{user}/orders_data', ['as' => 'accounts.orders_data', 'uses' => 'AccountController@orders_data']);     
     Route::get('/accounts/create', ['as' => 'accounts.create', 'uses' => 'AccountController@create']);     
     Route::post('/accounts/create', ['as' => 'accounts.store', 'uses' => 'AccountController@store']);     
     Route::get('/accounts/{user}/edit', ['as' => 'accounts.edit', 'uses' => 'AccountController@edit']);     
