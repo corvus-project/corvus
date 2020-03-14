@@ -21,7 +21,7 @@
 
         <div class="row">
             <div class="col-sm-5"><b>Customer</b></div>
-            <div class="col-sm-7">{{ $order->customer->name }}</div>
+            <div class="col-sm-7">{{ $order->account->name }}</div>
         </div>
         <div class="row">
             <div class="col-sm-5"><b>Date</b></div>

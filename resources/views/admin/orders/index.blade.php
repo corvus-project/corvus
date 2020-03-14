@@ -92,7 +92,7 @@ $(document).ready(function() {
     $('#orders tbody').on('click', 'tr', function () {
         var data = table.row( this ).data();
         var template = "{{ route('admin.orders.view', '000') }}"
-        var redirect_url = template.replace('000', data.id);
+        var redirect_url = template.replace('000', data.oid);
         window.location.href = redirect_url
     } );
 });
