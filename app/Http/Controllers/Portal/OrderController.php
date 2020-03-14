@@ -81,7 +81,7 @@ class OrderController extends Controller
             $filePath = $folder . $filename;
             $rst = $this->uploadfile($file, $folder, 'local', $filename);
             if($rst){
-                $order = Order::create(['user_id' => $user->id, 'order_date' => Carbon::now(), 'status' => 1]);
+                $order = Order::create(['user_id' => $user->id, 'order_date' => Carbon::now(), 'status' => 1, 'ref_id' => $request->ref_id]);
                 $order_id = $order->id;
                 (new VendorOrderImport($order_id))->import($filename, null, \Maatwebsite\Excel\Excel::CSV);
                 ProcessOrder::dispatch($order);

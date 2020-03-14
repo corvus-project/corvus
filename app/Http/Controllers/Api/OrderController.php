@@ -22,7 +22,7 @@ class OrderController extends Controller
         $orderlines = [];
         $lines = $request->all();
          
-        $order = Order::create(['user_id' => $user->id, 'order_date' => Carbon::now(), 'status' => 1]);
+        $order = Order::create(['user_id' => $user->id, 'order_date' => Carbon::now(), 'status' => 1, 'ref_id' => $request->ref_id]);
         $order_id = $order->id;
 
         foreach($lines as $line){

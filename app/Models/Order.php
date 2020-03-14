@@ -14,7 +14,7 @@ class Order extends Model
      */
     protected $table = 'order_headers';
  
-    protected $fillable = ['user_id', 'order_date', 'status'];
+    protected $fillable = ['user_id', 'order_date', 'status', 'ref_id'];
 
     protected $dates = ['order_date'];
 
