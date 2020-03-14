@@ -12,7 +12,21 @@ trait UserAttribute
         return $role['display_name']; 
     }
 
-    
+    public function getIsActiveAttribute()
+    {
+        if ($this->active){
+            return 'True';
+        }
+        return 'False';
+    }   
+
+    public function getIsConfirmedAttribute()
+    {
+        if ($this->confirmed){
+            return 'True';
+        }
+        return 'False';
+    }    
 
     public function getAccountNumberAttribute()
     {

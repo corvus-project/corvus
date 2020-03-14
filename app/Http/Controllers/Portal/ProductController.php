@@ -29,22 +29,26 @@ class ProductController extends Controller
     public function data()
     {
         $profile = Auth::user()->profile;
-
-        $products = DB::table('pricings')
+        if ($profile) {
+            $products = DB::table('pricings')
             ->leftJoin('products', 'products.id', '=', 'pricings.product_id')
             ->leftJoin('stocks', 'stocks.product_id', '=', 'pricings.product_id')
             ->where('pricings.pricing_group_id', $profile->pricing_group_id)
             ->where('stocks.warehouse_id', $profile->warehouse_id)
             ->where('stocks.stock_type_id', $profile->stock_type_id)
             ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-            ->select( 
-                        'products.id as pid', 
-                        'products.sku as product_sku', 
-                        'products.name as product_name', 
-                        'pricings.amount', 'stocks.quantity'
-                    );                
+            ->select(
+                'products.id as pid',
+                'products.sku as product_sku',
+                'products.name as product_name',
+                'pricings.amount',
+                'stocks.quantity'
+            );
 
-        return datatables()->of($products)->toJson();
+            return datatables()->of($products)->toJson();
+        }else{
+            return [];
+        }
     }
 
     public function view(Product $product)

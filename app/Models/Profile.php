@@ -16,5 +16,19 @@ class Profile extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function stock_type()
+    {
+        return $this->belongsTo(StockType::class);
+    }
  
+    public function pricing_group()
+    {
+        return $this->belongsTo(PricingGroup::class);
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
+    }    
+
 }

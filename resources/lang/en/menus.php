@@ -15,6 +15,8 @@ return [
     'dashboard' => 'Dashboard',
     'general' => 'General',
     'history' => 'History',
+    'catalogue' => 'Catalogue',
+
     'system' => 'System',
     'products' => 'Products',        
     'pricing_groups' => 'Pricing Groups',
@@ -27,6 +29,7 @@ return [
     'variants'  => 'Variants',
     'attributes'    => 'Attributes',
     'orders'  => 'Orders',
+    'orders.upload'  => 'Upload Order',
     'tools' => 'Tools',
     'imports'  => 'Import',
     'export'    => 'Export',

@@ -34,11 +34,12 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
- 
+        $profile = $user->profile;
         $orders = Order::query()
             ->join('users', 'order_headers.user_id', '=', 'users.id')
             ->join('order_status', 'order_headers.status', '=', 'order_status.id')
             ->where('order_headers.user_id', $user->id)
+
             ->select(
                 'order_headers.id as order_id',
                 'users.name as user_name', 
@@ -48,8 +49,7 @@ class DashboardController extends Controller
 
                 'order_status.name as status_name'
                 )->orderBy('order_headers.created_at', 'desc')->take(10)->get();     
-
-        $products = Product::take(10)->orderBy('created_at', 'desc')->get();     
-        return view('portal.dashboard', compact('products', 'orders'));
+  
+        return view('portal.dashboard', compact( 'orders'));
     }
 }

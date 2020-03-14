@@ -13,17 +13,11 @@
 
             <div class="col-sm-7">
 
-                @if(in_array($order->order_status->slug, ['NEW_ORDER', 'PROCESSING']))
-                <form autocomplete="off" role="form" action="{{ route('portal.orders.cancel', $order->id) }}" method="post"
-                    id="cancel_form">
-                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                    <button class="float-right delete btn btn-md btn-danger" id="{{$order->id}}"><i class="fas fa-trash"></i> Cancel</button>
-                </form>
-                @endif
             </div>
             <!--col-->
         </div>
         <!--row-->
+
 
         <div class="row">
             <div class="col-sm-5"><b>Customer</b></div>
@@ -39,6 +33,15 @@
         </div>
         <br />
 
+        <div class="row">
+            <div class="col-12">
+            @if(in_array($order->status, $allowed_status))
+                <a class="btn btn-primary m-2 float-right" href="{{ route('admin.orders.update', $order->id) }}">
+                    <i class="fas fa-sync-alt align-middle"></i> <span class="align-middle">
+                        Process Order</span></a>
+            @endif
+            </div>
+        </div>
         <table class="table table-light table-hover">
             <thead class="thead-light">
                 <tr>
@@ -47,7 +50,7 @@
                     <th>Amount</th>
                     <th>Quantity</th>
                     <th>Status</th>
-                    <th>Updated</th>
+                    <th>Updated</th>                    
                 </tr>
             </thead>
             <tbody>
@@ -73,33 +76,5 @@
 
 @section('scripts')
 @parent
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-<script>
-$(document).ready(function() {
 
-    $('#cancel_form').on('submit', function(e) {
-        var currentForm = this;
-        e.preventDefault();
-
-        bootbox.confirm({
-            message: "This will cancel your order.",
-            buttons: {
-                confirm: {
-                    label: 'Cancel order',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: 'Keep my order',
-                    className: 'btn-success'
-                }
-            },
-            callback: function(result) {
-                if (result) {
-                    currentForm.submit();
-                }
-            }
-        });
-    });
-});
-</script>
 @stop

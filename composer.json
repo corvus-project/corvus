@@ -30,7 +30,6 @@
         "lcobucci/jwt": "^3.3",
         "maatwebsite/excel": "^3.1",
         "mbezhanov/faker-provider-collection": "^1.2",
-        "nwidart/laravel-modules": "^6.2",
         "rollbar/rollbar-laravel": "^5.0",
         "spatie/laravel-html": "^2.24",
         "yajra/laravel-datatables-oracle": "~9.0"

@@ -21,6 +21,7 @@ class CreateOrderHeadersTable extends Migration
             $table->dateTime('processed_date')->nullable();
             $table->decimal('amount', 8, 2)->default(0);
             $table->integer('status')->default(0)->unsigned();
+            $table->string('ref_id')->nullable();
             $table->timestamps();
         });
     }

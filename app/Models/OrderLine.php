@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderLine extends Model
 {
+    protected $fillable = ['product_sku', 'quantity', 'order_header_id', 'status'];
+
     /**
      * The database table used by the model.
      *

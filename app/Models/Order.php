@@ -14,7 +14,7 @@ class Order extends Model
      */
     protected $table = 'order_headers';
  
-    protected $fillable = ['user_id', 'order_date', 'status'];
+    protected $fillable = ['user_id', 'order_date', 'status', 'ref_id'];
 
     protected $dates = ['order_date'];
 
@@ -22,7 +22,7 @@ class Order extends Model
     {
         return $this->order_status->name;
     }    
-
+ 
     public function account()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

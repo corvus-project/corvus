@@ -1,13 +1,13 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('labels.portal.orders'))
+@section('title', app_name() . ' | ' . __('labels.orders.management'))
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.portal.orders') }}
+                    {{ __('labels.orders.management') }}
                 </h4>
             </div>
             <!--col-->
@@ -26,6 +26,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Date</th>
+                            <th>Customer</th>
                             <th>Ref ID</th>
                             <th>Status</th>
                         </tr>
@@ -54,19 +55,23 @@ $(document).ready(function() {
         responsive: true,
         serverSide: true,
         pageLength: 50,
-        ajax: "/portal/orders/data",
+        ajax: "orders/data",
         columns: [{
-                name: 'id',
-                data: 'id'
+                name: 'oid',
+                data: 'oid'
             },
             {
                 name: 'order_date',
                 data: 'order_date'
             },            
             {
+                name: 'user_id',
+                data: 'user_id'
+            },  
+            {
                 name: 'ref_id',
                 data: 'ref_id'
-            },            
+            },                       
             {
                 name: 'status',
                 data: 'status_name'
@@ -75,15 +80,19 @@ $(document).ready(function() {
     });
 
     yadcf.init(table, [{
-        column_number: 3,
+        column_number: 4,
         filter_type: "select",
         data: [{!!$status_json!!}],
+    },{
+        column_number: 2,
+        filter_type: "select",
+        data: [{!!$customer_json!!}],
     }]);
-
+         
     $('#orders tbody').on('click', 'tr', function () {
         var data = table.row( this ).data();
-        var template = "{{ route('portal.orders.view', '000') }}"
-        var redirect_url = template.replace('000', data.id);
+        var template = "{{ route('admin.orders.view', '000') }}"
+        var redirect_url = template.replace('000', data.oid);
         window.location.href = redirect_url
     } );
 });

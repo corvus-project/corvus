@@ -17,3 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['middleware' => ['jwt.auth'], 'namespace' => 'Api', 'prefix' => '/', 'as' => 'api.'], function () {
+    Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']);
+    Route::get('/products/{product}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+
+    Route::post('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@create']);
+});
