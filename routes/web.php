@@ -25,7 +25,7 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', '
     Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
     Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
     Route::get('/orders/{order}/view', ['as' => 'orders.view', 'uses' => 'OrderController@view']);
-
+    Route::post('/orders/{order}/cancel', ['as' => 'orders.cancel', 'uses' => 'OrderController@cancel']);
     Route::get('/orders/upload', ['as' => 'orders.upload', 'uses' => 'OrderController@upload']);
     Route::post('/orders/upload', ['as' => 'orders.save_file', 'uses' => 'OrderController@save_file']);
 
@@ -147,7 +147,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     // Reports
     Route::get('/reports', 'ReportController@index')->name('reports.index');
     Route::get('/reports/warehouse/stock', ['as' => 'reports.warehouse.stock', 'uses' => 'Reports\WarehouseController@stock']);
-    Route::get('/reports/warehouse/stock/data', ['as' => 'reports.warehouse.stock', 'uses' => 'Reports\WarehouseController@stock_data']);
+    Route::get('/reports/warehouse/stock/data', ['as' => 'reports.warehouse.stock.data', 'uses' => 'Reports\WarehouseController@stock_data']);
     Route::get('/reports/customer/order', ['as' => 'reports.customer.order', 'uses' => 'Reports\CustomerController@orders']);
     Route::get('/reports/customer/order/data', ['as' => 'reports.customer.order.data', 'uses' => 'Reports\CustomerController@order_data']);
 

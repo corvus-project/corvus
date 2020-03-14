@@ -1,13 +1,13 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('order::labels.orders.management'))
+@section('title', app_name() . ' | ' . __('labels.portal.orders'))
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('order::labels.orders.management') }}
+                    {{ __('labels.portal.orders') }}
                 </h4>
             </div>
             <!--col-->
@@ -26,7 +26,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Date</th>
-                            <th>Customer</th>
+                            <th>Ref ID</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -45,9 +45,11 @@
 @section('scripts')
 @parent
 <script src="//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4/jquery.dataTables.yadcf.js"></script>
 <script>
 $(document).ready(function() {
     var table = $('#orders').DataTable({
+        "order": [[ 1, "desc" ]],
         processing: true,
         responsive: true,
         serverSide: true,
@@ -62,8 +64,8 @@ $(document).ready(function() {
                 data: 'order_date'
             },            
             {
-                name: 'user_name',
-                data: 'user_name'
+                name: 'ref_id',
+                data: 'ref_id'
             },            
             {
                 name: 'status',
@@ -72,7 +74,12 @@ $(document).ready(function() {
         ]
     });
 
-         
+    yadcf.init(table, [{
+        column_number: 3,
+        filter_type: "select",
+        data: [{!!$status_json!!}],
+    }]);
+
     $('#orders tbody').on('click', 'tr', function () {
         var data = table.row( this ).data();
         var template = "{{ route('portal.orders.view', '000') }}"

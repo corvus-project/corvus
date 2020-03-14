@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('report::labels.reports.portal'))
+@section('title', app_name() . ' | ' . __('labels.reports.warehouses_stock_report'))
 
 @section('content')
 <div class="card mt-2">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('report::labels.reports.portal')  }} {{ __('labels.warehouses.title') }}
+                    {{ __('labels.reports.warehouses_stock_report')  }}
                 </h4>
             </div>
             <!--col-->

@@ -22,7 +22,7 @@ class Order extends Model
     {
         return $this->order_status->name;
     }    
-
+ 
     public function account()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

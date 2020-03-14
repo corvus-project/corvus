@@ -37,6 +37,10 @@ return [
         'more' => 'More',
         'logout'    => 'Logout'
     ],
+    'reports' => [
+        'warehouses_stock_report'  => 'Warehouses Stock Report',
+        'customer_order_report'  => 'Customer Orders Report'
+    ],
     'import' => [
         'sucess' => 'File imported',
         'failes' => 'File failed',
@@ -86,6 +90,9 @@ return [
         'orders'    => [
             'management'    => 'Order Management'
         ]
+    ],
+    'portal'    => [
+        'orders' => 'Orders'
     ],
     'accounts' => [
         'portal'  => 'Account Portal',
