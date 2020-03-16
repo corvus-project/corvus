@@ -8,18 +8,14 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                Accounts
+                    Accounts
                 </h4>
             </div>
             <!--col-->
 
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('admin.accounts.index') }}" class="btn btn-success btn-sm m-1"
-                        data-toggle="tooltip" title="List the accounts"><i class="fas fa-list"></i></a>
-
-                    <a href="{{ route('admin.accounts.create') }}" class="btn btn-primary btn-sm m-1"
-                        data-toggle="tooltip" title="New Customer"><i class="fas fa-plus"></i></a>
+                    @include('includes.account_submenu')
                 </div>
             </div>
             <!--col-->
@@ -80,7 +76,7 @@ $(document).ready(function() {
             {
                 name: 'account_group',
                 data: 'account_group'
-            }           
+            }
         ]
     });
 

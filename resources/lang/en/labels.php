@@ -87,9 +87,7 @@ return [
             'deleted'   => 'The category removed from the product',
             
         ],
-        'orders'    => [
-            'management'    => 'Order Management'
-        ]
+
     ],
     'portal'    => [
         'orders' => 'Orders'
@@ -104,6 +102,7 @@ return [
         'password_confirmation' => 'Confirm',
         'created'   => 'Account created',
         'updated'   => 'Account updated',
+        'orders'    => 'Account Orders'
     ]   ,
     'pricing_groups' => [
         'title' => 'Definition Pricing Groups',

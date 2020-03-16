@@ -13,26 +13,12 @@
 
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('admin.accounts.index') }}" class="btn btn-success btn-sm m-1"
-                        data-toggle="tooltip" title="List the accounts"><i class="fas fa-list"></i></a>
-
-                    <a href="{{ route('admin.accounts.create') }}" class="btn btn-primary btn-sm m-1"
-                        data-toggle="tooltip" title="New Account"><i class="fas fa-plus"></i></a>
-
-                    <a href="{{ route('admin.accounts.edit', $user->id) }}" class="btn btn-info btn-sm m-1"
-                        data-toggle="tooltip" title="Edit the Account"><i class="fas fa-pen"></i></a>
-
-
-
-                        <a href="{{ route('admin.accounts.orders', $user->id) }}" class="btn btn-info btn-sm m-1"
-                        data-toggle="tooltip" title="Orders"><i class="fas fas fa-wallet"></i></a>
-
-
+                @include('includes.account_submenu')
                 </div>
             </div>
             <!--col-->
         </div>
-        <!--row--> 
+        <!--row-->
         <div class="row  border-bottom">
             <div class="col-sm-3 bg-light p-2"><b>ID</b></div>
             <div class="col-sm-9 p-2">{{ $user->id }}</div>
@@ -60,18 +46,18 @@
 
         <div class="row  border-bottom">
             <div class="col-sm-3 bg-light p-2"><b>Stock Type</b></div>
-            <div class="col-sm-9 p-2">{{ $user->profile->stock_type->name }}</div>
-        </div>        
+            <div class="col-sm-9 p-2">{{ $user->profile->stock_type_name }}</div>
+        </div>
 
         <div class="row  border-bottom">
             <div class="col-sm-3 bg-light p-2"><b>Pricing Group</b></div>
             <div class="col-sm-9 p-2">{{ $user->profile->pricing_group->name }}</div>
-        </div>        
+        </div>
 
         <div class="row  border-bottom">
             <div class="col-sm-3 bg-light p-2"><b>Warehouse</b></div>
             <div class="col-sm-9 p-2">{{ $user->profile->warehouse->name }}</div>
-        </div>        
+        </div>
 
         <div class="row  border-bottom">
             <div class="col-sm-3 bg-light p-2"><b>Email</b></div>

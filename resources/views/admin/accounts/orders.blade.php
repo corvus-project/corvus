@@ -1,21 +1,20 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('order::labels.orders.management'))
+@section('title', app_name() . ' | ' . __('labels.accounts.orders'))
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('order::labels.orders.management') }}
+                    {{ __('labels.accounts.orders') }}
                 </h4>
             </div>
-            <!--col-->
-
             <div class="col-sm-7">
-
+                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                    @include('includes.account_submenu')
+                </div>
             </div>
-            <!--col-->
         </div>
         <!--row-->
 
@@ -60,25 +59,25 @@ $(document).ready(function() {
             {
                 name: 'order_date',
                 data: 'order_date'
-            },            
+            },
             {
                 name: 'user_name',
                 data: 'user_name'
-            },            
+            },
             {
                 name: 'status',
                 data: 'status_name'
-            }            
+            }
         ]
     });
 
-         
-    $('#orders tbody').on('click', 'tr', function () {
-        var data = table.row( this ).data();
+
+    $('#orders tbody').on('click', 'tr', function() {
+        var data = table.row(this).data();
         var template = "{{ route('admin.orders.view', '000') }}"
         var redirect_url = template.replace('000', data.id);
         window.location.href = redirect_url
-    } );
+    });
 });
 </script>
 @stop
