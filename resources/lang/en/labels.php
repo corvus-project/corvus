@@ -82,6 +82,7 @@ return [
         ],
         'categories'   => [
             'all'   => 'Categories',
+            'create'    => 'Add product to category',
             'created'   => 'Category added to product',
             'exist'   => 'The category existing in the product',
             'deleted'   => 'The category removed from the product',

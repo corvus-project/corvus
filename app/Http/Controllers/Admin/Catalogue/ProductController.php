@@ -123,6 +123,7 @@ class ProductController extends Controller
     {
         $warehouses = Warehouse::all()->pluck('name', 'id');
         $stock_types = StockType::all()->pluck('name', 'id');
+
         return view('admin.products.delete_stock', compact('product', 'stock', 'warehouses', 'stock_types'));
     }
 

@@ -39,4 +39,16 @@ class Stock extends Model
     {
         return $this->belongsTo(Warehouse::class);
     }
+
+    public function getFormatToDateAttribute()
+    {
+        return Carbon::parse($this->to_date)->format('Y-m-d');
+    }    
+
+
+    public function getFormatFromDateAttribute()
+    {
+        return Carbon::parse($this->to_date)->format('Y-m-d');
+    }        
+
 }

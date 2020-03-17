@@ -15,9 +15,12 @@
 
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="">
-                
-                <a href="{{ route('admin.products.create_stock', $product->id) }}" class="btn btn-success btn-sm m-1"
-                        data-toggle="tooltip" title="Create a stock"><i class="fas fa-plus"></i></a>
+                    <a href="{{ route('admin.products.view_stocks', $product->id) }}" class="btn btn-success btn-sm m-1"
+                        data-toggle="tooltip" title="List the stock history"><i class="fas fa-list"></i></a>
+
+                    <a href="{{ route('admin.products.create_stock', $product->id) }}"
+                        class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
+                            class="fas fa-plus"></i></a>
 
                     <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
                         data-toggle="tooltip" title="Back to product"><i class="fas fa-arrow-alt-circle-left"></i></a>
@@ -25,23 +28,7 @@
             </div>
             <!--col-->
         </div>
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row">
-                    <div class="col-sm-5"><b>SKU</b></div>
-                    <div class="col-sm-7">{{ $product->sku }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Name</b></div>
-                    <div class="col-sm-7">{{ $product->name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Description</b></div>
-                    <div class="col-sm-7">{{ $product->description }}</div>
-                </div>
-            </div>
-        </div>
+        @include('includes.product_box')
         <br />
         <!--row-->
         <div class="row">
@@ -57,7 +44,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>Stock Type</th>
-                    <th>Warehouse</th>                    
+                    <th>Warehouse</th>
                     <th>Quantity</th>
                     <th></th>
                 </tr>
@@ -69,11 +56,13 @@
                     <td>{{ $stock->warehouse->name }}</td>
                     <td>{{ $stock->quantity }}</td>
                     <td>
-                    <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}" class="btn btn-info btn-sm m-1 float-right"
-                        data-toggle="tooltip" title="Update stock"><i class="fas fa-pen"></i></a>
-                    
-                        <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}" class="btn btn-danger btn-sm m-1 float-right"
-                        data-toggle="tooltip" title="Delete stock"><i class="fas fa-trash"></i></a>
+                        <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}"
+                            class="btn btn-info btn-sm m-1 float-right" data-toggle="tooltip" title="Update stock"><i
+                                class="fas fa-pen"></i></a>
+
+                        <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}"
+                            class="btn btn-danger btn-sm m-1 float-right" data-toggle="tooltip" title="Delete stock"><i
+                                class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 @endforeach
