@@ -27,7 +27,7 @@
                                 
                             <a href="{{ route('admin.products.create_category', $product->id) }}"
                                 class="btn btn-primary btn-sm m-1" data-toggle="tooltip"
-                                title="Add Product to a Category"><i class="fas fa-plus"></i></a>
+                                title="{{  __('labels.products.categories.create') }}"><i class="fas fa-plus"></i></a>
 
                             <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
                                 data-toggle="tooltip" title="Back to product"><i
