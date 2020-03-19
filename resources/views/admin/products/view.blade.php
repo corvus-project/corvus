@@ -6,23 +6,7 @@
 <div class="card mt-2">
     <div class="card-body">
         <!--row-->
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row">
-                    <div class="col-sm-5"><b>SKU</b></div>
-                    <div class="col-sm-7">{{ $product->sku }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Name</b></div>
-                    <div class="col-sm-7">{{ $product->name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Description</b></div>
-                    <div class="col-sm-7">{{ $product->description }}</div>
-                </div>
-            </div>
-        </div>
+        @include('includes.product_box')
         <br />
 
         <div class="row">
@@ -31,7 +15,15 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('admin.products.view_pricing', $product->id) }}" class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Pricing History"><i class="fas fa-list"></i></a>
+
+                    <a href="{{ route('admin.products.view_pricing', $product->id) }}"
+                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the Pricing History"><i
+                            class="fas fa-list"></i></a>
+
+                    <a href="{{ route('admin.products.create_pricing', $product->id) }}"
+                        class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
+                            class="fas fa-plus"></i></a>
+
                 </div>
             </div>
         </div>
@@ -52,9 +44,13 @@
                     <td>{{ $pricing->amount }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
-                        <a href="{{ route('admin.products.edit_pricing', [$product->id, $pricing->id]) }}" class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update pricing"><i class="fas fa-pen"></i></a>
+                        <a href="{{ route('admin.products.edit_pricing', [$product->id, $pricing->id]) }}"
+                            class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update pricing"><i
+                                class="fas fa-pen"></i></a>
 
-                        <a href="{{ route('admin.products.delete_pricing', [$product->id, $pricing->id]) }}" class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete pricing"><i class="fas fa-trash"></i></a>
+                        <a href="{{ route('admin.products.delete_pricing', [$product->id, $pricing->id]) }}"
+                            class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip"
+                            title="Delete pricing"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -69,7 +65,15 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('admin.products.view_stocks', $product->id) }}" class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Stock History"><i class="fas fa-list"></i></a>
+
+                    <a href="{{ route('admin.products.view_stocks', $product->id) }}"
+                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the Stock History"><i
+                            class="fas fa-list"></i></a>
+
+                    <a href="{{ route('admin.products.create_stock', $product->id) }}"
+                        class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
+                            class="fas fa-plus"></i></a>
+
                 </div>
             </div>
         </div>
@@ -90,9 +94,13 @@
                     <td>{{ $stock->warehouse->name }}</td>
                     <td>{{ $stock->quantity }}</td>
                     <td>
-                        <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}" class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update stock"><i class="fas fa-pen"></i></a>
+                        <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}"
+                            class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update stock"><i
+                                class="fas fa-pen"></i></a>
 
-                        <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}" class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete stock"><i class="fas fa-trash"></i></a>
+                        <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}"
+                            class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete stock"><i
+                                class="fas fa-trash"></i></a>
 
                     </td>
                 </tr>
@@ -108,7 +116,14 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('admin.products.view_categories', $product->id) }}" class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Categories"><i class="fas fa-list"></i></a>
+                    <a href="{{ route('admin.products.view_categories', $product->id) }}"
+                        class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Categories"><i
+                            class="fas fa-list"></i></a>
+
+
+                    <a href="{{ route('admin.products.create_category', $product->id) }}"
+                        class="btn btn-primary btn-sm ml-1" data-toggle="tooltip" title="Add Product to a Category"><i
+                            class="fas fa-plus"></i></a>
                 </div>
             </div>
         </div>
@@ -133,7 +148,9 @@
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->taxonomy_id }}</td>
                 <td>
-                    <a href="{{ route('admin.products.delete_category', [$product->id, $category->id]) }}" class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete category"><i class="fas fa-trash"></i></a>
+                    <a href="{{ route('admin.products.delete_category', [$product->id, $category->id]) }}"
+                        class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete category"><i
+                            class="fas fa-trash"></i></a>
 
                 </td>
             </tr>

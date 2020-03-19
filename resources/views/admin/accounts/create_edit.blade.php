@@ -7,30 +7,15 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-
             <div class="card-body">
 
                 <div class="row">
                     <div class="col-sm-5">
-                        <h4 class="card-title mb-0">
-                            {{  __('labels.accounts.management') }}
-                        </h4>
-                    </div>
-                    <!--col-->
 
+                    </div>
                     <div class="col-sm-7">
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="">
-                            <a href="{{ route('admin.accounts.index') }}" class="btn btn-success btn-sm m-1"
-                                data-toggle="tooltip" title="List the accounts"><i class="fas fa-list"></i></a>
-
-                            <a href="{{ route('admin.accounts.create') }}" class="btn btn-primary btn-sm m-1"
-                                data-toggle="tooltip" title="New Customer"><i class="fas fa-plus"></i></a>
-
-                            @if(!empty($user))
-                            <a href="{{ route('admin.accounts.view', $user->id) }}" class="btn btn-info btn-sm m-1"
-                                data-toggle="tooltip" title="Back to customer"><i
-                                    class="fas fa-arrow-alt-circle-left"></i></a>
-                            @endif
+                            @include('includes.account_submenu')
                         </div>
                     </div>
                 </div>
@@ -41,8 +26,7 @@
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
                     <div class="form-group row {!! $errors->first('name', 'has-warning') !!}">
-                        <label for="name"
-                            class="col-sm-3 col-form-label">{{ trans('labels.accounts.name') }}</label>
+                        <label for="name" class="col-sm-3 col-form-label">{{ trans('labels.accounts.name') }}</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" id="name" name="name" autocomplete="off"
                                 value="{{{ old('name', isset($user) ? $user->name : null) }}}"> {!!
@@ -51,8 +35,7 @@
                     </div>
 
                     <div class="form-group row {!! $errors->first('email', 'has-warning') !!}">
-                        <label for="email"
-                            class="col-sm-3 col-form-label">{{ trans('labels.accounts.email') }}</label>
+                        <label for="email" class="col-sm-3 col-form-label">{{ trans('labels.accounts.email') }}</label>
                         <div class="col-sm-6">
                             <input type="email" class="form-control" id="email" name="email" autocomplete="off"
                                 value="{{{ old('email', isset($user) ? $user->email : null) }}}"> {!!
@@ -80,48 +63,53 @@
                     </div>
 
                     <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
-                <label for="pricing_group_id"
-                    class="col-sm-3 col-form-label">{{ trans('labels.products.pricing_group') }}</label>
-                <div class="col-sm-9">
-                    {{ Form::select('pricing_group_id', $pricing_groups, (isset($profile) ? $profile->pricing_group_id : null), ['class'=>'form-control col-sm-3']) }}
-                    {!! $errors->first('pricing_group_id', '<span class="help-block">:message</span>') !!}
-                </div>
-            </div>
+                        <label for="pricing_group_id"
+                            class="col-sm-3 col-form-label">{{ trans('labels.products.pricing_group') }}</label>
+                        <div class="col-sm-9">
+                            {{ Form::select('pricing_group_id', $pricing_groups, (isset($profile) ? $profile->pricing_group_id : null), ['class'=>'form-control col-sm-3']) }}
+                            {!! $errors->first('pricing_group_id', '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
 
-            <div class="form-group row {!! $errors->first('stock_type_id', 'has-warning') !!}">
-                <label for="name" class="col-sm-3 col-form-label">{{ trans('labels.products.stock_type') }}</label>
-                <div class="col-sm-9">
-                    {{ Form::select('stock_type_id', $stock_types, (isset($profile) ? $profile->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
-                    {!! $errors->first('stock_type_id', '<span class="help-block">:message</span>') !!}
-                </div>
-            </div>
+                    <div class="form-group row {!! $errors->first('stock_type_id', 'has-warning') !!}">
+                        <label for="name"
+                            class="col-sm-3 col-form-label">{{ trans('labels.products.stock_type') }}</label>
+                        <div class="col-sm-9">
+                            {{ Form::select('stock_type_id', $stock_types, (isset($profile) ? $profile->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
+                            {!! $errors->first('stock_type_id', '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
 
-            <div class="form-group row {!! $errors->first('warehouse_id', 'has-warning') !!}">
-                <label for="warehouse_id"
-                    class="col-sm-3 col-form-label">{{ trans('labels.products.warehouse') }}</label>
-                <div class="col-sm-9">
-                    {{ Form::select('warehouse_id', $warehouses, (isset($profile) ? $profile->warehouse_id : null), ['class'=>'form-control col-sm-3']) }}
-                    {!! $errors->first('warehouse_id', '<span class="help-block">:message</span>') !!}
-                </div>
-            </div>
+                    <div class="form-group row {!! $errors->first('warehouse_id', 'has-warning') !!}">
+                        <label for="warehouse_id"
+                            class="col-sm-3 col-form-label">{{ trans('labels.products.warehouse') }}</label>
+                        <div class="col-sm-9">
+                            {{ Form::select('warehouse_id', $warehouses, (isset($profile) ? $profile->warehouse_id : null), ['class'=>'form-control col-sm-3']) }}
+                            {!! $errors->first('warehouse_id', '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
 
-            <div class="form-group row {!! $errors->first('account_number', 'has-warning') !!}">
-                <label for="name" class="col-sm-3 col-form-label">Account Number</label>
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" id="account_number" name="account_number" autocomplete="off"
-                        value="{{{ old('account_number', isset($profile) ? $profile->account_number : null) }}}"> {!!
-                    $errors->first('account_number', '<span class="help-block">:message</span>') !!}
-                </div>
-            </div>
+                    <div class="form-group row {!! $errors->first('account_number', 'has-warning') !!}">
+                        <label for="name" class="col-sm-3 col-form-label">Account Number</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="account_number" name="account_number"
+                                autocomplete="off"
+                                value="{{{ old('account_number', isset($profile) ? $profile->account_number : null) }}}">
+                            {!!
+                            $errors->first('account_number', '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
 
-            <div class="form-group row {!! $errors->first('account_group', 'has-warning') !!}">
-                <label for="name" class="col-sm-3 col-form-label">Account Group</label>
-                <div class="col-sm-2">
-                    <input type="text" class="form-control" id="account_group" name="account_group" autocomplete="off"
-                        value="{{{ old('account_group', isset($profile) ? $profile->account_group : null) }}}"> {!!
-                    $errors->first('account_group', '<span class="help-block">:message</span>') !!}
-                </div>
-            </div>
+                    <div class="form-group row {!! $errors->first('account_group', 'has-warning') !!}">
+                        <label for="name" class="col-sm-3 col-form-label">Account Group</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="account_group" name="account_group"
+                                autocomplete="off"
+                                value="{{{ old('account_group', isset($profile) ? $profile->account_group : null) }}}">
+                            {!!
+                            $errors->first('account_group', '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
 
 
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">

@@ -82,14 +82,15 @@ return [
         ],
         'categories'   => [
             'all'   => 'Categories',
+            'create'    => 'Add product to category',
             'created'   => 'Category added to product',
             'exist'   => 'The category existing in the product',
             'deleted'   => 'The category removed from the product',
-            
+            'products'  => 'All products under :name'
         ],
-        'orders'    => [
-            'management'    => 'Order Management'
-        ]
+    ],
+    'orders' => [
+        'all'   => 'All Orders'
     ],
     'portal'    => [
         'orders' => 'Orders'
@@ -104,6 +105,7 @@ return [
         'password_confirmation' => 'Confirm',
         'created'   => 'Account created',
         'updated'   => 'Account updated',
+        'orders'    => 'Account Orders'
     ]   ,
     'pricing_groups' => [
         'title' => 'Definition Pricing Groups',

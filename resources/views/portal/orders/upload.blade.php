@@ -23,6 +23,7 @@
         <div class="row">
             <div class="col">
                 <h3>Upload your order</h3>
+                <br/>
                 <form autocomplete="off" role="form" action="{{ route('portal.orders.save_file')  }}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                      
@@ -50,10 +51,15 @@
                         <i class="fas fa-upload align-middle"></i> <span class="align-middle"><strong>Upload</strong></span>
                     </button>
                 </form>
+
+                <p>
+                            <b>Example:</b>
+                            <code>
+                                <i>sku, quantity</i>
+                            </code>
+                        </p>                 
             </div>
         </div>
-
-
     </div>
 </div>
 

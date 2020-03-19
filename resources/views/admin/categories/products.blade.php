@@ -1,25 +1,17 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('labels.products.management'))
+@section('title', app_name() . ' | ' . __('labels.products.categories.products', ['name' => $category->name]))
 
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-sm-12">
                 <h4 class="card-title mb-0">
-                Products in {{$category->name}} 
+                {{  __('labels.products.categories.products', ['name' => $category->name]) }}
                 </h4>
             </div>
-            <!--col-->
-
-            <div class="col-sm-7">
-
-            </div>
-            <!--col-->
         </div>
-        <!--row-->
-
         <div class="row mt-4">
             <div class="col">
                 <table id="products" class="table row-border hover order-column" style="width: 100%">

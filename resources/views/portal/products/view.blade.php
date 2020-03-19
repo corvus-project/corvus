@@ -9,32 +9,32 @@
         <div class="card">
             <div class="card-body">
 
-                <div class="row">
-                    <div class="col-sm-5"><b>SKU</b></div>
-                    <div class="col-sm-7">{{ $product->sku }}</div>
+                <div class="row border-bottom">
+                    <div class="col-sm-5 bg-light p-2"><b>SKU</b></div>
+                    <div class="col-sm-7  p-2">{{ $product->sku }}</div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Name</b></div>
-                    <div class="col-sm-7">{{ $product->name }}</div>
+                <div class="row border-bottom">
+                    <div class="col-sm-5 bg-light p-2"><b>Name</b></div>
+                    <div class="col-sm-7  p-2">{{ $product->name }}</div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Description</b></div>
-                    <div class="col-sm-7">{{ $product->description }}</div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5"><b>Price</b></div>
-                    <div class="col-sm-7">{{ (!empty($price)) ? $price->amount : 'No Price defined' }}</div>
+                <div class="row border-bottom">
+                    <div class="col-sm-5 bg-light p-2"><b>Description</b></div>
+                    <div class="col-sm-7  p-2">{{ $product->description }}</div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-5"><b>Stock Level</b></div>
-                    <div class="col-sm-7">{{ (!empty($stock)) ? $stock->quantity : 'Stock not defined'}}</div>
+                <div class="row border-bottom">
+                    <div class="col-sm-5 bg-light p-2"><b>Price</b></div>
+                    <div class="col-sm-7  p-2">{{ (!empty($price)) ? $price->amount : 'No Price defined' }}</div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-5"><b>Warehouse</b></div>
-                    <div class="col-sm-7">{{  (!empty($stock)) ? $stock->warehouse_name : 'No Warehouse defined'}}</div>
+                <div class="row border-bottom">
+                    <div class="col-sm-5 bg-light p-2"><b>Stock Level</b></div>
+                    <div class="col-sm-7  p-2">{{ (!empty($stock)) ? $stock->quantity : 'Stock not defined'}}</div>
+                </div>
+
+                <div class="row border-bottom">
+                    <div class="col-sm-5 bg-light p-2"><b>Warehouse</b></div>
+                    <div class="col-sm-7  p-2">{{  (!empty($stock)) ? $stock->warehouse_name : 'No Warehouse defined'}}</div>
                 </div>                
             </div>
         </div>

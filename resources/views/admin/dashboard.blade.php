@@ -17,21 +17,19 @@
                         <table class="table">
                             <thead class="">
                                 <tr>
-                                    <th style="width: 5%">#ID</th>
                                     <th style="width: 40%">Name</th>
                                     <th style="width: 20%">Account Number</th>
                                     <th style="width: 20%">Account Group</th>
-                                    <th style="width: 15%"></th>
+                                    <th style="width: 20%"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($accounts as $customer)
                                 <tr>
-                                    <td>{{ $customer->id }}</td>
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->account_number }}</td>
                                     <td>{{ $customer->account_group }}</td>
-                                    <td><a class="btn btn-sm btn-primary btn-flat m-b-10 m-l-5" href="{{ route('admin.accounts.view', $customer->id) }}">
+                                    <td><a class="btn float-right btn-sm btn-primary btn-flat m-b-10 m-l-5" href="{{ route('admin.accounts.view', $customer->id) }}">
                                             <i class="fas fa-eye"></i>
                                             View</a>
                                     </td>
@@ -54,7 +52,7 @@
                         <table class="table">
                             <thead class="">
                                 <tr>
-                                    <th style="width: 25%">#ID</th>
+                                    <th style="width: 25%">SKU</th>
                                     <th style="width: 55%">Name</th>
                                     <th style="width: 20%"></th>
                                 </tr>
@@ -64,7 +62,7 @@
                                 <tr>
                                     <td>{{ $product->sku }}</td>
                                     <td>{{ $product->name }}</td>
-                                    <td><a class="btn btn-sm btn-primary btn-flat m-b-10 m-l-5" href="{{ route('admin.products.view', $product->id) }}">
+                                    <td><a class="btn float-right btn-sm btn-primary btn-flat m-b-10 m-l-5" href="{{ route('admin.products.view', $product->id) }}">
                                             <i class="fas fa-eye"></i>
                                             View</a>
                                     </td>

@@ -31,4 +31,11 @@ class Profile extends Model
         return $this->belongsTo(Warehouse::class);
     }    
 
+    public function getStockTypeNameAttribute()
+    {
+        if ($this->stock_type){
+            return $this->name;
+        }
+        return '';
+    }
 }

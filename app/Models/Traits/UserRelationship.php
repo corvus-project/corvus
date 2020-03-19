@@ -16,6 +16,4 @@ trait UserRelationship{
     {
         return $this->hasOne(Profile::class);
     }
- 
-
 }
