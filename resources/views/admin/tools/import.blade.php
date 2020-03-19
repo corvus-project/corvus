@@ -58,6 +58,14 @@
                                     class="align-middle"><strong>{{__('labels.general.buttons.import')}}</strong></span>
                             </button>
                         </form>
+
+
+                        <p>
+                            <b>Example:</b>
+                            <code>
+                                <i>sku, name, description</i>
+                            </code>
+                        </p>                          
                     </div>
                 </div>
             </div>
@@ -104,12 +112,19 @@
 
                                 </div>
                             </div>
- 
+
                             <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                                 <i class="fas fa-file-export align-middle"></i> <span
                                     class="align-middle"><strong>{{__('labels.general.buttons.import')}}</strong></span>
                             </button>
                         </form>
+
+                        <p>
+                            <b>Example:</b>
+                            <code>
+                                <i>sku, amount</i>
+                            </code>
+                        </p>                        
                     </div>
                 </div>
             </div>
@@ -140,6 +155,13 @@
                                     class="align-middle"><strong>{{__('labels.general.buttons.import')}}</strong></span>
                             </button>
                         </form>
+
+                        <p>
+                            <b>Example:</b>
+                            <code>
+                                <i>sku, quantity, warehouse_code, stock_type_code</i>
+                            </code>
+                        </p>
                     </div>
                 </div>
             </div>

@@ -86,9 +86,11 @@ return [
             'created'   => 'Category added to product',
             'exist'   => 'The category existing in the product',
             'deleted'   => 'The category removed from the product',
-            
+            'products'  => 'All products under :name'
         ],
-
+    ],
+    'orders' => [
+        'all'   => 'All Orders'
     ],
     'portal'    => [
         'orders' => 'Orders'
