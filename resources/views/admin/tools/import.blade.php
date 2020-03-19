@@ -58,8 +58,6 @@
                                     class="align-middle"><strong>{{__('labels.general.buttons.import')}}</strong></span>
                             </button>
                         </form>
-
-
                         <p>
                             <b>Example:</b>
                             <code>
