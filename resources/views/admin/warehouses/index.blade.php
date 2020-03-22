@@ -15,8 +15,8 @@
 
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="">
-                    <a href="{{ route('admin.warehouses.create') }}" class="btn btn-success btn-sm m-1"
-                        data-toggle="tooltip" title="Create a category"><i class="fas fa-plus"></i></a>
+                    <a href="{{ route('admin.warehouses.create') }}" class="btn btn-primary btn-sm m-1"
+                        data-toggle="tooltip" title="Create a warehouse"><i class="fas fa-plus"></i></a>
                 </div>
             </div>
             <!--col-->
@@ -40,11 +40,13 @@
                         <a href="{{ route('admin.warehouses.delete', $warehouse->id) }}"
                             class="btn btn-danger btn-sm ml-1 float-right" title="Delete the warehouse"><i
                                 class="fas fa-trash"></i></a>
+
                         <a href="{{ route('admin.warehouses.edit', $warehouse->id) }}"
                             class="btn btn-info btn-sm ml-1 float-right" title="Edit the warehouse"><i
                                 class="fas fa-pen"></i></a>
+
                         <a href="{{ route('admin.warehouses.products', $warehouse->id) }}"
-                            class="btn btn-primary btn-sm ml-1 float-right" title="List products in the warehouse"><i
+                            class="btn btn-success btn-sm ml-1 float-right" title="List products in the warehouse"><i
                                 class="fas fa-list"></i></a>
 
                     </td>
