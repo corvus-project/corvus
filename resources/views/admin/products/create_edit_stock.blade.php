@@ -35,19 +35,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-5"><b>SKU</b></div>
-                    <div class="col-sm-7">{{ $product->sku }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Name</b></div>
-                    <div class="col-sm-7">{{ $product->name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Description</b></div>
-                    <div class="col-sm-7">{{ $product->description }}</div>
-                </div>
+                @include('includes.product_box') 
                 <br />
 
                 <form autocomplete="off" role="form"

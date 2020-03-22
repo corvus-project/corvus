@@ -7,13 +7,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-
             <div class="card-body">
-
                 <div class="row">
                     <div class="col-sm-5">
                         <h4 class="card-title mb-0">
-                        {{  __('labels.products.pricing_management') }}
+                            {{  __('labels.products.pricing_management') }}
                         </h4>
                     </div>
                     <!--col-->
@@ -28,35 +26,24 @@
                                 class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a pricing"><i
                                     class="fas fa-plus"></i></a>
 
-                           <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
+                            <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
                                 data-toggle="tooltip" title="Back to product"><i
                                     class="fas fa-arrow-alt-circle-left"></i></a>
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-5"><b>SKU</b></div>
-                    <div class="col-sm-7">{{ $product->sku }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Name</b></div>
-                    <div class="col-sm-7">{{ $product->name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Description</b></div>
-                    <div class="col-sm-7">{{ $product->description }}</div>
-                </div>
+                @include('includes.product_box')
+ 
                 <br />
-  
-
+ 
                 <form autocomplete="off" role="form"
                     action="{{ (isset($pricing)) ? route('admin.products.edit_pricing.update', [$pricing->product_id, $pricing->id]) : route('admin.products.create_pricing.store', $product->id) }}"
                     method="post">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
- 
+
                     <div class="form-group row {!! $errors->first('pricing_group_id', 'has-warning') !!}">
-                        <label for="pricing_group_id" class="col-sm-3 col-form-label">{{ trans('labels.products.pricing_group') }}</label>
+                        <label for="pricing_group_id"
+                            class="col-sm-3 col-form-label">{{ trans('labels.products.pricing_group') }}</label>
                         <div class="col-sm-9">
                             {{ Form::select('pricing_group_id', $pricing_groups, (isset($pricing) ? $pricing->pricing_group_id : null), ['class'=>'form-control col-sm-3']) }}
                             {!! $errors->first('pricing_group_id', '<span class="help-block">:message</span>') !!}
@@ -78,7 +65,8 @@
                             class="col-sm-3 col-form-label">{{ trans('labels.products.from_date') }}</label>
                         <div class="col-sm-3">
                             <input class="form-control" id="from_date" name="from_date" autocomplete="off"
-                                value="{{{ old('from_date', isset($pricing) ? $pricing->format_from_date : null) }}}"> {!!
+                                value="{{{ old('from_date', isset($pricing) ? $pricing->format_from_date : null) }}}">
+                            {!!
                             $errors->first('from_date', '<span class="help-block">:message</span>') !!}
 
                             {!!

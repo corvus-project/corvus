@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,22 +17,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Force SSL in production
         if ($this->app->environment() == 'production') {
-            //URL::forceScheme('https');
+            URL::forceScheme('https');
         }
+        // Force SSL in production
+        if ($this->app->environment() != 'production') {
+            //URL::forceScheme('https');
 
-        // Set the default string length for Laravel5.4
-        // https://laravel-news.com/laravel-5-4-key-too-long-error
-        Schema::defaultStringLength(191);
+            // Set the default string length for Laravel5.4
+            // https://laravel-news.com/laravel-5-4-key-too-long-error
+            Schema::defaultStringLength(191);
 
-        DB::listen(function($query) {
-            File::append(
-                storage_path('/logs/query.log'),
-                $query->sql . ' [' . implode(', ', $query->bindings) . ']' . PHP_EOL
-           );
-        });
-
+            DB::listen(function ($query) {
+                File::append(
+                    storage_path('/logs/query.log'),
+                    $query->sql . ' [' . implode(', ', $query->bindings) . ']' . PHP_EOL
+                );
+            });
+        }
     }
 
     /**

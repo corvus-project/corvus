@@ -18,13 +18,14 @@ class ProductTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
         $faker->addProvider(new \Faker\Provider\Barcode($faker));
-
+        $status = \App\Models\ProductStatus::where('name', 'Active')->first();
         $products = [];
 
         for ($i = 1; $i < 500; $i++) {
             $products[] = [
                 'name' => $faker->productName,
                 'sku' => $faker->ean13,
+                'status' => $status->id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),   
             ];

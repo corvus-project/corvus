@@ -2,7 +2,7 @@
     <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
+    <a class="navbar-brand" href="{{ route('home') }}">
         Intellect
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -11,11 +11,11 @@
 
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-home"></i></a>
+            <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i></a>
         </li>
 
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">@lang('menus.dashboard')</a>
+            <a class="nav-link" href="{{ route('home') }}">@lang('menus.dashboard')</a>
         </li>
 
         @if(config('locale.status') && count(config('locale.languages')) > 1)
@@ -37,7 +37,7 @@
             My Profile
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="{{ route('admin.profile.form') }}">
+          <a class="dropdown-item" href="{{ route('user.profile.form') }}">
                 <i class="fas fa-user"></i> Profile
             </a>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

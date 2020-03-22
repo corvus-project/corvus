@@ -27,8 +27,6 @@ class ImportController extends Controller
     public function index()
     {
         $pricing_groups = PricingGroup::all()->pluck('name', 'id');
-
-        
         $pricing_groups->put(0, 'Select');
         $pricing_groups = $pricing_groups->reverse();
 

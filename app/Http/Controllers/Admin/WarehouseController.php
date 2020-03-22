@@ -7,7 +7,7 @@ use App\Models\Warehouse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WarehouseStoreRequest;
 use App\Http\Requests\WarehouseUpdateRequest;
- 
+use DB;
 use Illuminate\Support\Str;
 
 class WarehouseController extends Controller
@@ -17,6 +17,27 @@ class WarehouseController extends Controller
         $warehouses = Warehouse::all();
         return view('admin.warehouses.index', compact('warehouses'));
     }
+
+    public function products(Warehouse $warehouse)
+    {
+        return view('admin.warehouses.products', compact('warehouse'));        
+    }
+
+    public function data(Warehouse $warehouse)
+    {
+        $stocks = DB::table('stocks')
+            ->leftJoin('products', 'products.id', '=', 'stocks.product_id')
+            ->leftJoin('stock_types', 'stock_types.id', '=', 'stocks.stock_type_id')
+            ->where('stocks.warehouse_id', $warehouse->id)
+            ->select( 
+                        'products.id as pid', 
+                        'products.sku as product_sku', 
+                        'products.name as product_name', 
+                        'stocks.quantity', 'stock_types.name as stock_type_name'
+                    );
+
+        return datatables()->of($stocks)->toJson();
+    } 
 
     public function create()
     {

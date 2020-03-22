@@ -37,6 +37,10 @@ return [
         'more' => 'More',
         'logout'    => 'Logout'
     ],
+    'reports' => [
+        'warehouses_stock_report'  => 'Warehouses Stock Report',
+        'customer_order_report'  => 'Customer Orders Report'
+    ],
     'import' => [
         'sucess' => 'File imported',
         'failes' => 'File failed',
@@ -78,16 +82,31 @@ return [
         ],
         'categories'   => [
             'all'   => 'Categories',
+            'create'    => 'Add product to category',
             'created'   => 'Category added to product',
             'exist'   => 'The category existing in the product',
             'deleted'   => 'The category removed from the product',
-            
+            'products'  => 'All products under :name'
         ],
-        'orders'    => [
-            'management'    => 'Order Management'
-        ]
     ],
-
+    'orders' => [
+        'all'   => 'All Orders'
+    ],
+    'portal'    => [
+        'orders' => 'Orders'
+    ],
+    'accounts' => [
+        'portal'  => 'Account Portal',
+        'view'  => 'Account details',
+        'management' => 'Account Management',
+        'name'  => 'Name',
+        'email' => 'Email',
+        'password'  => 'Password',
+        'password_confirmation' => 'Confirm',
+        'created'   => 'Account created',
+        'updated'   => 'Account updated',
+        'orders'    => 'Account Orders'
+    ]   ,
     'pricing_groups' => [
         'title' => 'Definition Pricing Groups',
         'management' => 'Pricing Group Management',

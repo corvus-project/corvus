@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('labels.products.category_management'))
+@section('title', app_name() . ' | ' . __('labels.products.categories.create'))
 
 @section('content')
 
@@ -13,20 +13,21 @@
                 <div class="row">
                     <div class="col-sm-5">
                         <h4 class="card-title mb-0">
-                            {{  __('labels.products.category_management') }}
+                            {{  __('labels.products.categories.create') }}
                         </h4>
                     </div>
                     <!--col-->
 
                     <div class="col-sm-7">
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="">
+ 
                         <a href="{{ route('admin.products.view_categories', $product->id) }}"
                                 class="btn btn-success btn-sm m-1" data-toggle="tooltip"
                                 title="List the categories"><i class="fas fa-list"></i></a>
                                 
                             <a href="{{ route('admin.products.create_category', $product->id) }}"
-                                class="btn btn-success btn-sm m-1" data-toggle="tooltip"
-                                title="Add Product to a Category"><i class="fas fa-plus"></i></a>
+                                class="btn btn-primary btn-sm m-1" data-toggle="tooltip"
+                                title="{{  __('labels.products.categories.create') }}"><i class="fas fa-plus"></i></a>
 
                             <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
                                 data-toggle="tooltip" title="Back to product"><i
@@ -35,18 +36,7 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-5"><b>SKU</b></div>
-                    <div class="col-sm-7">{{ $product->sku }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Name</b></div>
-                    <div class="col-sm-7">{{ $product->name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5"><b>Description</b></div>
-                    <div class="col-sm-7">{{ $product->description }}</div>
-                </div>
+                @include('includes.product_box')
                 <br />
 
 

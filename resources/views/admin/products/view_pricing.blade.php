@@ -15,8 +15,14 @@
 
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="">
+
+                    <a href="{{ route('admin.products.view_pricing', $product->id) }}"
+                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the pricing history"><i
+                            class="fas fa-list"></i></a>
+
+
                     <a href="{{ route('admin.products.create_pricing', $product->id) }}"
-                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
+                        class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
                             class="fas fa-plus"></i></a>
 
                     <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
@@ -26,20 +32,7 @@
             </div>
             <!--col-->
         </div>
-
-
-        <div class="row">
-            <div class="col-sm-5"><b>SKU</b></div>
-            <div class="col-sm-7">{{ $product->sku }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-5"><b>Name</b></div>
-            <div class="col-sm-7">{{ $product->name }}</div>
-        </div>
-        <div class="row">
-            <div class="col-sm-5"><b>Description</b></div>
-            <div class="col-sm-7">{{ $product->description }}</div>
-        </div>
+        @include('includes.product_box')
         <br />
         <!--row-->
         <div class="row">
@@ -51,7 +44,7 @@
             </div>
         </div>
 
-        <table class="table table-light table-hover">
+        <table class="table table-light table-bordered table-striped table-hover">
             <thead class="thead-light">
                 <tr>
                     <th>Pricing Group</th>

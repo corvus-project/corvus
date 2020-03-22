@@ -1,7 +1,46 @@
 <div class="sidebar">
     <nav class="sidebar-nav">
         <ul class="nav">
+            @if (Auth::user()->hasRole('vendor'))
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('portal/dashboard'))
+                }}" href="{{ route('portal.dashboard') }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    @lang('menus.dashboard')
+                </a>
+            </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{
+                            active_class(Route::is('portal/products'))
+                }}" href="{{ route('portal.products.index') }}">
+                    <i class="nav-icon fas fa-list"></i>
+                    @lang('menus.catalogue')
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                            active_class(Route::is('portal/orders'))
+                }}" href="{{ route('portal.orders.index') }}">
+                    <i class="nav-icon fas fa-wallet"></i>
+                    @lang('menus.orders')
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                            active_class(Route::is('portal/orders/upload'))
+                }}" href="{{ route('portal.orders.upload') }}">
+                    <i class="nav-icon fas fa-upload"></i>
+                    @lang('menus.orders.upload')
+                </a>
+            </li>
+
+            @endif
+            @if (Auth::user()->hasRole('administrator'))
             <li class="nav-item">
                 <a class="nav-link {{
                     active_class(Route::is('admin/dashboard'))
@@ -16,8 +55,8 @@
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/products'))
                 }}" href="{{ route('admin.products.index') }}">
-                    <i class="nav-icon fas fa-list"></i>
-                    @lang('menus.products')
+                    <i class="nav-icon fas fa-list-alt"></i>
+                    @lang('menus.catalogue')
                 </a>
 
                 <ul class="nav-dropdown-items">
@@ -49,7 +88,6 @@
                         </a>
                     </li>
 
-
                     <li class="nav-item">
                         <a class="nav-link {{
                     active_class(Route::is('admin/categories'))
@@ -59,24 +97,6 @@
                         </a>
                     </li>
 
-
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/variants'))
-                }}" href="{{ route('admin.variants.index') }}">
-                            <i class="nav-icon fas fa-fan"></i>
-                            @lang('menus.variants')
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/attributes'))
-                }}" href="{{ route('admin.attributes.index') }}">
-                            <i class="nav-icon fas fa-tags"></i>
-                            @lang('menus.attributes')
-                        </a>
-                    </li>
                 </ul>
             </li>
 
@@ -91,10 +111,10 @@
 
             <li class="nav-item">
                 <a class="nav-link {{
-                    active_class(Route::is('admin/customers'))
-                }}" href="{{ route('admin.customers.index') }}">
+                    active_class(Route::is('admin/accounts'))
+                }}" href="{{ route('admin.accounts.index') }}">
                     <i class="nav-icon fas fa-users"></i>
-                    @lang('menus.customers')
+                    @lang('menus.accounts')
                 </a>
             </li>
 
@@ -135,13 +155,6 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/pricing-groups'))
-                }}" href="{{ route('admin.pricing_groups.index') }}">
-                            @lang('menus.reports_product_orders')
-                        </a>
-                    </li>
                 </ul>
             </li>
 
@@ -154,15 +167,6 @@
                 </a>
 
                 <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                    active_class(Route::is('admin/api'))
-                }}" href="{{ route('admin.api.index') }}">
-                            <i class="nav-icon fas fa-cloud-download-alt"></i>
-                            @lang('menus.api')
-                        </a>
-                    </li>
-
                     <li class="nav-item">
                         <a class="nav-link {{
                     active_class(Route::is('admin/tools/import'))
@@ -182,7 +186,7 @@
                     </li>
                 </ul>
             </li>
-
+            @endif
         </ul>
     </nav>
 

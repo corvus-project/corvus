@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="">
-                            <a href="{{ route('admin.warehouses.create') }}" class="btn btn-success btn-sm m-1"
+                            <a href="{{ route('admin.warehouses.create') }}" class="btn btn-primary btn-sm m-1"
                                 data-toggle="tooltip" title="Create a warehouse"><i class="fas fa-plus"></i></a>
                                 <a href="{{ route('admin.warehouses.index') }}" class="btn btn-success btn-sm m-1"
                                 data-toggle="tooltip" title="List the warehouses"><i class="fas fa-list"></i></a>
