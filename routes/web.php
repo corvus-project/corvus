@@ -147,7 +147,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/orders/{order}/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);   
     
     // Reports
-    Route::get('/reports', 'ReportController@index')->name('reports.index');
+    Route::get('/reports', 'Reports\ReportController@index')->name('reports.index');
     Route::get('/reports/warehouse/stock', ['as' => 'reports.warehouse.stock', 'uses' => 'Reports\WarehouseController@stock']);
     Route::get('/reports/warehouse/stock/data', ['as' => 'reports.warehouse.stock.data', 'uses' => 'Reports\WarehouseController@stock_data']);
     Route::get('/reports/customer/order', ['as' => 'reports.customer.order', 'uses' => 'Reports\CustomerController@orders']);
