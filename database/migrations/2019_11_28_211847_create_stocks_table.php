@@ -17,8 +17,8 @@ class CreateStocksTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->nullable()->unsigned();
             $table->foreign('product_id')->references('id')->onDelete('cascade')->on('products');
-            $table->integer('stock_type_id')->nullable()->unsigned();
-            $table->foreign('stock_type_id')->references('id')->onDelete('cascade')->on('stock_types');
+            $table->integer('stock_group_id')->nullable()->unsigned();
+            $table->foreign('stock_group_id')->references('id')->onDelete('cascade')->on('stock_groups');
             $table->integer('warehouse_id')->nullable()->unsigned();
             $table->foreign('warehouse_id')->references('id')->onDelete('cascade')->on('warehouses');            
             $table->integer('quantity')->default(0);

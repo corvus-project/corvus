@@ -39,13 +39,13 @@ class PricesImport implements ToModel, WithCustomCsvSettings, SkipsOnError, Shou
                                 ->first();
             if ($last){
                 Pricing::where('id', $last->id)
-                                ->update(['amount' => $row[2], 'to_date' => $this->to_date]);
+                                ->update(['amount' => $row[1], 'to_date' => $this->to_date]);
                                 return;
             }else{
                 return Pricing::create([
                             'product_id' => $id, 
                             'pricing_group_id' => $this->pricing_group_id, 
-                            'amount' => $row[2], 
+                            'amount' => $row[1], 
                             'from_date' => Carbon::now(), 
                             'to_date' => $this->to_date
                             ]);

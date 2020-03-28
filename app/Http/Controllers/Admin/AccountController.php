@@ -7,7 +7,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Models\PricingGroup;
 use App\Models\Profile;
 use App\Models\Role;
-use App\Models\StockType;
+use App\Models\StockGroup;
 use App\Models\User;
 use App\Models\Warehouse;
 use Illuminate\Http\Response;
@@ -57,38 +57,38 @@ class AccountController extends Controller
 
     public function view(User $user)
     {
-        $stock_types = StockType::all()->pluck('name', 'id');
-        $stock_types->prepend('Select stock type');
+        $stock_groups = StockGroup::all()->pluck('name', 'id');
+        $stock_groups->prepend('Select stock type');
         $pricing_groups = PricingGroup::all()->pluck('name', 'id');
         $pricing_groups->prepend('Select pricing group');
         $warehouses = Warehouse::all()->pluck('name', 'id');
         $warehouses->prepend('Select warehouse');
         $profile = $user->profile;
-        return view('admin.accounts.view', compact('user', 'warehouses', 'stock_types', 'pricing_groups', 'profile'));
+        return view('admin.accounts.view', compact('user', 'warehouses', 'stock_groups', 'pricing_groups', 'profile'));
     }
 
     public function create()
     {
-        $stock_types = StockType::all()->pluck('name', 'id');
-        $stock_types->prepend('Select stock type');
+        $stock_groups = StockGroup::all()->pluck('name', 'id');
+        $stock_groups->prepend('Select stock type');
         $pricing_groups = PricingGroup::all()->pluck('name', 'id');
         $pricing_groups->prepend('Select pricing group');
         $warehouses = Warehouse::all()->pluck('name', 'id');
         $warehouses->prepend('Select warehouse');
-        return view('admin.accounts.create_edit', compact('warehouses', 'stock_types', 'pricing_groups'));
+        return view('admin.accounts.create_edit', compact('warehouses', 'stock_groups', 'pricing_groups'));
     }
 
     public function edit(User $user)
     {
-        $stock_types = StockType::all()->pluck('name', 'id');
-        $stock_types->prepend('Select stock type');
+        $stock_groups = StockGroup::all()->pluck('name', 'id');
+        $stock_groups->prepend('Select stock type');
         $pricing_groups = PricingGroup::all()->pluck('name', 'id');
         $pricing_groups->prepend('Select pricing group');
         $warehouses = Warehouse::all()->pluck('name', 'id');
         $warehouses->prepend('Select warehouse');
         $profile = $user->profile;
 
-        return view('admin.accounts.create_edit', compact('user', 'warehouses', 'stock_types', 'pricing_groups', 'profile'));
+        return view('admin.accounts.create_edit', compact('user', 'warehouses', 'stock_groups', 'pricing_groups', 'profile'));
     }
 
     public function profile(User $user)
@@ -111,7 +111,7 @@ class AccountController extends Controller
                 new Profile(
                     [
                         "warehouse_id" => $request->warehouse_id,
-                        "stock_type_id" => $request->stock_type_id,
+                        "stock_group_id" => $request->stock_group_id,
                         "pricing_group_id" => $request->pricing_group_id,
                         "account_group" => $request->account_group,
                         "account_number" => $request->account_number,
@@ -138,7 +138,7 @@ class AccountController extends Controller
                     new Profile(
                         [
                             "warehouse_id" => $request->warehouse_id,
-                            "stock_type_id" => $request->stock_type_id,
+                            "stock_group_id" => $request->stock_group_id,
                             "pricing_group_id" => $request->pricing_group_id,
                             "account_group" => $request->account_group,
                             "account_number" => $request->account_number,
@@ -147,7 +147,7 @@ class AccountController extends Controller
                 );
             } else {
                 $profile = $user->profile;
-                $profile->stock_type_id = $request->stock_type_id;
+                $profile->stock_group_id = $request->stock_group_id;
                 $profile->pricing_group_id = $request->pricing_group_id;
                 $profile->warehouse_id = $request->warehouse_id;
                 $profile->account_group = $request->account_group;

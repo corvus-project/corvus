@@ -12,8 +12,9 @@ use App\Models\Pricing;
 use App\Models\PricingGroup;
 use App\Models\Product;
 use App\Models\Stock;
-use App\Models\StockType;
+use App\Models\StockGroup;
 use App\Models\Warehouse;
+use App\Models\OrderLine;
 use DB;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,24 @@ class ProductController extends Controller
 
     public function view(Product $product)
     {
-        return view('admin.products.view', compact('product'));
+        $approved_status = DB::table('order_status')->where('slug', 'APPROVED')->first();
+        $orderlines = OrderLine::where('product_sku', $product->sku)
+                                    ->where('status', $approved_status->id)
+                                    ->orderBy('created_at', 'DESC')
+                                    ->with('order')->take(10)->get();
+         
+        return view('admin.products.view', compact('product', 'orderlines'));
+    }
+
+    public function view_history(Product $product)
+    {
+        $approved_status = DB::table('order_status')->where('slug', 'APPROVED')->first();
+        $orderlines = OrderLine::where('product_sku', $product->sku)
+                                    ->where('status', $approved_status->id)
+                                    ->orderBy('created_at', 'DESC')
+                                    ->with('order')->paginate();
+         
+        return view('admin.products.view_history', compact('product', 'orderlines'));
     }
 
     public function view_pricing(Product $product)
@@ -47,7 +65,7 @@ class ProductController extends Controller
 
     public function view_stocks(Product $product)
     {
-        $stocks = $product->stocks()->with('stock_type')->orderBy('created_at', 'DESC')->paginate(100);
+        $stocks = $product->stocks()->with('stock_group')->orderBy('created_at', 'DESC')->paginate(100);
         return view('admin.products.view_stocks', compact('product', 'stocks'));
     }
 
@@ -60,14 +78,14 @@ class ProductController extends Controller
     public function create_stock(Product $product)
     {
         $warehouses = Warehouse::all()->pluck('name', 'id');
-        $stock_types = StockType::all()->pluck('name', 'id');
-        return view('admin.products.create_edit_stock', compact('product', 'warehouses', 'stock_types'));
+        $stock_groups = StockGroup::all()->pluck('name', 'id');
+        return view('admin.products.create_edit_stock', compact('product', 'warehouses', 'stock_groups'));
     }
 
     public function store_stock(Product $product, StockStoreRequest $request)
     {
         $count = DB::table('stocks')
-            ->where('stock_type_id', $request->stock_type_id)
+            ->where('stock_group_id', $request->stock_group_id)
             ->where('warehouse_id', $request->warehouse_id)
             ->where('product_id', $product->id)
             ->count();
@@ -79,7 +97,7 @@ class ProductController extends Controller
         $stock = new Stock();
         $stock->quantity = $request->quantity;
         $stock->product_id = $product->id;
-        $stock->stock_type_id = $request->stock_type_id;
+        $stock->stock_group_id = $request->stock_group_id;
         $stock->warehouse_id = $request->warehouse_id;
         if ($stock->save()) {
             return redirect(route('admin.products.edit_stock', [$product->id, $stock->id]))->withFlashSuccess(trans('labels.products.stock.created'));
@@ -91,8 +109,8 @@ class ProductController extends Controller
     public function edit_stock(Product $product, Stock $stock)
     {
         $warehouses = Warehouse::all()->pluck('name', 'id');
-        $stock_types = StockType::all()->pluck('name', 'id');
-        return view('admin.products.create_edit_stock', compact('product', 'stock', 'warehouses', 'stock_types'));
+        $stock_groups = StockGroup::all()->pluck('name', 'id');
+        return view('admin.products.create_edit_stock', compact('product', 'stock', 'warehouses', 'stock_groups'));
     }
 
     public function update_stock(Product $product, Stock $stock, StockUpdateRequest $request)
@@ -100,7 +118,7 @@ class ProductController extends Controller
         $count = DB::table('stocks')
             ->where('id', '<>', $stock->product_id)
             ->where('product_id',  $stock->product_id)
-            ->where('stock_type_id', $request->stock_type_id)
+            ->where('stock_group_id', $request->stock_group_id)
             ->where('warehouse_id', $request->warehouse_id)
             ->count();
  
@@ -110,7 +128,7 @@ class ProductController extends Controller
 
         $stock->quantity = $request->quantity;
         $stock->product_id = $product->id;
-        $stock->stock_type_id = $request->stock_type_id;
+        $stock->stock_group_id = $request->stock_group_id;
         $stock->warehouse_id = $request->warehouse_id;
         if ($stock->save()) {
             return redirect(route('admin.products.edit_stock', [$product->id, $stock->id]))->withFlashSuccess(trans('labels.products.stock.updated'));
@@ -122,9 +140,9 @@ class ProductController extends Controller
     public function delete_stock(Product $product, Stock $stock)
     {
         $warehouses = Warehouse::all()->pluck('name', 'id');
-        $stock_types = StockType::all()->pluck('name', 'id');
+        $stock_groups = StockGroup::all()->pluck('name', 'id');
 
-        return view('admin.products.delete_stock', compact('product', 'stock', 'warehouses', 'stock_types'));
+        return view('admin.products.delete_stock', compact('product', 'stock', 'warehouses', 'stock_groups'));
     }
 
     public function destroy_stock(Product $product, Stock $stock)

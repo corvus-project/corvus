@@ -27,7 +27,7 @@ class UserUpdateRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users,email,'. $this->user->id,
             "password" => "required_if:password_confirmation,!=,null|nullable|confirmed|min:6",
             'name'  => 'required|min:3|max:100',
-            'stock_type_id' => 'required|exists:stock_types,id',
+            'stock_group_id' => 'required|exists:stock_groups,id',
             'pricing_group_id' => 'required|exists:pricing_groups,id',
         ];
     }

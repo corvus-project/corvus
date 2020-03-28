@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-class StockTypeUpdateRequest extends FormRequest
+class StockGroupUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class StockTypeUpdateRequest extends FormRequest
     {
  
         return [
-            'name' => 'required|string|max:25|unique:stock_types,name,'.$this->route('stock_type')->id,
+            'name' => 'required|string|max:25|unique:stock_groups,name,'.$this->route('stock_group')->id,
 
         ];
     }

@@ -8,14 +8,14 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class StockTypeTableSeeder extends Seeder
+class StockGroupTableSeeder extends Seeder
 {
     use TruncateTable, DisableForeignKeys;
 
     public function run()
     {
         $this->disableForeignKeys();
-        $this->truncate('stock_types');
+        $this->truncate('stock_groups');
 
         $groups = [
             [
@@ -44,7 +44,7 @@ class StockTypeTableSeeder extends Seeder
             ]                                        
         ];
 
-        DB::table('stock_types')->insert($groups);
+        DB::table('stock_groups')->insert($groups);
 
         $this->enableForeignKeys();
     }

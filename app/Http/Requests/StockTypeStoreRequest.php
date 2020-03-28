@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-class StockTypeStoreRequest extends FormRequest
+class StockGroupStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StockTypeStoreRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'name' => 'required|string|max:25|unique:stock_types,name',
+            'name' => 'required|string|max:25|unique:stock_groups,name',
 
         ];
     }

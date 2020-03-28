@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Models\Warehouse;
 use App\Models\Product;
-use App\Models\StockType;
+use App\Models\StockGroup;
 use App\Models\User;
 use DB;
 

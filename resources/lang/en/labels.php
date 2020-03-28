@@ -65,7 +65,7 @@ return [
         'amount'  => 'Amount',
          
         'warehouse' => 'Warehouse',
-        'stock_type' => 'Stock Type',
+        'stock_groups' => 'Stock Group',
         'pricing_group' => 'Pricing Group',
         'quantity' => 'Quantity',
         'from_date'  => 'from date',
@@ -90,7 +90,8 @@ return [
         ],
     ],
     'orders' => [
-        'all'   => 'All Orders'
+        'all'   => 'All Orders',
+        'view'  => 'View Order'
     ],
     'portal'    => [
         'orders' => 'Orders'
@@ -117,14 +118,14 @@ return [
         'deleted'   => 'Pricing Group deleted!',
     ], 
     
-    'stock_types' => [
-        'title' => 'Definition Stock Types',
-        'management' => 'Stock Type Management',
-        'name'  => 'Stock Type Name',
+    'stock_groups' => [
+        'title' => 'Definition Stock Groups',
+        'management' => 'Stock Group Management',
+        'name'  => 'Stock Group Name',
         'stocks_count_definitions' => '{0} no stock definitions will be deleted|[1,*] :count stock definitions will be deleted',
-        'created'   => 'Stock Type created!',
-        'updated'   => 'Stock Type updated!',
-        'deleted'   => 'Stock Type deleted!',
+        'created'   => 'Stock Group created!',
+        'updated'   => 'Stock Group updated!',
+        'deleted'   => 'Stock Group deleted!',
     ],     
 
     'categories' => [

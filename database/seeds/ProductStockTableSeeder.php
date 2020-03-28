@@ -18,13 +18,12 @@ class ProductStockTableSeeder extends Seeder
         $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
         $faker->addProvider(new \Faker\Provider\Barcode($faker));
 
-        
         $products = [];
 
         for ($i = 1; $i < 500; $i++) {
             $stocks[] = [
                 'product_id' => $i,
-                'stock_type_id' => $faker->numberBetween(1,4),
+                'stock_group_id' => $faker->numberBetween(1,4),
                 'warehouse_id' => $faker->numberBetween(1,3),
                 'quantity'    => $faker->numberBetween(0, 500),
                 'created_at' => Carbon::now(),

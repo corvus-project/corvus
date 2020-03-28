@@ -157,7 +157,7 @@
                         <p>
                             <b>Example:</b>
                             <code>
-                                <i>sku, quantity, warehouse_code, stock_type_code</i>
+                                <i>sku, quantity, warehouse_code, stock_group_code</i>
                             </code>
                         </p>
                     </div>

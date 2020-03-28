@@ -16,7 +16,7 @@ class CreateAccountProfilesTable extends Migration
         Schema::create('account_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned()->unique();
-            $table->integer('stock_type_id')->nullable()->unsigned();
+            $table->integer('stock_group_id')->nullable()->unsigned();
             $table->integer('pricing_group_id')->nullable()->unsigned();
             $table->integer('warehouse_id')->nullable()->unsigned();
             $table->string('account_number')->nullable();
@@ -30,9 +30,9 @@ class CreateAccountProfilesTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->foreign('stock_type_id')
+            $table->foreign('stock_group_id')
                 ->references('id')
-                ->on('stock_types')
+                ->on('stock_groups')
                 ->onDelete('cascade');
 
             $table->foreign('pricing_group_id')

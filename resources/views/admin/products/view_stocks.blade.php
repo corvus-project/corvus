@@ -52,7 +52,7 @@
             <tbody>
                 @foreach($stocks as $stock)
                 <tr>
-                    <td>{{ $stock->stock_type->name }}</td>
+                    <td>{{ $stock->stock_group->name }}</td>
                     <td>{{ $stock->warehouse->name }}</td>
                     <td>{{ $stock->quantity }}</td>
                     <td>

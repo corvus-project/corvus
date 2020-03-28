@@ -26,13 +26,13 @@ class Stock extends Model
      *
      * @var array
      */
-    protected $fillable = ['product_id', 'stock_type_id', 'warehouse_id', 'quantity'];
+    protected $fillable = ['product_id', 'stock_group_id', 'warehouse_id', 'quantity'];
   
     protected $dateFormat = 'Y-m-d';
 
-    public function stock_type()
+    public function stock_group()
     {
-        return $this->belongsTo(StockType::class);
+        return $this->belongsTo(StockGroup::class);
     }
  
     public function warehouse()
