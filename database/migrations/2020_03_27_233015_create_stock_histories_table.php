@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStockTypesTable extends Migration
+class CreateStockHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateStockTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->softDeletes();
+        Schema::create('stock_histories', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('product_sku')->index();
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateStockTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock_types');
+        Schema::dropIfExists('stock_histories');
     }
 }

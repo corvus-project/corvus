@@ -27,13 +27,13 @@ class WarehouseController extends Controller
     {
         $stocks = DB::table('stocks')
             ->leftJoin('products', 'products.id', '=', 'stocks.product_id')
-            ->leftJoin('stock_types', 'stock_types.id', '=', 'stocks.stock_type_id')
+            ->leftJoin('stock_groups', 'stock_groups.id', '=', 'stocks.stock_group_id')
             ->where('stocks.warehouse_id', $warehouse->id)
             ->select( 
                         'products.id as pid', 
                         'products.sku as product_sku', 
                         'products.name as product_name', 
-                        'stocks.quantity', 'stock_types.name as stock_type_name'
+                        'stocks.quantity', 'stock_groups.name as stock_group_name'
                     );
 
         return datatables()->of($stocks)->toJson();

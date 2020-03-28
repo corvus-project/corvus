@@ -21,7 +21,7 @@ class ProductController extends Controller
                         ->leftJoin('stocks', 'products.id', '=', 'stocks.product_id')
                         ->leftJoin('warehouses', 'warehouses.id', '=', 'stocks.warehouse_id')
                         ->where('pricings.pricing_group_id', $profile->pricing_group_id)
-                        ->where('stocks.stock_type_id', $profile->stock_type_id)
+                        ->where('stocks.stock_group_id', $profile->stock_group_id)
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
                         ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
                         ->get();        
@@ -40,7 +40,7 @@ class ProductController extends Controller
                         ->leftJoin('warehouses', 'warehouses.id', '=', 'stocks.warehouse_id')
                         ->where('products.id', $product->id)
                         ->where('pricings.pricing_group_id', $profile->pricing_group_id)
-                        ->where('stocks.stock_type_id', $profile->stock_type_id)
+                        ->where('stocks.stock_group_id', $profile->stock_group_id)
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
                         ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
                         ->first();        

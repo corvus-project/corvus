@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('order::labels.orders.management'))
+@section('title', app_name() . ' | ' . __('labels.orders.view'))
 
 @section('content')
 <div class="card mt-2">

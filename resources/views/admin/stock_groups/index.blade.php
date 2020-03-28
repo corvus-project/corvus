@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('labels.stock_types.title'))
+@section('title', app_name() . ' | ' . __('labels.stock_groups.title'))
 
 @section('content')
 <div class="card mt-2">
@@ -8,14 +8,14 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.stock_types.title') }}
+                    {{ __('labels.stock_groups.title') }}
                 </h4>
             </div>
             <!--col-->
 
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="">
-                    <a href="{{ route('admin.stock_types.create') }}" class="btn btn-success btn-sm m-1"
+                    <a href="{{ route('admin.stock_groups.create') }}" class="btn btn-success btn-sm m-1"
                         data-toggle="tooltip" title="Create a stock types"><i class="fas fa-plus"></i></a>
                 </div>
             </div>
@@ -28,21 +28,21 @@
         <table class="table table-light table-hover table-striped">
             <thead class="thead-light">
                 <tr>
-                    <th>Stock Type Name</th>
+                    <th>Stock Group Name</th>
                     <th>Slug</th>
                     <th> </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($stock_types as $stock_type)
+                @foreach($stock_groups as $stock_group)
                 <tr>
-                    <td>{{ $stock_type->name }}</td>
-                    <td>{{ $stock_type->slug }}</td>
+                    <td>{{ $stock_group->name }}</td>
+                    <td>{{ $stock_group->slug }}</td>
                     <td>
-                        <a href="{{ route('admin.stock_types.delete', $stock_type->id) }}"
+                        <a href="{{ route('admin.stock_groups.delete', $stock_group->id) }}"
                             class="btn btn-danger btn-sm ml-1 float-right" title="Delete the group"><i
                                 class="fas fa-trash"></i></a>
-                        <a href="{{ route('admin.stock_types.edit', $stock_type->id) }}"
+                        <a href="{{ route('admin.stock_groups.edit', $stock_group->id) }}"
                             class="btn btn-info btn-sm ml-1 float-right" title="Edit the group"><i
                                 class="fas fa-pen"></i></a>
                     </td>

@@ -71,12 +71,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group row {!! $errors->first('stock_type_id', 'has-warning') !!}">
+                    <div class="form-group row {!! $errors->first('stock_group_id', 'has-warning') !!}">
                         <label for="name"
-                            class="col-sm-3 col-form-label">{{ trans('labels.products.stock_type') }}</label>
+                            class="col-sm-3 col-form-label">{{ trans('labels.products.stock_group') }}</label>
                         <div class="col-sm-9">
-                            {{ Form::select('stock_type_id', $stock_types, (isset($profile) ? $profile->stock_type_id : null), ['class'=>'form-control col-sm-3']) }}
-                            {!! $errors->first('stock_type_id', '<span class="help-block">:message</span>') !!}
+                            {{ Form::select('stock_group_id', $stock_groups, (isset($profile) ? $profile->stock_group_id : null), ['class'=>'form-control col-sm-3']) }}
+                            {!! $errors->first('stock_group_id', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
 

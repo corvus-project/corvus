@@ -81,10 +81,10 @@
 
                     <li class="nav-item">
                         <a class="nav-link {{
-                    active_class(Route::is('admin/stock-types'))
-                }}" href="{{ route('admin.stock_types.index') }}">
+                    active_class(Route::is('admin/stock-groups'))
+                }}" href="{{ route('admin.stock_groups.index') }}">
                             <i class="nav-icon fas fa-sort-numeric-up-alt"></i>
-                            @lang('menus.stock_types')
+                            @lang('menus.stock_groups')
                         </a>
                     </li>
 

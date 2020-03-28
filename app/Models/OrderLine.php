@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderLine extends Model
@@ -15,14 +14,27 @@ class OrderLine extends Model
      * @var string
      */
     protected $table = 'order_lines';
-  
+
     public function getStatusValueAttribute()
     {
         return $this->order_status->name;
     }
 
+    public function getOrderIdAttribute()
+    {
+        if ($this->order) {
+            return $this->order->id;
+        }
+        return 'N/A';
+    }
+
     public function order_status()
     {
         return $this->belongsTo(OrderStatus::class, 'status', 'id');
-    }       
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_header_id', 'id');
+    }
 }

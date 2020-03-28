@@ -13,7 +13,7 @@ use App\Imports\StocksImport;
 use App\Imports\PricesImport;
 use App\Models\PricingGroup;
 use App\Models\Warehouse;
-use App\Models\StockType;
+use App\Models\StockGroup;
 use App\Models\User;
 
 use Maatwebsite\Excel\Facades\Csv;

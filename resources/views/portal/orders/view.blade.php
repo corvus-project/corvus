@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('order::labels.orders.management'))
+@section('title', app_name() . ' | ' . __('Order View'))
 
 @section('content')
 <div class="card mt-2">
@@ -37,6 +37,10 @@
             <div class="col-sm-5"><b>Status</b></div>
             <div class="col-sm-7">{{ $order->order_status->name }}</div>
         </div>
+        <div class="row">
+            <div class="col-sm-5"><b>Ref ID</b></div>
+            <div class="col-sm-7">{{ $order->ref_id }}</div>
+        </div>        
         <br />
 
         <table class="table table-light table-hover">

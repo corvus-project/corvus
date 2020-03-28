@@ -20,7 +20,7 @@ return [
     'system' => 'System',
     'products' => 'Products',        
     'pricing_groups' => 'Pricing Groups',
-    'stock_types' => 'Stock Types',            
+    'stock_groups' => 'Stock Types',            
     'categories' => 'Categories',
     'warehouses' => 'Warehouses',        
     'customers' => 'Customers', 

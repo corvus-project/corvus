@@ -66,9 +66,8 @@
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
 
-                    <a href="{{ route('admin.products.view_stocks', $product->id) }}"
-                        class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the Stock History"><i
-                            class="fas fa-list"></i></a>
+                    <a href="{{ route('admin.products.view_stocks', $product->id) }}" class="btn btn-success btn-sm m-1"
+                        data-toggle="tooltip" title="List the Stock History"><i class="fas fa-list"></i></a>
 
                     <a href="{{ route('admin.products.create_stock', $product->id) }}"
                         class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
@@ -87,10 +86,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($product->stocks()->with('stock_type')->take(10)->orderBy('created_at', 'DESC')->get() as
+                @foreach($product->stocks()->with('stock_group')->take(10)->orderBy('created_at', 'DESC')->get() as
                 $stock)
                 <tr>
-                    <td>{{ $stock->stock_type->name }}</td>
+                    <td>{{ $stock->stock_group->name }}</td>
                     <td>{{ $stock->warehouse->name }}</td>
                     <td>{{ $stock->quantity }}</td>
                     <td>
@@ -108,6 +107,49 @@
             </tbody>
         </table>
 
+
+
+        <br />
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Stock Order History</h4>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+
+                    <a href="{{ route('admin.products.view_history', $product->id) }}" class="btn btn-success btn-sm m-1"
+                        data-toggle="tooltip" title="List the Stock History"><i class="fas fa-list"></i></a>
+ 
+
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">OrderID</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Warehouse</th>
+                    <th scope="col">SKU</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($orderlines as $h)
+                <tr>
+                    <td>{{ $h->order_id }}</td>
+                    <td>{{ $h->product_name }}</td>
+                    <td>{{ $h->warehouse_name }}</td>
+                    <td>{{ $h->product_sku }}</td>
+                    <td>{{ $h->amount }}</td>
+                    <td>{{ $h->quantity }}</td>
+                    <td>{{ $h->created_at }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
 
         <br />
         <div class="row">
@@ -155,8 +197,6 @@
                 </td>
             </tr>
             @endforeach
-
-
         </tbody>
     </table>
 

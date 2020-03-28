@@ -21,7 +21,7 @@ class CreateOrderLinesTable extends Migration
             $table->foreign('order_header_id')->references('id')->onDelete('cascade')->on('order_headers');            
             $table->string('warehouse_name')->nullable();
             $table->string('product_name')->nullable();
-            $table->string('product_sku')->nullable();
+            $table->string('product_sku')->index();
             $table->decimal('amount', 8, 2)->default(0);
             $table->integer('quantity')->default(0);
             $table->integer('status')->default(0)->unsigned();
