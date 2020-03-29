@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/products/{product}/pricing', ['as' => 'products.view_pricing', 'uses' => 'Catalogue\ProductController@view_pricing']);
     Route::get('/products/{product}/stocks', ['as' => 'products.view_stocks', 'uses' => 'Catalogue\ProductController@view_stocks']);
     Route::get('/products/{product}/categories', ['as' => 'products.view_categories', 'uses' => 'Catalogue\ProductController@view_categories']);
+    Route::get('/products/{product}/history', ['as' => 'products.view_history', 'uses' => 'Catalogue\ProductController@view_history']);
+    
 
     // Category CRUD
     Route::get('/products/{product}/create/categories', ['as' => 'products.create_category', 'uses' => 'Catalogue\ProductController@create_category']);
@@ -86,13 +88,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/pricing-groups/{group}/delete', ['as' => 'pricing_groups.destroy', 'uses' => 'PricingGroupController@destroy']);
 
     // Stock Type
-    Route::get('/stock-types', ['as' => 'stock_types.index', 'uses' => 'StockTypeController@index']);
-    Route::get('/stock-types/create', ['as' => 'stock_types.create', 'uses' => 'StockTypeController@create']);
-    Route::post('/stock-types/create', ['as' => 'stock_types.store', 'uses' => 'StockTypeController@store']);
-    Route::get('/stock-types/{stock_type}/edit', ['as' => 'stock_types.edit', 'uses' => 'StockTypeController@edit']);
-    Route::post('/stock-types/{stock_type}/edit', ['as' => 'stock_types.update', 'uses' => 'StockTypeController@update']);
-    Route::get('/stock-types/{stock_type}/delete', ['as' => 'stock_types.delete', 'uses' => 'StockTypeController@delete']);
-    Route::post('/stock-types/{stock_type}/delete', ['as' => 'stock_types.destroy', 'uses' => 'StockTypeController@destroy']);
+    Route::get('/stock-groups', ['as' => 'stock_groups.index', 'uses' => 'StockGroupController@index']);
+    Route::get('/stock-groups/create', ['as' => 'stock_groups.create', 'uses' => 'StockGroupController@create']);
+    Route::post('/stock-groups/create', ['as' => 'stock_groups.store', 'uses' => 'StockGroupController@store']);
+    Route::get('/stock-groups/{stock_group}/edit', ['as' => 'stock_groups.edit', 'uses' => 'StockGroupController@edit']);
+    Route::post('/stock-groups/{stock_group}/edit', ['as' => 'stock_groups.update', 'uses' => 'StockGroupController@update']);
+    Route::get('/stock-groups/{stock_group}/delete', ['as' => 'stock_groups.delete', 'uses' => 'StockGroupController@delete']);
+    Route::post('/stock-groups/{stock_group}/delete', ['as' => 'stock_groups.destroy', 'uses' => 'StockGroupController@destroy']);
  
     // Categories
     Route::get('/categories', ['as' => 'categories.index', 'uses' => 'Catalogue\CategoryController@index']);
@@ -145,7 +147,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/orders/{order}/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);   
     
     // Reports
-    Route::get('/reports', 'ReportController@index')->name('reports.index');
+    Route::get('/reports', 'Reports\ReportController@index')->name('reports.index');
     Route::get('/reports/warehouse/stock', ['as' => 'reports.warehouse.stock', 'uses' => 'Reports\WarehouseController@stock']);
     Route::get('/reports/warehouse/stock/data', ['as' => 'reports.warehouse.stock.data', 'uses' => 'Reports\WarehouseController@stock_data']);
     Route::get('/reports/customer/order', ['as' => 'reports.customer.order', 'uses' => 'Reports\CustomerController@orders']);

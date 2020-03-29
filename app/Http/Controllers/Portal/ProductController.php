@@ -8,7 +8,7 @@ use App\Models\Pricing;
 use App\Models\PricingGroup;
 use App\Models\Product;
 use App\Models\Stock;
-use App\Models\StockType;
+use App\Models\StockGroup;
 use App\Models\Warehouse;
 use DB;
 use Illuminate\Http\Request;
@@ -35,7 +35,7 @@ class ProductController extends Controller
             ->leftJoin('stocks', 'stocks.product_id', '=', 'pricings.product_id')
             ->where('pricings.pricing_group_id', $profile->pricing_group_id)
             ->where('stocks.warehouse_id', $profile->warehouse_id)
-            ->where('stocks.stock_type_id', $profile->stock_type_id)
+            ->where('stocks.stock_group_id', $profile->stock_group_id)
             ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
             ->select(
                 'products.id as pid',
@@ -65,7 +65,7 @@ class ProductController extends Controller
         $stock = DB::table('stocks')
                     ->leftJoin('warehouses', 'warehouses.id', '=', 'stocks.warehouse_id')
                     ->where('stocks.warehouse_id', $profile->warehouse_id)
-                    ->where('stocks.stock_type_id', $profile->stock_type_id)
+                    ->where('stocks.stock_group_id', $profile->stock_group_id)
                     ->where('stocks.product_id', $product->id) 
                     
                     ->select('quantity', 'warehouses.name as warehouse_name')

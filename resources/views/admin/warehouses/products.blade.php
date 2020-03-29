@@ -72,8 +72,8 @@ $(document).ready(function() {
                 data: 'quantity'
             },            
             {
-                name: 'stock_type_name',
-                data: 'stock_type_name'
+                name: 'stock_group_name',
+                data: 'stock_group_name'
             }
         ]
     });

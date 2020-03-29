@@ -71,8 +71,8 @@ $(document).ready(function() {
                 data: 'warehouse_name'
             },
             {
-                name: 'stock_type_id',
-                data: 'stock_type_name'
+                name: 'stock_group_id',
+                data: 'stock_group_name'
             },
             {
                 name: 'quantity',
@@ -89,7 +89,7 @@ $(document).ready(function() {
     }, {
         column_number: 3,
         filter_type: "select",
-        data: [{!!$stock_types_json!!}],
+        data: [{!!$stock_groups_json!!}],
     }]);
 
 

@@ -13,7 +13,7 @@ class ProfileTableSeeder extends Seeder
     public function run()
     {
         $this->disableForeignKeys();
-        $this->truncate('stocks');
+        $this->truncate('account_profiles');
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
         $faker->addProvider(new \Faker\Provider\Barcode($faker));
@@ -24,7 +24,7 @@ class ProfileTableSeeder extends Seeder
                 $user = \App\Models\User::whereEmail($user->email)->first();
                 \App\Models\Profile::create([
                                 'user_id' => $user->id,
-                                'stock_type_id' => $faker->numberBetween(1,3), 
+                                'stock_group_id' => $faker->numberBetween(1,3), 
                                 'pricing_group_id' => $faker->numberBetween(1,3),
                                 'warehouse_id' => $faker->numberBetween(1,3),
                                 ]);

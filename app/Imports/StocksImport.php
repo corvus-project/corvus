@@ -4,7 +4,7 @@ namespace App\Imports;
 
 use App\Models\Stock;
 use App\Models\Warehouse;
-use App\Models\StockType;
+use App\Models\StockGroup;
 use App\Models\Product;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
@@ -29,14 +29,14 @@ class StocksImport implements ToModel, WithCustomCsvSettings, SkipsOnError, Shou
     public function model(array $row)
     {
         $warehouse = Warehouse::where('name', $row[3])->orWhere('slug', $row[3])->first();
-        $stock_type = StockType::where('name', $row[4])->orWhere('slug', $row[4])->first();
+        $stock_group = StockGroup::where('name', $row[4])->orWhere('slug', $row[4])->first();
         $product = Product::where('sku', $row[0])->first();
-        if ($warehouse && $stock_type && $product){
+        if ($warehouse && $stock_group && $product){
             $row_data = implode(" ", $row);
             new Exception('Can\'t create or update this row:'. $row_data);
         }
         return Stock::updateOrCreate(
-            ['product_id' => $product->id, 'warehouse_id' => $warehouse->id, 'stock_type_id' => $stock_type->id],
+            ['product_id' => $product->id, 'warehouse_id' => $warehouse->id, 'stock_group_id' => $stock_group->id],
             ['quantity' => intval($row[2])]
         );
     }

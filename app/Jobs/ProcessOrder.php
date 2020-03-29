@@ -47,13 +47,13 @@ class ProcessOrder implements ShouldQueue
         $profile = $user->profile;
 
         $order = $this->update_order_status($order, $processing);
-        $this->update_products($order, $profile->pricing_group_id, $profile->stock_type_id, $profile->warehouse_id, $approved, $denied, $not_found);
+        $this->update_products($order, $profile->pricing_group_id, $profile->stock_group_id, $profile->warehouse_id, $approved, $denied, $not_found);
 
         $approved_order_lines = $order->order_lines()->where('status', $approved->id)->count();
         $order_lines_count = $order->order_lines()->count();
 
         if ($approved_order_lines == $order_lines_count){
-            $this->update_stock_history($order, $profile->stock_type_id, $profile->warehouse_id);
+            $this->update_stock_history($order, $profile->stock_group_id, $profile->warehouse_id);
             $order->status = $approved->id;
         }else{
             $order->status = $failed->id;
@@ -68,23 +68,22 @@ class ProcessOrder implements ShouldQueue
         return $order;
     }
 
-    private function update_stock_history($order,  $stock_type_id, $warehouse_id)
+    private function update_stock_history($order,  $stock_group_id, $warehouse_id)
     {
         $orderlines = $order->order_lines()->orderBy('created_at', 'DESC')->get();
         foreach ($orderlines as $orderline) {
             $product = DB::table('products')
                         ->leftJoin('stocks', 'products.id', '=', 'stocks.product_id')
                         ->where('products.sku', $orderline->product_sku)
-                        ->where('stocks.stock_type_id', $stock_type_id)
+                        ->where('stocks.stock_group_id', $stock_group_id)
                         ->where('stocks.warehouse_id', $warehouse_id)
                         ->select('stocks.quantity', 'stocks.id as stock_id', 'stocks.quantity as quantity')
                         ->first();
-
             DB::table('stocks')->where('id', $product->stock_id)->update(['quantity' => ($product->quantity - intval($orderline->quantity))]); 
             }
     }
 
-    private function update_products($order, $pricing_group_id, $stock_type_id, $warehouse_id, $approved, $denied, $not_found)
+    private function update_products($order, $pricing_group_id, $stock_group_id, $warehouse_id, $approved, $denied, $not_found)
     {
         $orderlines = $order->order_lines()->orderBy('created_at', 'DESC')->get();
         foreach($orderlines as $orderline)
@@ -95,7 +94,7 @@ class ProcessOrder implements ShouldQueue
                         ->leftJoin('warehouses', 'warehouses.id', '=', 'stocks.warehouse_id')
                         ->where('products.sku', $orderline->product_sku)
                         ->where('pricings.pricing_group_id', $pricing_group_id)
-                        ->where('stocks.stock_type_id', $stock_type_id)
+                        ->where('stocks.stock_group_id', $stock_group_id)
                         ->where('stocks.warehouse_id', $warehouse_id)
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
                         ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name', 'warehouses.id as warehouse_id')

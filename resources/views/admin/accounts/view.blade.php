@@ -45,8 +45,8 @@
         </div>
 
         <div class="row  border-bottom">
-            <div class="col-sm-3 bg-light p-2"><b>Stock Type</b></div>
-            <div class="col-sm-9 p-2">{{ $user->profile->stock_type_name }}</div>
+            <div class="col-sm-3 bg-light p-2"><b>Stock Group</b></div>
+            <div class="col-sm-9 p-2">{{ $user->profile->stock_group->name }}</div>
         </div>
 
         <div class="row  border-bottom">
