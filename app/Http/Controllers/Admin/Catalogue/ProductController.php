@@ -15,6 +15,7 @@ use App\Models\Stock;
 use App\Models\StockGroup;
 use App\Models\Warehouse;
 use App\Models\OrderLine;
+use App\Models\OrderStatus;
 use DB;
 use Illuminate\Http\Request;
 
@@ -53,8 +54,9 @@ class ProductController extends Controller
                                     ->where('status', $approved_status->id)
                                     ->orderBy('created_at', 'DESC')
                                     ->with('order')->paginate();
-         
-        return view('admin.products.view_history', compact('product', 'orderlines'));
+        $order_status_list = OrderStatus::all()->pluck('name', 'id');
+                 
+        return view('admin.products.view_history', compact('product', 'orderlines', 'order_status_list'));
     }
 
     public function view_pricing(Product $product)
@@ -205,12 +207,15 @@ class ProductController extends Controller
         if ($count > 0) {
             return redirect(route('admin.products.edit_pricing', [$product->id, $pricing->id]))->withFlashDanger('You can\'t add new stock quantity between these dates')->withInput();
         }
+     
         $pricing->amount = $request->amount;
         $pricing->from_date = $request->from_date;
         $pricing->to_date = $request->to_date;
         $pricing->product_id = $product->id;
         $pricing->pricing_group_id = $request->pricing_group_id;
+        
         if ($pricing->save()) {
+            
             return redirect(route('admin.products.edit_pricing', [$product->id, $pricing->id]))->withFlashSuccess(trans('labels.products.pricing.updated'));
         }
         $error = $user->errors()->all(':message');

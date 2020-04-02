@@ -56,24 +56,24 @@ $(document).ready(function() {
         pageLength: 50,
         ajax: "/portal/products/data",
         columns: [{
-                name: 'pid',
-                data: 'pid'
+                name: 'id',
+                data: 'id'
             },
             {
                 name: 'sku',
-                data: 'product_sku'
+                data: 'sku'
             },            
             {
-                name: 'product_name',
-                data: 'product_name'
+                name: 'name',
+                data: 'name'
             },    
     
             {
-                name: 'quantity',
+                name: 'stocks.quantity',
                 data: 'quantity'
             },            
             {
-                name: 'amount',
+                name: 'pricings.amount',
                 data: 'amount'
             }
         ]

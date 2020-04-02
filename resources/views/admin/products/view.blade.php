@@ -124,6 +124,7 @@
                 </div>
             </div>
         </div>
+        @if(count($orderlines)>0)
         <table class="table table-hover table-bordered">
             <thead class="thead-light">
                 <tr>
@@ -150,7 +151,11 @@
                 @endforeach
             </tbody>
         </table>
-
+        @else
+        <div class="alert alert-warning" role="alert">
+            There is no any orders to display!
+    </div>
+        @endif
         <br />
         <div class="row">
             <div class="col-sm-6">
