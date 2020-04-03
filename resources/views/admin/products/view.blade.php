@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($product->pricing()->with('pricing_group')->take(10)->orderBy('created_at', 'DESC')->get() as
+                @foreach($product->pricing()->with('pricing_group')->take(10)->orderBy('pricings.from_date', 'DESC')->get() as
                 $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>

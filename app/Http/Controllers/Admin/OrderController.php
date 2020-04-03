@@ -48,7 +48,7 @@ class OrderController extends Controller
     public function update(Order $order)
     {
         ProcessOrder::dispatch($order);
-        return redirect(route('admin.orders.view', $order->id))->withFlashSuccess(trans('labels.order.update.success')); 
+        return redirect(route('admin.orders.view', $order->id))->withFlashSuccess('Order processed!'); 
     }
 
     public function data()

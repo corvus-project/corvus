@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     public function view_pricing(Product $product)
     {
-        $pricings = $product->pricing()->with('pricing_group')->orderBy('created_at', 'DESC')->paginate(100);
+        $pricings = $product->pricing()->with('pricing_group')->orderBy('pricings.from_date', 'DESC')->paginate(100);
         return view('admin.products.view_pricing', compact('product', 'pricings'));
     }
 
@@ -171,7 +171,7 @@ class ProductController extends Controller
             ->count();
 
         if ($count > 0) {
-            return redirect(route('admin.products.create_pricing', $product->id))->withFlashDanger('You can\'t add new stock quantity between these dates')->withInput();
+            return redirect(route('admin.products.create_pricing', $product->id))->withFlashDanger('You can\'t add new pricing between these dates')->withInput();
         }
 
         $pricing = new Pricing();

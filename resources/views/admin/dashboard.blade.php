@@ -17,10 +17,9 @@
                         <table class="table">
                             <thead class="">
                                 <tr>
-                                    <th style="width: 40%">Name</th>
-                                    <th style="width: 20%">Account Number</th>
-                                    <th style="width: 20%">Account Group</th>
-                                    <th style="width: 20%"></th>
+                                    <th style="width: 50%">Name</th>
+                                    <th style="width: 35%">Account Number</th> 
+                                    <th style="width: 15%"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,10 +27,8 @@
                                 <tr>
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->account_number }}</td>
-                                    <td>{{ $customer->account_group }}</td>
                                     <td><a class="btn float-right btn-sm btn-primary btn-flat m-b-10 m-l-5" href="{{ route('admin.accounts.view', $customer->id) }}">
-                                            <i class="fas fa-eye"></i>
-                                            View</a>
+                                            <i class="fas fa-eye"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
