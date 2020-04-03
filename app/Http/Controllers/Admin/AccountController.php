@@ -34,7 +34,6 @@ class AccountController extends Controller
         })
             ->leftJoin('account_profiles', 'users.id', '=', 'account_profiles.user_id')
             ->select('users.id', 'users.name', 'users.email', 'account_profiles.account_number', 'account_profiles.account_group');
-
         return datatables()->of($users)->toJson();
     }
 
@@ -49,9 +48,9 @@ class AccountController extends Controller
             ->join('users', 'order_headers.user_id', '=', 'users.id')
             ->join('order_status', 'order_headers.status', '=', 'order_status.id')
             ->where('order_headers.user_id', $user->id)
-        //select columns for new virtual table. ID columns must be renamed, because they have the same title
-            ->select(['users.name as user_name', 'order_headers.id', 'order_headers.order_date', 'order_status.name as status_name']);
-
+            ->select(['users.name as user_name', 'order_headers.id', 'order_headers.order_date', 'order_status.name as status_name', 'order_headers.ref_id'])
+            ->orderBy('order_headers.id', 'desc');
+             
         return datatables()->of($orders)->toJson();
     }    
 

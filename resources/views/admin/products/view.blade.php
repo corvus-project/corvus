@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($product->pricing()->with('pricing_group')->take(10)->orderBy('created_at', 'DESC')->get() as
+                @foreach($product->pricing()->with('pricing_group')->take(10)->orderBy('pricings.from_date', 'DESC')->get() as
                 $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
@@ -124,6 +124,7 @@
                 </div>
             </div>
         </div>
+        @if(count($orderlines)>0)
         <table class="table table-hover table-bordered">
             <thead class="thead-light">
                 <tr>
@@ -150,7 +151,11 @@
                 @endforeach
             </tbody>
         </table>
-
+        @else
+        <div class="alert alert-warning" role="alert">
+            There is no any orders to display!
+    </div>
+        @endif
         <br />
         <div class="row">
             <div class="col-sm-6">

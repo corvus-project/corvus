@@ -30,22 +30,21 @@ class ProductController extends Controller
     {
         $profile = Auth::user()->profile;
         if ($profile) {
-            $products = DB::table('pricings')
-            ->leftJoin('products', 'products.id', '=', 'pricings.product_id')
+            $products = DB::table('products')
+            ->leftJoin('pricings', 'products.id', '=', 'pricings.product_id')
             ->leftJoin('stocks', 'stocks.product_id', '=', 'pricings.product_id')
             ->where('pricings.pricing_group_id', $profile->pricing_group_id)
             ->where('stocks.warehouse_id', $profile->warehouse_id)
             ->where('stocks.stock_group_id', $profile->stock_group_id)
             ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-            ->select(
-                'products.id as pid',
-                'products.sku as product_sku',
-                'products.name as product_name',
-                'pricings.amount',
-                'stocks.quantity'
-            );
-
-            return datatables()->of($products)->toJson();
+            ->select([
+                'products.id as id',
+                'products.sku as sku',
+                'products.name as name',
+                'pricings.amount as amount',
+                'stocks.quantity as quantity']
+            ); 
+            return datatables()->query($products)->toJson();
         }else{
             return [];
         }
