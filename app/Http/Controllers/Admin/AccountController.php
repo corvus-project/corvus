@@ -117,7 +117,7 @@ class AccountController extends Controller
                     ])
             );
 
-            return redirect(route('admin.accounts.edit', $user->id))->withFlashSuccess(trans('admin.accounts.labels.accounts.created'));
+            return redirect(route('admin.accounts.edit', $user->id))->withFlashSuccess('New account created!');
         }
         $error = $user->errors()->all(':message');
         return redirect(route('admin.accounts.create'))->withFlashDanger('error', $error)->withInput();
