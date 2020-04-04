@@ -28,8 +28,8 @@ class StocksImport implements ToModel, WithCustomCsvSettings, SkipsOnError, Shou
     */
     public function model(array $row)
     {
-        $warehouse = Warehouse::where('name', $row[3])->orWhere('slug', $row[3])->first();
-        $stock_group = StockGroup::where('name', $row[4])->orWhere('slug', $row[4])->first();
+        $warehouse = Warehouse::where('name', $row[2])->orWhere('slug', $row[2])->first();
+        $stock_group = StockGroup::where('name', $row[3])->orWhere('slug', $row[3])->first();
         $product = Product::where('sku', $row[0])->first();
         if ($warehouse && $stock_group && $product){
             $row_data = implode(" ", $row);
@@ -37,7 +37,7 @@ class StocksImport implements ToModel, WithCustomCsvSettings, SkipsOnError, Shou
         }
         return Stock::updateOrCreate(
             ['product_id' => $product->id, 'warehouse_id' => $warehouse->id, 'stock_group_id' => $stock_group->id],
-            ['quantity' => intval($row[2])]
+            ['quantity' => intval($row[1])]
         );
     }
 

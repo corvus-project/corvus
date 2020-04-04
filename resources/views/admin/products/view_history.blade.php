@@ -32,6 +32,8 @@
                     <th scope="col">Amount</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +46,8 @@
                     <td>{{ $h->amount }}</td>
                     <td>{{ $h->quantity }}</td>
                     <td>{{ $h->created_at }}</td>
+                    <td>{{ $order_status_list[$h->order->status] }}</td>
+                    <td><a href="{{ route('admin.orders.view', $h->order_id) }}" class="btn btn-sm btn-primary">View</a></td>
                 </tr>
                 @endforeach
             </tbody>

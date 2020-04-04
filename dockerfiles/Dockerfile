@@ -64,7 +64,7 @@ RUN yum -y update
 RUN yum clean all
 
 # Define work directory
-WORKDIR /var/www/laravel-boilerplate
+WORKDIR /var/www/intellect
 
 # Expose ports
 EXPOSE 9000

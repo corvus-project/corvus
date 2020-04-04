@@ -30,7 +30,7 @@
                             <th>Customer</th>
                             <th>Processed Date</th>
                             <th>Status</th>
-                            <th>Quantity</th>
+                           
                         </tr>
                     </thead>
                 </table>
@@ -78,10 +78,6 @@ $(document).ready(function() {
             {
                 name: 'status',
                 data: 'order_status_name'
-            },
-            {
-                name: 'order_amount',
-                data: 'order_amount'
             }
 
         ]

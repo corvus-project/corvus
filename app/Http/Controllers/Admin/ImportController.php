@@ -42,7 +42,7 @@ class ImportController extends Controller
             $filePath = $folder . $filename;
             $rst = $this->upload($file, $folder, 'local', $filename);
             if($rst){
-
+                
                 switch($request->model){
                     case 'product':
                         (new ProductsImport)->import($filename, null, \Maatwebsite\Excel\Excel::CSV);
@@ -59,7 +59,7 @@ class ImportController extends Controller
                         (new StocksImport)->import($filename, null, \Maatwebsite\Excel\Excel::CSV);
                     break;
                 }
-                (new ProductsImport)->import($filename, null, \Maatwebsite\Excel\Excel::CSV);
+                 
             }
         }
  

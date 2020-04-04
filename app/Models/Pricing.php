@@ -22,16 +22,16 @@ class Pricing extends Model
      * @var array
      */
     protected $fillable = ['product_id', 'pricing_group_id', 'amount', 'from_date', 'to_date'];
-  
+  /*  
     protected $dateFormat = 'Y-m-d';
 
     protected $dates = ['from_date', 'to_date'];
 
-    protected $casts = [
+   protected $casts = [
         'from_date' => 'date:d M Y',
         'to_date' => 'date:d M Y',
     ];
-
+ */
     public function pricing_group()
     {
         return $this->belongsTo(PricingGroup::class);

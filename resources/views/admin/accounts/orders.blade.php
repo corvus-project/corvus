@@ -1,13 +1,13 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('labels.accounts.orders'))
+@section('title', app_name() . ' | ' . __('labels.accounts.orders')) - {{ $user->name }}
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.accounts.orders') }}
+                    {{ __('labels.accounts.orders') }} - {{ $user->name }}
                 </h4>
             </div>
             <div class="col-sm-7">
@@ -26,6 +26,7 @@
                             <th>ID</th>
                             <th>Date</th>
                             <th>Customer</th>
+                            <th>Ref ID</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -64,6 +65,10 @@ $(document).ready(function() {
                 name: 'user_name',
                 data: 'user_name'
             },
+            {
+                name: 'ref_id',
+                data: 'ref_id'
+            },            
             {
                 name: 'status',
                 data: 'status_name'
