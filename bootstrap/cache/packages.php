@@ -31,18 +31,18 @@
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
-  'kyslik/column-sortable' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Kyslik\\ColumnSortable\\ColumnSortableServiceProvider',
-    ),
-  ),
   'laravel/tinker' => 
   array (
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'laravel/ui' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Ui\\UiServiceProvider',
     ),
   ),
   'laravelcollective/html' => 
@@ -73,17 +73,6 @@
     'providers' => 
     array (
       0 => 'Carbon\\Laravel\\ServiceProvider',
-    ),
-  ),
-  'rollbar/rollbar-laravel' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Rollbar\\Laravel\\RollbarServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Rollbar' => 'Rollbar\\Laravel\\Facades\\Rollbar',
     ),
   ),
   'spatie/laravel-html' => 
