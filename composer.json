@@ -1,35 +1,29 @@
 {
-    "name": "labs64/laravel-boilerplate",
-    "description": "Laravel Boilerplate",
+    "name": "gazatem/intellect",
+    "description": "Laravel Based open source code business software",
     "type": "project",
-    "keywords": ["php", "framework", "laravel", "laravel5", "admin", "theme", "starter", "bootstrap", "boilerplate", "docker", "template", "social-login", "nodejs"],
-    "homepage": "https://github.com/Labs64/laravel-boilerplate",
+    "keywords": ["inventory", "inventory-management", "stock-prices", "order-management", "business-intelligence", "laravel", "php", "manage-purchases"],
+    "homepage": "https://gazatem.com",
     "license": "MIT",
     "authors": [
         {
-            "name": "Labs64 GmbH",
-            "email": "info@labs64.com",
-            "homepage": "http://www.labs64.com"
+            "name": "gazatem",
+            "email": "info@gazatem.com",
+            "homepage": "https://www.gazatem.com"
         }
     ],
-    "support": {
-        "email": "info@labs64.com",
-        "issues": "https://github.com/Labs64/laravel-boilerplate/issues",
-        "wiki": "https://github.com/Labs64/laravel-boilerplate",
-        "source": "https://github.com/Labs64/laravel-boilerplate",
-        "docs": "https://github.com/Labs64/laravel-boilerplate"
-    },
+ 
     "require": {
         "php": ">=7.2",
         "albertcht/invisible-recaptcha": "^1.9",
         "fideloper/proxy": "^4.2",
-        "laravel/framework": "^6.0",
-        "laravel/tinker": "~1.0",
+        "laravel/framework": "^7.0",
+        "laravel/tinker": "~2.0",
+        "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.0",
         "lcobucci/jwt": "^3.3",
         "maatwebsite/excel": "^3.1",
         "mbezhanov/faker-provider-collection": "^1.2",
-        "rollbar/rollbar-laravel": "^5.0",
         "spatie/laravel-html": "^2.24",
         "yajra/laravel-datatables-oracle": "~9.0"
     },

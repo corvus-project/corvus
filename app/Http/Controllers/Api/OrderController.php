@@ -9,19 +9,39 @@ use DB;
 use Carbon\Carbon;
 use Auth;
 use App\Http\Resources\Products;
+use App\Http\Resources\Orders;
+
 use App\Models\Order;
 use App\Jobs\ProcessOrder;
 
 class OrderController extends Controller
 {
+    public function index(Request $request)
+    {
+        $user = \App::make('user');
+        $orders = $user->orders()->paginate();
+ 
+        return Orders::collection($orders);
+    }
+
+    public function show(Order $order)
+    {
+        $user = \App::make('user');
+
+        if ($order->user_id <> $user->id){
+            return response()->json(null, 404);
+        }
+        return new Orders(Order::with('order_lines')->find($order->id)); 
+    }    
+
     public function create(Request $request)
     {
         $user = \App::make('user');
         $profile = $user->profile;
 
         $orderlines = [];
-        $lines = $request->all();
-         
+        $lines = $request->get("products");
+        
         $order = Order::create(['user_id' => $user->id, 'order_date' => Carbon::now(), 'status' => 1, 'ref_id' => $request->ref_id]);
         $order_id = $order->id;
 

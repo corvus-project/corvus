@@ -8,6 +8,7 @@ use DB;
 use Carbon\Carbon;
 use Auth;
 use App\Http\Resources\Products;
+use App\Models\Product;
 
 class ProductController extends Controller
 {

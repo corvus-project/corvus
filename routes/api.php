@@ -19,7 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['jwt.auth'], 'namespace' => 'Api', 'prefix' => '/', 'as' => 'api.'], function () {
     Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']);
-    Route::get('/products/{product}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+    Route::get('/products/{product:sku}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 
-    Route::post('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@create']);
+    
+    Route::post('/orders', ['as' => 'orders.create', 'uses' => 'OrderController@create']);
+    Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
+    Route::get('/orders/{order:id}', ['as' => 'orders.show', 'uses' => 'OrderController@show']);
 });
