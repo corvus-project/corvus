@@ -39,6 +39,15 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{
+                            active_class(Route::is('portal/account'))
+                }}" href="{{ route('portal.account') }}">
+                    <i class="nav-icon fas fa-user"></i>
+                    @lang('menus.account')
+                </a>
+            </li>
+
             @endif
             @if (Auth::user()->hasRole('administrator'))
             <li class="nav-item">
@@ -49,7 +58,6 @@
                     @lang('menus.dashboard')
                 </a>
             </li>
-
 
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle {{

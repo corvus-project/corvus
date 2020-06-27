@@ -15,6 +15,8 @@ Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:vendor'], 'namespace' => 'Portal'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::get('/account', 'AccountController@index')->name('account');
     
     // Products
     Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']);
