@@ -16,6 +16,7 @@ return [
     'general' => 'General',
     'history' => 'History',
     'catalogue' => 'Catalogue',
+    'account' => 'Account',
 
     'system' => 'System',
     'products' => 'Products',        
