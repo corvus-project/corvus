@@ -53,3 +53,15 @@ if(!function_exists('redirectToDashboad'))
         return redirect($default);
     }
 }
+
+if(!function_exists('productNameBySku'))
+{
+ 
+    function productNameBySku($sku)
+    {
+        $product = App\Models\Product::where('sku', $sku)->first();
+        if ($product)
+            return $product->name;
+        return false;
+    }
+}

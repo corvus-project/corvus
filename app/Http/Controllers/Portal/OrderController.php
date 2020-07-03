@@ -83,7 +83,8 @@ class OrderController extends Controller
             if($rst){
                 $order = Order::create(['user_id' => $user->id, 'order_date' => Carbon::now(), 'status' => 1, 'ref_id' => $request->ref_id]);
                 $order_id = $order->id;
-                (new VendorOrderImport($order_id))->import($filename, null, \Maatwebsite\Excel\Excel::CSV);
+                $_status = OrderStatus::where('slug', 'NEW_ORDER')->first();
+                (new VendorOrderImport($order_id, $_status->id))->import($filename, null, \Maatwebsite\Excel\Excel::CSV);
                 ProcessOrder::dispatch($order);
                 return redirect(route('portal.orders.view', $order_id))->withFlashSuccess(trans('labels.import.sucess'));
             }
