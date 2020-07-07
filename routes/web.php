@@ -50,7 +50,7 @@ Route::group(['as' => 'user.', 'middleware' => ['web', 'auth', 'verified']], fun
 /**
  * Backend routes
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator'], 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator;orders_staff;inventory_staff'], 'namespace' => 'Admin'], function () {
 
     // Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');

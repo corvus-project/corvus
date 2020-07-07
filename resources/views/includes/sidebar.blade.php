@@ -47,7 +47,6 @@
                 </a>
             </li>
 
-
             <li class="nav-item">
                 <a class="nav-link {{
                             active_class(Route::is('portal/cart'))
@@ -56,9 +55,8 @@
                     @lang('menus.cart')
                 </a>
             </li>            
-
             @endif
-            @if (Auth::user()->hasRole('administrator'))
+            @if (Auth::user()->hasRoles(['administrator', 'inventory_staff', 'orders_staff']))
             <li class="nav-item">
                 <a class="nav-link {{
                     active_class(Route::is('admin/dashboard'))
@@ -67,7 +65,8 @@
                     @lang('menus.dashboard')
                 </a>
             </li>
-
+            @endif
+            @if (Auth::user()->hasRoles(['inventory_staff', 'administrator']))
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/products'))
@@ -125,8 +124,8 @@
                     @lang('menus.warehouses')
                 </a>
             </li>
-
-
+            @endif
+            @if (Auth::user()->hasRoles(['orders_staff', 'administrator']))
             <li class="nav-item">
                 <a class="nav-link {{
                     active_class(Route::is('admin/accounts'))
@@ -144,8 +143,8 @@
                     @lang('menus.orders')
                 </a>
             </li>
-
-
+            @endif
+            @if (Auth::user()->hasRoles(['administrator', 'inventory_staff', 'orders_staff']))
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/reports'))
@@ -175,7 +174,8 @@
 
                 </ul>
             </li>
-
+            @endif
+            @if (Auth::user()->hasRoles(['administrator']))  
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/tools'))
@@ -204,7 +204,6 @@
                     </li>
                 </ul>
             </li>
-            
             <li class="nav-item">
                         <a class="nav-link {{
                     active_class(Route::is('admin/users'))

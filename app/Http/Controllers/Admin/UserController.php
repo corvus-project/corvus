@@ -7,7 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\StaffUpdateRequest;
 use App\Models\Role;
 use App\Models\User;
-
+use Carbon\Carbon;
 class UserController extends Controller
 {
 
@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::whereIn('name', ['inventory_staff', 'orders_staff'])->get()->pluck('name', 'id');
+        $roles = Role::whereIn('name', ['inventory_staff', 'orders_staff'])->get()->pluck('display_name', 'id');
         $roles->prepend('Select a role', 0);
         return view('admin.users.create_edit', compact('roles'));
     }
@@ -35,8 +35,9 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->confirmed = true;
         $user->active = 1;
-
+        $user->email_verified_at = Carbon::now();
         if ($user->save()) {
             $user->attachRole($request->role_id);
             return redirect(route('admin.users.edit', $user->id))->withFlashSuccess('New user created!');

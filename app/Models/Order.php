@@ -22,6 +22,11 @@ class Order extends Model
     {
         return $this->order_status->name;
     }    
+
+    public function getStatusSlugAttribute()
+    {
+        return $this->order_status->slug;
+    }    
  
     public function account()
     {

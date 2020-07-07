@@ -3,7 +3,7 @@
 /**
  * Global helpers file with misc functions.
  */
-  
+
 if (!function_exists('__trans_choice')) {
     /**
      * Translates the given message based on a count from json key.
@@ -20,8 +20,7 @@ if (!function_exists('__trans_choice')) {
     }
 }
 
-if(!function_exists('isAdmin'))
-{
+if (!function_exists('isAdmin')) {
     /**
      * Is Admin
      *
@@ -35,8 +34,7 @@ if(!function_exists('isAdmin'))
     }
 }
 
-if(!function_exists('redirectToDashboad'))
-{
+if (!function_exists('redirectToDashboad')) {
     /**
      * Redirect To Dashboard
      *
@@ -45,23 +43,49 @@ if(!function_exists('redirectToDashboad'))
      */
     function redirectToDashboad($default = '/')
     {
-        if(isAdmin())
-        {
-            return redirect('/admin');    
+        if (isAdmin()) {
+            return redirect('/admin');
         }
-        
+
         return redirect($default);
     }
 }
 
-if(!function_exists('productNameBySku'))
-{
- 
+if (!function_exists('productNameBySku')) {
     function productNameBySku($sku)
     {
         $product = App\Models\Product::where('sku', $sku)->first();
-        if ($product)
+        if ($product) {
             return $product->name;
+        }
+
         return false;
+    }
+}
+
+if (!function_exists('updateOrderStatus')) {
+    function updateOrderStatus($status)
+    {
+        switch ($status) {
+            case 'APPROVED':
+                return 'PACKED';
+                break;
+
+            case 'PACKED':
+                return 'READY_TO_SHIP';
+                break;
+
+            case 'READY_TO_SHIP':
+                return 'SHIPPED';
+                break;
+
+            case 'SHIPPED':
+                return 'COMPLETED';
+                break;
+
+            default:
+                return 'FAILED';
+                break;
+        }
     }
 }
