@@ -31,7 +31,7 @@ class RolesSeeder extends Seeder
             ],
             [
                 'name'       => 'vendor',
-                'display_name'  => 'VENDOR',
+                'display_name'  => 'Vendor',
                 'all'        => false,
                 'sort'       => 2,
                 'created_at' => Carbon::now(),
@@ -39,7 +39,7 @@ class RolesSeeder extends Seeder
             ],
             [
                 'name'       => 'supplier',
-                'display_name'  => 'SUPPLIER',
+                'display_name'  => 'Supplier',
                 'all'        => false,
                 'sort'       => 2,
                 'created_at' => Carbon::now(),
@@ -48,12 +48,33 @@ class RolesSeeder extends Seeder
 
             [
                 'name'       => 'manufacturer',
-                'display_name'  => 'MANUFACTURER',
+                'display_name'  => 'Manufacturer',
                 'all'        => false,
                 'sort'       => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ]
+            ],
+
+            [
+                'name'       => 'orders_staff',
+                'display_name'  => 'Orders Staff',
+                'all'        => false,
+                'sort'       => 2,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+            [
+                'name'       => 'inventory_staff',
+                'display_name'  => 'Inventory Staff',
+                'all'        => false,
+                'sort'       => 2,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+
+         
+
         ];
 
         DB::table('roles')->insert($roles);

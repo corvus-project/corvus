@@ -15,12 +15,21 @@ Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:vendor'], 'namespace' => 'Portal'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::get('/account', 'AccountController@index')->name('account');
     
+    // Cart
+    Route::get('/cart/{product}/add', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+    Route::get('/cart/view', ['as' => 'cart.view', 'uses' => 'CartController@view']);
+    Route::post('/cart/save', ['as' => 'cart.save', 'uses' => 'CartController@save']);
+    Route::post('/cart/update', ['as' => 'cart.update', 'uses' => 'CartController@update']);
+
     // Products
     Route::get('/products', ['as' => 'products.index', 'uses' => 'ProductController@index']);
     Route::get('/products/data', ['as' => 'products.data', 'uses' => 'ProductController@data']);
     Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'ProductController@view']);
-
+    Route::get('/products/save', ['as' => 'products.save', 'uses' => 'ProductController@save']);
+    
     // Orders
     Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
     Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
@@ -41,7 +50,7 @@ Route::group(['as' => 'user.', 'middleware' => ['web', 'auth', 'verified']], fun
 /**
  * Backend routes
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator'], 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator;orders_staff;inventory_staff'], 'namespace' => 'Admin'], function () {
 
     // Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
@@ -152,6 +161,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/reports/warehouse/stock/data', ['as' => 'reports.warehouse.stock.data', 'uses' => 'Reports\WarehouseController@stock_data']);
     Route::get('/reports/customer/order', ['as' => 'reports.customer.order', 'uses' => 'Reports\CustomerController@orders']);
     Route::get('/reports/customer/order/data', ['as' => 'reports.customer.order.data', 'uses' => 'Reports\CustomerController@order_data']);
+
+    // Users
+    Route::get('/users', 'UserController@index')->name('users.index');
+    Route::get('/users/create', ['as' => 'users.create', 'uses' => 'UserController@create']);
+    Route::post('/users/create', ['as' => 'users.store', 'uses' => 'UserController@store']);
+    Route::get('/users/{user}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+    Route::post('/users/{user}/edit', ['as' => 'users.update', 'uses' => 'UserController@update']);
 
 });
 

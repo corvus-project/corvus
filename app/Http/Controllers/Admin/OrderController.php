@@ -39,15 +39,23 @@ class OrderController extends Controller
     public function view(Order $order)
     {
         $status = OrderStatus::all();
-        $allowed_status = $status->whereNotIn('slug', ['CANCELED', 'APPROVED'])->pluck('id')->toArray();
-
+        $allowed_status = $status->whereIn('slug', ['NEW_ORDER', 'FAILED'])->pluck('id')->toArray();
+        
         $orderlines = $order->order_lines()->orderBy('created_at', 'DESC')->get();
         return view('admin.orders.view', compact('order', 'orderlines','allowed_status'));
     }
 
     public function update(Order $order)
     {
-        ProcessOrder::dispatch($order);
+        if(in_array($order->status_slug,  ['NEW_ORDER', 'FAILED'])){
+            ProcessOrder::dispatch($order);
+        }else{
+            $status = updateOrderStatus($order->status_slug);
+            $newStatus = OrderStatus::firstWhere('slug', $status);
+            $order->status = $newStatus->id;
+            $order->save();
+        }
+
         return redirect(route('admin.orders.view', $order->id))->withFlashSuccess('Order processed!'); 
     }
 

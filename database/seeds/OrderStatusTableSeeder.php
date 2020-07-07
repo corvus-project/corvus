@@ -15,6 +15,8 @@ class OrderStatusTableSeeder extends Seeder
     {
         $this->disableForeignKeys();
         $this->truncate('order_status');
+        $this->truncate('order_headers');
+        $this->truncate('order_lines');
 
         $groups = [
             [
@@ -58,7 +60,38 @@ class OrderStatusTableSeeder extends Seeder
                 'slug' => 'FAILED',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ],                             
+            ], 
+            [
+                'name' => 'Ready to ship',
+                'slug' => 'READY_TO_SHIP',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ], 
+            [
+                'name' => 'Packed',
+                'slug' => 'PACKED',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Shipped',
+                'slug' => 'SHIPPED',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],   
+            [
+                'name' => 'Completed',
+                'slug' => 'COMPLETED',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],     
+            
+            [
+                'name' => 'Returned',
+                'slug' => 'RETURNED',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],                 
         ];
 
         DB::table('order_status')->insert($groups);

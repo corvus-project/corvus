@@ -54,10 +54,11 @@ $(document).ready(function() {
         processing: true,
         responsive: true,
         serverSide: true,
+
         pageLength: 50,
         ajax: "orders/data",
         columns: [{
-                name: 'oid',
+                name: 'order_headers.id',
                 data: 'oid'
             },
             {

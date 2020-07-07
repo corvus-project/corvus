@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\Product;
 use DB;
+use Log;
 
 class ProcessOrder implements ShouldQueue
 {
@@ -35,7 +36,6 @@ class ProcessOrder implements ShouldQueue
      */
     public function handle()
     {
-        
         $order = $this->order;
         $status = OrderStatus::all();
         $processing = $status->firstWhere('slug', 'PROCESSING');
@@ -99,14 +99,20 @@ class ProcessOrder implements ShouldQueue
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
                         ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name', 'warehouses.id as warehouse_id')
                         ->first(); 
-
+            
+            Log::debug('Procssing the ordered product', ['sku' => $orderline->product_sku]);
             if ($product){
                 $orderline->product_name = $product->name;
                 $orderline->product_id = $product->id;
                 $orderline->amount = $product->amount;
                 $orderline->warehouse_name = $product->warehouse_name;
                 $orderline->warehouse_id = $product->warehouse_id;
-
+                Log::debug('Processing the product', 
+                                [
+                                    'sku' => $product->sku, 
+                                    'Product quantity' => $product->quantity, 
+                                    'Order quantity' => $orderline->quantity]
+                                );
                 if ($product->quantity >= $orderline->quantity){
                     $orderline->status = $approved->id;
                 }else{
