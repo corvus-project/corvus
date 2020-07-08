@@ -32,11 +32,9 @@ class UsersRolesSeeder extends Seeder
 
         $role = \App\Models\Role::where('name', 'vendor')->first();
 
-        $users = \App\Models\User::where('email', '!=' ,'admin@gazatem.com')->get();
+        $users = \App\Models\User::whereNotIn('email', ['admin@gazatem.com', 'orders_staff@gazatem.com', 'inventory_staff@gazatem.com'])->get();
         foreach ($users as $user) {
-            
             $user = \App\Models\User::whereEmail($user->email)->first();
-
             if (!$user) continue;
             $user->attachRole($role);
         } 
