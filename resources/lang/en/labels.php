@@ -67,7 +67,7 @@ return [
         'pricing_history'   => 'Pricing History',
         'stock_history'   => 'Stock History',
         'amount'  => 'Amount',
-         
+        'stock_group' => 'Stock Group', 
         'warehouse' => 'Warehouse',
         'stock_groups' => 'Stock Group',
         'pricing_group' => 'Pricing Group',
