@@ -53,6 +53,10 @@ return [
     'customers' => [
         'title' => 'Customers'
     ],
+    'users' => [
+        'name'  => 'Name',
+        'management'    => 'Management'
+    ],
     'products' => [
         'name'  => 'Name',
         'view'  => 'Product details',
@@ -63,7 +67,7 @@ return [
         'pricing_history'   => 'Pricing History',
         'stock_history'   => 'Stock History',
         'amount'  => 'Amount',
-         
+        'stock_group' => 'Stock Group', 
         'warehouse' => 'Warehouse',
         'stock_groups' => 'Stock Group',
         'pricing_group' => 'Pricing Group',
@@ -175,5 +179,10 @@ return [
         'forgot_password'   => 'I forgot my password'  ,
         'reset_password_box_title'  => "Reset Password",
         'send_password_reset_link_button'   => 'Send Password Reset Link'
+    ],
+
+    'cart' => [
+        'view' => 'Your order cart',
     ]
+
 ];

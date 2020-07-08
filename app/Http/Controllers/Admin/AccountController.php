@@ -33,7 +33,7 @@ class AccountController extends Controller
             $q->where('name', 'vendor');
         })
             ->leftJoin('account_profiles', 'users.id', '=', 'account_profiles.user_id')
-            ->select('users.id', 'users.name', 'users.email', 'account_profiles.account_number', 'account_profiles.account_group');
+            ->select(['users.id', 'users.name', 'users.email', 'account_profiles.account_number as account_number', 'account_profiles.account_group']);
         return datatables()->of($users)->toJson();
     }
 

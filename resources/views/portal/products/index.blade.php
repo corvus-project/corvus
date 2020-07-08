@@ -67,7 +67,6 @@ $(document).ready(function() {
                 name: 'name',
                 data: 'name'
             },    
-    
             {
                 name: 'stocks.quantity',
                 data: 'quantity'

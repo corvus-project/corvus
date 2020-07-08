@@ -17,7 +17,8 @@ return [
     'history' => 'History',
     'catalogue' => 'Catalogue',
     'account' => 'Account',
-
+    'cart'  => 'Cart',
+    'users' => 'User',
     'system' => 'System',
     'products' => 'Products',        
     'pricing_groups' => 'Pricing Groups',

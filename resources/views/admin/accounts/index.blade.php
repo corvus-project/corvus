@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', app_name() . ' | ' . __('customer::labels.accounts.portal'))
+@section('title', app_name() . ' | ' . __('labels.accounts.index'))
 
 @section('content')
 <div class="card mt-2">
@@ -70,11 +70,11 @@ $(document).ready(function() {
                 data: 'email'
             },
             {
-                name: 'account_number',
+                name: 'account_profiles.account_number',
                 data: 'account_number'
             },
             {
-                name: 'account_group',
+                name: 'account_profiles.account_group',
                 data: 'account_group'
             }
         ]

@@ -44,13 +44,14 @@ class OrderController extends Controller
         
         $order = Order::create(['user_id' => $user->id, 'order_date' => Carbon::now(), 'status' => 1, 'ref_id' => $request->ref_id]);
         $order_id = $order->id;
-
+        $_status = OrderStatus::where('slug', 'NEW_ORDER')->first();
         foreach($lines as $line){
             $orderlines[] = [
                 'product_sku' => $line['sku'],
                 'quantity' => $line['quantity'],
                 'order_header_id' => $order_id,
-                'status' => 1
+                'status' => $_status->id,
+                'created_at' => Carbon::now()
             ];
         }
 

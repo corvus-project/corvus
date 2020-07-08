@@ -18,9 +18,10 @@ class VendorOrderImport implements ToModel, WithCustomCsvSettings, SkipsOnError,
 {
     use Importable, SkipsFailures, SkipsErrors;
 
-    public function __construct(int $order_id)
+    public function __construct(int $order_id, int $status)
     {
         $this->order_id = $order_id;
+        $this->status = $status;
     }
 
 
@@ -35,7 +36,7 @@ class VendorOrderImport implements ToModel, WithCustomCsvSettings, SkipsOnError,
             'product_sku' => $row[0],
             'quantity' => $row[1],
             'order_header_id' => $this->order_id,
-            'status' => 1
+            'status' => $this->status
             ]);
 
     }
