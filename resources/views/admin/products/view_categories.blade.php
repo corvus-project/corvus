@@ -18,11 +18,11 @@
                     <a href="{{ route('admin.products.view_categories', $product->id) }}"
                         class="btn btn-success btn-sm m-1" data-toggle="tooltip" title="List the categories"><i
                             class="fas fa-list"></i></a>
-
+                            @if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))
                     <a href="{{ route('admin.products.create_category', $product->id) }}"
                         class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Add Product to a Category"><i
                             class="fas fa-plus"></i></a>
-
+@endif
                     <a href="{{ route('admin.products.view', $product->id) }}" class="btn btn-info btn-sm m-1"
                         data-toggle="tooltip" title="Back to product"><i class="fas fa-arrow-alt-circle-left"></i></a>
 

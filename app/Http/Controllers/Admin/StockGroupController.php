@@ -40,12 +40,13 @@ class StockGroupController extends Controller
         return view('admin.stock_groups.create_edit', compact('stock_group'));
     }
 
-    public function update(StockGroup $group, StockGroupUpdateRequest $request)
+    public function update(StockGroup $stock_group, StockGroupUpdateRequest $request)
     {
-        $group->name = $request->name;
-        $group->slug = strtoupper (Str::slug($request->name, '_'));
-        if ($group->save()) {
-            return redirect(route('admin.stock_groups.edit', $group->id))->withFlashSuccess(trans('labels.stock_groups.updated'));
+        $id = $stock_group->id;
+        $stock_group->name = $request->name;
+        $stock_group->slug = strtoupper (Str::slug($request->name, '_'));
+        if ($stock_group->save()) {
+            return redirect(route('admin.stock_groups.edit', $stock_group->id))->withFlashSuccess(trans('labels.stock_groups.updated'));
         }
         $error = $user->errors()->all(':message');
         return redirect(route('admin.stock_groups.edit'))->withFlashDanger($error)->withInput(); 

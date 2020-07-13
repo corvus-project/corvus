@@ -40,7 +40,7 @@
 
         <div class="row">
             <div class="col-12"> 
-             
+            @if (Auth::user()->hasRoles(['administrator', 'orders_staff']))
             @if(in_array($order->status, $allowed_status))
                 <a class="btn btn-primary m-2 float-right" href="{{ route('admin.orders.update', $order->id) }}">
                     <i class="fas fa-sync-alt align-middle"></i> <span class="align-middle">
@@ -70,7 +70,7 @@
                     <i class="fas fa-sync-alt align-middle"></i> <span class="align-middle">
                     Completed</span></a>
             @endif              
- 
+            @endif     
 
             </div>
         </div>
