@@ -14,6 +14,7 @@
                 <h4>Pricing Groups</h4>
             </div>
             <div class="col-sm-6">
+            @if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
 
                     <a href="{{ route('admin.products.view_pricing', $product->id) }}"
@@ -25,6 +26,7 @@
                             class="fas fa-plus"></i></a>
 
                 </div>
+                @endif
             </div>
         </div>
         <table class="table table-hover table-bordered">
@@ -43,7 +45,7 @@
                     <td>{{ $pricing->pricing_group->name }}</td>
                     <td>{{ $pricing->amount }}</td>
                     <td>{{ $pricing->from_to }}</td>
-                    <td>
+                    <td>@if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))
                         <a href="{{ route('admin.products.edit_pricing', [$product->id, $pricing->id]) }}"
                             class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update pricing"><i
                                 class="fas fa-pen"></i></a>
@@ -51,6 +53,7 @@
                         <a href="{{ route('admin.products.delete_pricing', [$product->id, $pricing->id]) }}"
                             class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip"
                             title="Delete pricing"><i class="fas fa-trash"></i></a>
+                            @endif
                     </td>
                 </tr>
                 @endforeach
@@ -64,6 +67,7 @@
                 <h4>Stock Groups</h4>
             </div>
             <div class="col-sm-6">
+            @if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
 
                     <a href="{{ route('admin.products.view_stocks', $product->id) }}" class="btn btn-success btn-sm m-1"
@@ -72,8 +76,8 @@
                     <a href="{{ route('admin.products.create_stock', $product->id) }}"
                         class="btn btn-primary btn-sm m-1" data-toggle="tooltip" title="Create a stock"><i
                             class="fas fa-plus"></i></a>
-
-                </div>
+ 
+                </div>@endif
             </div>
         </div>
         <table class="table table-hover table-bordered">
@@ -92,7 +96,7 @@
                     <td>{{ $stock->stock_group->name }}</td>
                     <td>{{ $stock->warehouse->name }}</td>
                     <td>{{ $stock->quantity }}</td>
-                    <td>
+                    <td>            @if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))
                         <a href="{{ route('admin.products.edit_stock', [$product->id, $stock->id]) }}"
                             class="btn btn-info btn-sm ml-1 float-right" data-toggle="tooltip" title="Update stock"><i
                                 class="fas fa-pen"></i></a>
@@ -100,7 +104,7 @@
                         <a href="{{ route('admin.products.delete_stock', [$product->id, $stock->id]) }}"
                             class="btn btn-danger btn-sm ml-1 float-right" data-toggle="tooltip" title="Delete stock"><i
                                 class="fas fa-trash"></i></a>
-
+@endif
                     </td>
                 </tr>
                 @endforeach
@@ -166,11 +170,12 @@
                     <a href="{{ route('admin.products.view_categories', $product->id) }}"
                         class="btn btn-success btn-sm ml-1" data-toggle="tooltip" title="List the Categories"><i
                             class="fas fa-list"></i></a>
-
+                            @if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))
 
                     <a href="{{ route('admin.products.create_category', $product->id) }}"
                         class="btn btn-primary btn-sm ml-1" data-toggle="tooltip" title="Add Product to a Category"><i
                             class="fas fa-plus"></i></a>
+                            @endif
                 </div>
             </div>
         </div>

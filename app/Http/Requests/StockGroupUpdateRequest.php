@@ -23,7 +23,6 @@ class StockGroupUpdateRequest extends FormRequest
      */
     public function rules(Request $request)
     {
- 
         return [
             'name' => 'required|string|max:25|unique:stock_groups,name,'.$this->route('stock_group')->id,
 

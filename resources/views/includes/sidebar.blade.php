@@ -65,8 +65,7 @@
                     @lang('menus.dashboard')
                 </a>
             </li>
-            @endif
-            @if (Auth::user()->hasRoles(['inventory_staff', 'administrator']))
+         
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/products'))
@@ -144,7 +143,7 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->hasRoles(['administrator', 'inventory_staff', 'orders_staff']))
+            @if (Auth::user()->hasRoles(['administrator']))
             <li class="nav-item nav-dropdown ">
                 <a class="nav-link nav-dropdown-toggle {{
                     active_class(Route::is('admin/reports'))
