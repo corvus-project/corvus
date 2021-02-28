@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
  
         App\Providers\HelperServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
+
 
     ],
 

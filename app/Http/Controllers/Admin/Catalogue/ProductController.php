@@ -18,9 +18,18 @@ use App\Models\OrderLine;
 use App\Models\OrderStatus;
 use DB;
 use Illuminate\Http\Request;
+use Modules\Core\Services\PricingService;
 
 class ProductController extends Controller
 {
+
+    private $pricingService;
+  
+    public function __construct(PricingService $pricingService)
+    {
+        $this->pricingService = $pricingService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,6 +70,7 @@ class ProductController extends Controller
 
     public function view_pricing(Product $product)
     {
+        return $this->pricingService->getPricingbyProductId();
         $pricings = $product->pricing()->with('pricing_group')->orderBy('pricings.from_date', 'DESC')->paginate(100);
         return view('admin.products.view_pricing', compact('product', 'pricings'));
     }
