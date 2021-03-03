@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Core\Services;
+namespace Core\Services;
 
-use Modules\Core\Repositories\Pricing\PricingRepositoryInterface;
+use Core\Repositories\Pricing\PricingRepositoryInterface;
 
 class PricingService
 {

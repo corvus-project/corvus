@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Core\Repositories\Pricing;
+namespace Core\Repositories\Pricing;
 
 use App\Models\Pricing;
-use Modules\Core\Repositories\Pricing\PricingRepositoryInterface;
+use Core\Repositories\Pricing\PricingRepositoryInterface;
 use Illuminate\Support\Collection;
-use Modules\Core\Repositories\BaseRepository;
+use Core\Repositories\BaseRepository;
 
 class PricingRepository extends BaseRepository implements PricingRepositoryInterface
 {

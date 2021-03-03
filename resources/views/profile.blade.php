@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('adminlte::page')
 
 @section('title', app_name() . ' | ' . __('labels.products.management'))
 

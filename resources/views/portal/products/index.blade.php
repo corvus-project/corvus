@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('adminlte::page')
 
 @section('title', app_name() . ' | ' . __('labels.products.management'))
 
@@ -30,6 +30,7 @@
                             <th>Name</th>
                             <th>Quantity</th>
                             <th>Amount</th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -44,7 +45,7 @@
 @parent
 @stop
 
-@section('scripts')
+@section('js')
 @parent
 <script src="//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script>
@@ -74,17 +75,31 @@ $(document).ready(function() {
             {
                 name: 'pricings.amount',
                 data: 'amount'
-            }
-        ]
+            },
+            {
+                "className": 'options',
+                "data": null,
+                "searchable": false, 
+                "render": function(data) {
+                    var template = "{{ route('portal.products.view', '000') }}"
+                    var redirect_url = template.replace('000', data.id);
+                    return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
+                },
+            }            
+        ],
+        initComplete: function() {
+            this.api().columns([0, 1, 2]).every(function() {
+                var column = this;
+                var input = document.createElement("input");
+                $(input).appendTo($(column.header()).empty())
+                    .on('change', function() {
+                        column.search($(this).val(), false, false, true).draw();
+                    });
+            });
+        }        
     });
 
          
-    $('#products tbody').on('click', 'tr', function () {
-        var data = table.row( this ).data();
-        var template = "{{ route('portal.products.view', '000') }}"
-        var redirect_url = template.replace('000', data.id);
-        window.location.href = redirect_url
-    } );
 });
 </script>
 @stop

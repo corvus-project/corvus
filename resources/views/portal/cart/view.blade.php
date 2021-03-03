@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('adminlte::page')
 
 @section('title', app_name() . ' | ' . __('labels.cart.view'))
 
@@ -21,7 +21,7 @@
                         </div>
                     </div> 
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
-                        <i class="fas fa-upload align-middle"></i> <span class="align-middle"><strong>Upload</strong></span>
+                        <i class="fas fa-upload align-middle"></i> <span class="align-middle"><strong>Send Order</strong></span>
                     </button>
                 </form>
 

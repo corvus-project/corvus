@@ -50,7 +50,7 @@ Route::group(['as' => 'user.', 'middleware' => ['web', 'auth', 'verified']], fun
 /**
  * Backend routes
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator;orders_staff;inventory_staff'], 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator;orders_staff;inventory_staff'], 'namespace' => '\Backoffice\Controllers'], function () {
 
     // Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
@@ -59,10 +59,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/products', ['as' => 'products.index', 'uses' => 'Catalogue\ProductController@index']);
     Route::get('/products/data', ['as' => 'products.data', 'uses' => 'Catalogue\ProductController@data']);
     Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'Catalogue\ProductController@view']);
-    Route::get('/products/{product}/pricing', ['as' => 'products.view_pricing', 'uses' => 'Catalogue\ProductController@view_pricing']);
+    
+    Route::get('/products/{product}/pricing', ['as' => 'products.view_pricing', 'uses' => 'Catalogue\PricingController@view_pricing']);
+
+
     Route::get('/products/{product}/stocks', ['as' => 'products.view_stocks', 'uses' => 'Catalogue\ProductController@view_stocks']);
     Route::get('/products/{product}/categories', ['as' => 'products.view_categories', 'uses' => 'Catalogue\ProductController@view_categories']);
-    Route::get('/products/{product}/history', ['as' => 'products.view_history', 'uses' => 'Catalogue\ProductController@view_history']);
+    Route::get('/products/{product}/history', ['as' => 'products.view_history', 'uses' => 'Catalogue\OrderController@view_history']);
     
 
     // Category CRUD
@@ -173,6 +176,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
 
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home')->middleware(['web', 'auth']);
 Route::get('/redirect', 'HomeController@redirect');
 
+Route::get('/debug', function(){
+    $user = App\Models\User::where('email', 'customer@gazatem.com')->first();
+    $user->password = bcrypt('password');
+    $user->save();
+    return 'dsf';
+} );

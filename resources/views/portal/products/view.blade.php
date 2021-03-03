@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('adminlte::page')
 
 @section('title', app_name() . ' | ' . __('labels.products.view'))
 
@@ -14,14 +14,14 @@
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="">
 
                             <a href="{{ route('portal.cart.add', $product->id) }}" class="btn btn-warning btn-md m-1"
-                                data-toggle="tooltip" title="Add to Cart"><i class="fas fa-cart-plus"></i></a>
+                                data-toggle="tooltip" title="Add to Cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
 
                         </div>
 
                     </div>
                 </div>
 
-
+                @include('includes.partials.messages')
                 <div class="row border-bottom">
                     <div class="col-sm-5 bg-light p-2"><b>SKU</b></div>
                     <div class="col-sm-7  p-2">{{ $product->sku }}</div>

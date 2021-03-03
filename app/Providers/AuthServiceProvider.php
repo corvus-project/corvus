@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Auth\User\User;
-use App\Policies\Backend\BackendPolicy;
-use App\Policies\Models\User\UserPolicy;
+use App\Policies\MenuPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -16,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
- 
+
     ];
 
     /**
@@ -28,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('access-backend', [MenuPolicy::class, 'canAccessBackend']);
+        Gate::define('customer-access-only', [MenuPolicy::class, 'canAccessCustomer']);
+        
     }
 }
