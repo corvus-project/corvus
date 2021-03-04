@@ -70,6 +70,7 @@ class ProductController extends Controller
                     ->select('quantity', 'warehouses.name as warehouse_name')
                     ->first();
 
+ 
         return view('portal.products.view', compact('product', 'price', 'stock'));
     }
 }

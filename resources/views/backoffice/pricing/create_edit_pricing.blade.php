@@ -33,7 +33,8 @@
                     </div>
                 </div>
                 @include('includes.product_box')
- 
+                <br>
+                @include('includes.partials.messages')
                 <br />
  
                 <form autocomplete="off" role="form"

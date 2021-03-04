@@ -37,7 +37,7 @@
                 </div>
                 @include('includes.product_box') 
                 <br />
-
+                @include('includes.partials.messages')
                 <form autocomplete="off" role="form"
                     action="{{ (isset($stock)) ? route('backoffice.products.edit_stock.update', [$stock->product_id, $stock->id]) : route('backoffice.products.create_stock.store', $product->id) }}"
                     method="post">

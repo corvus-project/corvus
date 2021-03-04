@@ -22,15 +22,16 @@
 
         <div class="row mt-4">
             <div class="col">
-                <table id="products" class="table row-border hover order-column" style="width: 100%">
+                <table id="orders" class="table row-border hover order-column" style="width: 100%">
                     <thead>
                         <tr>
-                            <th>SKU</th>
+                 
+                            <th>ID</th>
                             <th>Order Date</th>
                             <th>Customer</th>
                             <th>Processed Date</th>
                             <th>Status</th>
-                           
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -39,20 +40,20 @@
     </div>
 </div>
 @endsection
-@section('styles')
+@section('css')
 <link rel='stylesheet' href='//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css' type='text/css' media='all' />
 
 @parent
 @stop
 
-@section('scripts')
+@section('js')
 @parent
 <script src="//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4/jquery.dataTables.yadcf.js"></script>
 
 <script>
 $(document).ready(function() {
-    var table = $('#products').DataTable({
+    var table = $('#orders').DataTable({
         processing: true,
         responsive: true,
         serverSide: true,
@@ -78,8 +79,17 @@ $(document).ready(function() {
             {
                 name: 'status',
                 data: 'order_status_name'
+            },
+            {
+                "className": 'options',
+                "data": null,
+                "searchable": false, 
+                "render": function(data) {
+                    var template = "{{ route('backoffice.orders.view', '000') }}"
+                    var redirect_url = template.replace('000', data.order_header_id);
+                    return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
+                }
             }
-
         ]
     });
 

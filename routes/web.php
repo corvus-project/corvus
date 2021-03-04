@@ -60,7 +60,7 @@ Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => [
     Route::get('/products/data', ['as' => 'products.data', 'uses' => 'Catalogue\ProductController@data']);
     Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'Catalogue\ProductController@view']);
     
-    Route::get('/products/{product}/pricing', ['as' => 'products.view_pricing', 'uses' => 'Catalogue\PricingController@view_pricing']);
+
 
 
     Route::get('/products/{product}/stocks', ['as' => 'products.view_stocks', 'uses' => 'Catalogue\ProductController@view_stocks']);
@@ -83,12 +83,13 @@ Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => [
     Route::post('/products/{product}/delete/{stock}/stocks', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_stock.destroy', 'uses' => 'Catalogue\ProductController@destroy_stock']);
 
     //  PPRICING CRUD
-    Route::get('/products/{product}/create/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.create_pricing', 'uses' => 'Catalogue\ProductController@create_pricing']);
-    Route::post('/products/{product}/create/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.create_pricing.store', 'uses' => 'Catalogue\ProductController@store_pricing']);
-    Route::get('/products/{product}/edit/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.edit_pricing', 'uses' => 'Catalogue\ProductController@edit_pricing']);
-    Route::post('/products/{product}/edit/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.edit_pricing.update', 'uses' => 'Catalogue\ProductController@update_pricing']);
-    Route::get('/products/{product}/delete/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_pricing', 'uses' => 'Catalogue\ProductController@delete_pricing']);
-    Route::post('/products/{product}/delete/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_pricing.destroy', 'uses' => 'Catalogue\ProductController@destroy_pricing']);
+    Route::get('/products/{product}/pricing', ['as' => 'products.view_pricing', 'uses' => 'Catalogue\PricingController@view_pricing']);    
+    Route::get('/products/{product}/create/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.create_pricing', 'uses' => 'Catalogue\PricingController@create_pricing']);
+    Route::post('/products/{product}/create/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.create_pricing.store', 'uses' => 'Catalogue\PricingController@store_pricing']);
+    Route::get('/products/{product}/edit/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.edit_pricing', 'uses' => 'Catalogue\PricingController@edit_pricing']);
+    Route::post('/products/{product}/edit/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.edit_pricing.update', 'uses' => 'Catalogue\PricingController@update_pricing']);
+    Route::get('/products/{product}/delete/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_pricing', 'uses' => 'Catalogue\PricingController@delete_pricing']);
+    Route::post('/products/{product}/delete/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_pricing.destroy', 'uses' => 'Catalogue\PricingController@destroy_pricing']);
 
     // Pricing Groups
     Route::get('/pricing-groups', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'pricing_groups.index', 'uses' => 'PricingGroupController@index']);

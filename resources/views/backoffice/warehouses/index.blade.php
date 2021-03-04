@@ -29,6 +29,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>Warehouses</th>
+                    <th>Code</th>
                     <th> </th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                 @foreach($warehouses as $warehouse)
                 <tr>
                     <td>{{ $warehouse->name }}</td>
+                    <td>{{ $warehouse->slug }}</td>
                     <td>
                         <a href="{{ route('backoffice.warehouses.delete', $warehouse->id) }}"
                             class="btn btn-danger btn-xs ml-1 float-right" title="Delete the warehouse"><i

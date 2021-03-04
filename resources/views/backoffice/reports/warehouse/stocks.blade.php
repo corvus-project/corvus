@@ -25,11 +25,13 @@
                 <table id="products" class="table row-border hover order-column" style="width: 100%">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>SKU</th>
                             <th>Name</th>
                             <th>Warehouse</th>
                             <th>Stock Type</th>
                             <th>Quantity</th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -38,13 +40,13 @@
     </div>
 </div>
 @endsection
-@section('styles')
+@section('css')
 <link rel='stylesheet' href='//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css' type='text/css' media='all' />
 
 @parent
 @stop
 
-@section('scripts')
+@section('js')
 @parent
 <script src="//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4/jquery.dataTables.yadcf.js"></script>
@@ -58,7 +60,12 @@ $(document).ready(function() {
         pageLength: 50,
         ajax: "/backoffice/reports/warehouse/stock/data",
 
-        columns: [{
+        columns: [
+            {
+                name: 'pid',
+                data: 'pid'
+            },
+            {
                 name: 'sku',
                 data: 'product_sku'
             },
@@ -77,29 +84,31 @@ $(document).ready(function() {
             {
                 name: 'quantity',
                 data: 'quantity'
+            },
+            {
+                "className": 'options',
+                "data": null,
+                "searchable": false, 
+                "render": function(data) {
+                    var template = "{{ route('backoffice.products.view', '000') }}"
+                    var redirect_url = template.replace('000', data.pid);
+                    return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
+                },
             }
-
         ]
     });
 
     yadcf.init(table, [{
-        column_number: 2,
+        column_number: 3,
         filter_type: "select",
         data: [{!!$warehouses_json!!}],
     }, {
-        column_number: 3,
+        column_number: 4,
         filter_type: "select",
         data: [{!!$stock_groups_json!!}],
     }]);
 
-
-
-    $('#products tbody').on('click', 'tr', function() {
-        var data = table.row(this).data();
-        var template = "{{ route('backoffice.products.view', '000') }}"
-        var redirect_url = template.replace('000', data.pid);
-        window.location.href = redirect_url
-    });
+ 
 });
 </script>
 @stop

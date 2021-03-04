@@ -9,7 +9,28 @@
         @include('includes.product_box')
         <br />
 
-        <div class="row">
+        <div class="card card-navy card-outline card-tabs">
+              <div class="card-header p-0 pt-1 border-bottom-0">
+                <ul class="nav nav-tabs" id="tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="pricing-tab" data-toggle="pill" href="#pricing" role="tab" aria-controls="pricing" aria-selected="true">Pricing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="stock-tab" data-toggle="pill" href="#stock" role="tab" aria-controls="stock" aria-selected="false">Inventory Stock </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="orders-tab" data-toggle="pill" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Order History</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="categories-tab" data-toggle="pill" href="#categories" role="tab" aria-controls="categories" aria-selected="false">Categories</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="tabContent">
+                  <div class="tab-pane fade show active" id="pricing" role="tabpanel" aria-labelledby="pricing-tab">
+
+                  <div class="row">
             <div class="col-sm-6">
                 <h4>Pricing Groups</h4>
             </div>
@@ -29,6 +50,12 @@
                 @endif
             </div>
         </div>
+ 
+ @if(count($cur_pricelist) < 1)
+<div class="alert alert-warning" role="alert">
+    The product does not have a price for today!
+</div>
+ @else
         <table class="table table-hover table-bordered">
             <thead class="thead-light">
                 <tr>
@@ -39,7 +66,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($product->pricing()->with('pricing_group')->take(10)->orderBy('pricings.from_date', 'DESC')->get() as
+                @foreach($cur_pricelist as
                 $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
@@ -49,20 +76,17 @@
                         <a href="{{ route('backoffice.products.edit_pricing', [$product->id, $pricing->id]) }}"
                             class="btn btn-info btn-xs ml-1 float-right" data-toggle="tooltip" title="Update pricing"><i
                                 class="fas fa-pen"></i></a>
-
-                        <a href="{{ route('backoffice.products.delete_pricing', [$product->id, $pricing->id]) }}"
-                            class="btn btn-danger btn-xs ml-1 float-right" data-toggle="tooltip"
-                            title="Delete pricing"><i class="fas fa-trash"></i></a>
                             @endif
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+@endif
+                  </div>
+                  <div class="tab-pane fade" id="stock" role="tabpanel" aria-labelledby="stock-tab">
 
-
-        <br />
-        <div class="row">
+                  <div class="row">
             <div class="col-sm-6">
                 <h4>Stock Groups</h4>
             </div>
@@ -111,10 +135,10 @@
             </tbody>
         </table>
 
+                  </div>
+                  <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
 
-
-        <br />
-        <div class="row">
+                  <div class="row">
             <div class="col-sm-6">
                 <h4>Stock Order History</h4>
             </div>
@@ -160,8 +184,10 @@
             There is no any orders to display!
     </div>
         @endif
-        <br />
-        <div class="row">
+                  </div>
+                  <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
+
+                  <div class="row">
             <div class="col-sm-6">
                 <h4>Categories</h4>
             </div>
@@ -211,6 +237,19 @@
     </table>
 
     @endif
+                  </div>
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+
+
+
+        <br />
+
+
+        <br />
+        <br />
 </div>
 </div>
 @endsection

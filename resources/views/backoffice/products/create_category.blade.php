@@ -38,7 +38,7 @@
                 @include('includes.product_box')
                 <br />
 
-
+                @include('includes.partials.messages')
                 <form autocomplete="off" role="form"
                     action="{{ route('backoffice.products.create_category.store', $product->id) }}" method="post">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
