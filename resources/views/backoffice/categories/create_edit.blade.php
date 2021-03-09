@@ -25,6 +25,8 @@
                     </div>
                 </div>
 
+                @include('includes.partials.messages')
+
                 <form autocomplete="off" role="form"
                     action="{{ (isset($category)) ? route('backoffice.categories.update', $category->id) : route('backoffice.categories.store') }}"
                     method="post">
@@ -57,7 +59,7 @@
                             value="{{{ old('taxonomy_id', isset($category) ? $category->taxonomy_id : null) }}}"> {!!
                         $errors->first('taxonomy_id', '<span class="help-block">:message</span>') !!}
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                     <i class="fas fa-save align-middle"></i> <span
                             class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>

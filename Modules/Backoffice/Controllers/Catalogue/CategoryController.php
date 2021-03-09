@@ -16,12 +16,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.categories.index', compact('categories'));
+        return view('backoffice.categories.index', compact('categories'));
     }
 
     public function products(Category $category)
     {
-        return view('admin.categories.products', compact('category'));
+        return view('backoffice.categories.products', compact('category'));
     }
 
     public function data(Category $category)
@@ -31,9 +31,9 @@ class CategoryController extends Controller
             ->leftJoin('categories', 'categories.id', '=', 'product_categories.category_id')
             ->where('categories.id', $category->id)
             ->select( [
-                'products.id as pid',
-                'products.sku as product_sku',
-                'products.name as product_name'
+                'products.id as products.id',
+                'products.sku as products.sku',
+                'products.name as products.name'
             ]);
 
         return datatables()->of($products)->toJson();
@@ -41,7 +41,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('admin.categories.create_edit');
+        return view('backoffice.categories.create_edit');
     }
 
     public function store(CategoryStoreRequest $request)
@@ -55,12 +55,12 @@ class CategoryController extends Controller
             return redirect(route('admin.categories.edit', $category->id))->withFlashSuccess(trans('labels.categories.created'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('admin.categories.create'))->withFlashDanger('error', $error)->withInput();
+        return redirect(route('backoffice.categories.create'))->withFlashDanger('error', $error)->withInput();
     }
 
     public function edit(Category $category)
     {
-        return view('admin.categories.create_edit', compact('category'));
+        return view('backoffice.categories.create_edit', compact('category'));
     }
 
     public function update(Category $category, CategoryUpdateRequest $request)
@@ -71,20 +71,20 @@ class CategoryController extends Controller
         $category->breadcrumb = $request->breadcrumb;
 
         if ($category->save()) {
-            return redirect(route('admin.categories.edit', $category->id))->withFlashSuccess(trans('labels.categories.updated'));
+            return redirect(route('backoffice.categories.edit', $category->id))->withFlashSuccess(trans('labels.categories.updated'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('admin.categories.edit'))->withFlashDanger($error)->withInput();
+        return redirect(route('backoffice.categories.edit'))->withFlashDanger($error)->withInput();
     }
 
     public function delete(Category $category)
     {
-        return view('admin.categories.delete', compact('category'));
+        return view('backoffice.categories.delete', compact('category'));
     }
 
-    public function destroy(Category $group)
+    public function destroy(Category $category)
     {
-        $group->delete();
-        return redirect(route('admin.categories.index'))->withFlashSuccess(trans('labels.categories.deleted'));
+        $category->delete();
+        return redirect(route('backoffice.categories.index'))->withFlashSuccess(trans('labels.categories.deleted'));
     }
 }

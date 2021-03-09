@@ -31,7 +31,15 @@ class AccountController extends Controller
             $q->where('name', 'vendor');
         })
             ->leftJoin('account_profiles', 'users.id', '=', 'account_profiles.user_id')
-            ->select(['users.id', 'users.name', 'users.email', 'account_profiles.account_number as account_number', 'account_profiles.account_group']);
+            ->select(
+                [
+                    'users.id',
+                    'users.name',
+                    'users.email',
+                    'account_profiles.account_number as account_number',
+                    'account_profiles.account_group'
+                ]
+            );
         return datatables()->of($users)->toJson();
     }
 
@@ -46,7 +54,14 @@ class AccountController extends Controller
             ->join('users', 'order_headers.user_id', '=', 'users.id')
             ->join('order_status', 'order_headers.status', '=', 'order_status.id')
             ->where('order_headers.user_id', $user->id)
-            ->select(['users.name as user_name', 'order_headers.id', 'order_headers.order_date', 'order_status.name as status_name', 'order_headers.ref_id'])
+            ->select(
+                [
+                    'order_headers.id as order_headers.id',
+                    'users.name as users.name',
+                    'order_headers.order_date as order_headers.order_date',
+                    'order_status.name as order_status.name',
+                    'order_headers.ref_id as order_headers.ref_id'
+                ])
             ->orderBy('order_headers.id', 'desc');
 
         return datatables()->of($orders)->toJson();
@@ -164,8 +179,8 @@ class AccountController extends Controller
         $token = $user->createToken('authToken')->accessToken;
 
         return redirect(route('backoffice.accounts.view', $user->id))
-                                ->with('session-token', $token)
-                                ->withFlashSuccess(__('labels.accounts.updated'));
+            ->with('session-token', $token)
+            ->withFlashSuccess(__('labels.accounts.updated'));
     }
 
 }

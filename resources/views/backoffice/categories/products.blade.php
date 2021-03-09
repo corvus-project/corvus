@@ -17,8 +17,10 @@
                 <table id="products" class="table row-border hover order-column" style="width: 100%">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>SKU</th>
                             <th>Name</th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -33,7 +35,7 @@
 @parent
 @stop
 
-@section('scripts')
+@section('js')
 @parent
 <script src="//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script>
@@ -46,23 +48,31 @@ $(document).ready(function() {
         ajax: "/backoffice/categories/{{$category->id}}/data",
         columns: [
             {
-                name: 'sku',
-                data: 'product_sku'
-            },            
+              name: 'products.id',
+              data: 'products.id'
+            },
             {
-                name: 'name',
-                data: 'product_name'
+                name: 'products.sku',
+                data: 'products.sku'
+            },
+            {
+                name: 'products.name',
+                data: 'products.name'
+            },
+            {
+                "className": 'options',
+                "data": null,
+                "searchable": false,
+                "render": function(data) {
+                    var template = "{{ route('backoffice.products.view', '000') }}"
+                    var redirect_url = template.replace('000', data.products.id);
+                    return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
+                },
             }
         ]
     });
 
-         
-    $('#products tbody').on('click', 'tr', function () {
-        var data = table.row( this ).data();
-        var template = "{{ route('backoffice.categories.products.data', '000') }}"
-        var redirect_url = template.replace('000', data.pid);
-        window.location.href = redirect_url
-    } );
+
 });
 </script>
 @stop

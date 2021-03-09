@@ -28,6 +28,8 @@
                             <th>Customer</th>
                             <th>Ref ID</th>
                             <th>Status</th>
+                            <th></th>
+
                         </tr>
                     </thead>
                 </table>
@@ -42,7 +44,7 @@
 @parent
 @stop
 
-@section('scripts')
+@section('js')
 @parent
 <script src="//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script>
@@ -54,36 +56,37 @@ $(document).ready(function() {
         pageLength: 50,
         ajax: "/backoffice/accounts/{{$user->id}}/orders_data",
         columns: [{
-                name: 'id',
-                data: 'id'
+                name: 'order_headers.id',
+                data: 'order_headers.id'
             },
             {
-                name: 'order_date',
-                data: 'order_date'
+                name: 'order_headers.order_date',
+                data: 'order_headers.order_date'
             },
             {
-                name: 'user_name',
-                data: 'user_name'
+                name: 'users.name',
+                data: 'users.name'
             },
             {
-                name: 'ref_id',
-                data: 'ref_id'
-            },            
+                name: 'order_headers.ref_id',
+                data: 'order_headers.ref_id'
+            },
             {
-                name: 'status',
-                data: 'status_name'
+                name: 'order_status.name',
+                data: 'order_status.name'
             },
             {
                 "className": 'options',
                 "data": null,
-                "searchable": false, 
+                "searchable": false,
                 "render": function(data) {
                     var template = "{{ route('backoffice.orders.view', '000') }}"
-                    var redirect_url = template.replace('000', data.oid);
+                    var redirect_url = template.replace('000', data.order_headers.id);
                     return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
-                },            
+                }
+            }
         ],
-       
+
     });
 });
 </script>
