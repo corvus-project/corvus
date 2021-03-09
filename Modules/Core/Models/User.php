@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace Corvus\Core\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Traits\UserAccess;
-use App\Models\Traits\UserRelationship;
-use App\Models\Traits\UserAttribute;
+use Corvus\Core\Models\Traits\UserAccess;
+use Corvus\Core\Models\Traits\UserRelationship;
+use Corvus\Core\Models\Traits\UserAttribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, UserRelationship, UserAccess, UserAttribute;
+    use HasApiTokens, Notifiable, UserRelationship, UserAccess, UserAttribute;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +32,4 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
- 
-
 }

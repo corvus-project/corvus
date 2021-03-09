@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Auth\User\User;
+use Corvus\Core\Models\Auth\User\User;
 
 return [
 

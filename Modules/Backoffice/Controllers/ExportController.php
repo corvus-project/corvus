@@ -1,15 +1,15 @@
 <?php
 
-namespace Backoffice\Controllers;
+namespace Corvus\Backoffice\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Csv;
-use App\Models\PricingGroup;
-use App\Models\Warehouse;
-use App\Models\StockGroup;
-use App\Models\User;
+use Corvus\Core\Models\PricingGroup;
+use Corvus\Core\Models\Warehouse;
+use Corvus\Core\Models\StockGroup;
+use Corvus\Core\Models\User;
 use DB;
 use App\Exports\ProductsExport;
 use App\Exports\PricesExport;

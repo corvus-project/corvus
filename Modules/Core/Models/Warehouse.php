@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Models;
-
+namespace Corvus\Core\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
- 
-class StockGroup extends Model
+class Warehouse extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'stock_groups';
+    protected $table = 'warehouses';
 
     /**
      * The attributes that are mass assignable.
@@ -22,9 +20,10 @@ class StockGroup extends Model
      * @var array
      */
     protected $fillable = [];
- 
+    
     public function stocks()
     {
         return $this->hasMany(Stock::class);
-    }    
+    }
+ 
 }

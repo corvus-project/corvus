@@ -30,6 +30,7 @@
                             <th>Name</th>
                             <th>Quantity</th>
                             <th>Stock Type</th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -44,7 +45,7 @@
 @parent
 @stop
 
-@section('scripts')
+@section('js')
 @parent
 <script src="//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script>
@@ -57,34 +58,49 @@ $(document).ready(function() {
         ajax: "/backoffice/warehouses/{{$warehouse->id}}/products/data",
         columns: [{
                 name: 'pid',
-                data: 'pid'
+                data: 'pid',
+                searchable: false,                 
             },
             {
-                name: 'sku',
-                data: 'product_sku'
+                name: 'products.sku',
+                data: 'products.sku'
             },            
             {
-                name: 'product_name',
-                data: 'product_name'
+                name: 'products.name',
+                data: 'products.name'
             },            
             {
                 name: 'quantity',
-                data: 'quantity'
+                data: 'quantity',
+                searchable: false,                                 
             },            
             {
                 name: 'stock_group_name',
-                data: 'stock_group_name'
-            }
-        ]
+                data: 'stock_group_name',
+                searchable: false, 
+            },
+            {
+                "className": 'options',
+                "data": null,
+                "searchable": false, 
+                "render": function(data) {
+                    var template = "{{ route('backoffice.products.view', '000') }}"
+                    var redirect_url = template.replace('000', data.pid);
+                    return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
+                },
+            }            
+        ],
+        initComplete: function() {
+            this.api().columns([1, 2]).every(function() {
+                var column = this;
+                var input = document.createElement("input");
+                $(input).appendTo($(column.header()).empty())
+                    .on('change', function() {
+                        column.search($(this).val(), false, false, true).draw();
+                    });
+            });
+        }         
     });
-
-         
-    $('#products tbody').on('click', 'tr', function () {
-        var data = table.row( this ).data();
-        var template = "{{ route('backoffice.products.view', '000') }}"
-        var redirect_url = template.replace('000', data.pid);
-        window.location.href = redirect_url
-    } );
 });
 </script>
 @stop

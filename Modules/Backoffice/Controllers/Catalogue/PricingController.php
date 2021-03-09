@@ -1,30 +1,29 @@
 <?php
 
-namespace Backoffice\Controllers\Catalogue;
+namespace Corvus\Backoffice\Controllers\Catalogue;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PricingStoreRequest;
 use App\Http\Requests\PricingUpdateRequest;
 use App\Http\Requests\StockStoreRequest;
 use App\Http\Requests\StockUpdateRequest;
-use App\Models\Category;
-use App\Models\Pricing;
-use App\Models\PricingGroup;
-use App\Models\Product;
-use App\Models\Stock;
-use App\Models\StockGroup;
-use App\Models\Warehouse;
-use App\Models\OrderLine;
-use App\Models\OrderStatus;
+use Corvus\Core\Models\Category;
+use Corvus\Core\Models\Pricing;
+use Corvus\Core\Models\PricingGroup;
+use Corvus\Core\Models\Product;
+use Corvus\Core\Models\Stock;
+use Corvus\Core\Models\StockGroup;
+use Corvus\Core\Models\Warehouse;
+use Corvus\Core\Models\OrderLine;
+use Corvus\Core\Models\OrderStatus;
 use DB;
 use Illuminate\Http\Request;
-use Core\Services\PricingService;
+use Corvus\Core\Services\PricingService;
 
 class PricingController extends Controller
 {
-
     private $pricingService;
-  
+
     public function __construct(PricingService $pricingService)
     {
         $this->pricingService = $pricingService;
@@ -34,13 +33,13 @@ class PricingController extends Controller
     {
         $current_price_list = $product->pricing()->with('pricing_group')->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')->orderBy('pricings.from_date', 'DESC')->get();
         $history_price_list = $product->pricing()
-                                    ->with('pricing_group')
-                                    ->whereRaw('NOT  (CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-                                    ->whereRaw('to_date < CURRENT_DATE')->orderBy('pricings.from_date', 'DESC')->paginate(100);
+            ->with('pricing_group')
+            ->whereRaw('NOT  (CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
+            ->whereRaw('to_date < CURRENT_DATE')->orderBy('pricings.from_date', 'DESC')->paginate(100);
         $future_price_list = $product->pricing()
-                                    ->with('pricing_group')
-                                    ->whereRaw('NOT  (CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-                                    ->whereRaw('to_date > CURRENT_DATE')->orderBy('pricings.from_date', 'DESC')->paginate(100);                                    
+            ->with('pricing_group')
+            ->whereRaw('NOT  (CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
+            ->whereRaw('to_date > CURRENT_DATE')->orderBy('pricings.from_date', 'DESC')->paginate(100);
         return view('backoffice.pricing.view_pricing', compact('product', 'current_price_list', 'history_price_list', 'future_price_list'));
     }
 
@@ -55,7 +54,7 @@ class PricingController extends Controller
         $count = DB::table('pricings')
             ->where('product_id', $product->id)
             ->where('pricing_group_id', $request->pricing_group_id)
-            ->whereRaw("('". $request->from_date ."' BETWEEN pricings.from_date AND pricings.to_date)")
+            ->whereRaw("('" . $request->from_date . "' BETWEEN pricings.from_date AND pricings.to_date)")
             ->count();
 
         if ($count > 0) {
@@ -69,7 +68,7 @@ class PricingController extends Controller
         $pricing->product_id = $product->id;
         $pricing->pricing_group_id = $request->pricing_group_id;
         if ($pricing->save()) {
-            return redirect(route('backoffice.pricing.edit_pricing', [$product->id, $pricing->id]))->withFlashSuccess(trans('labels.products.pricing.created'));
+            return redirect(route('backoffice.pricing.edit_pricing', [$product->id, $pricing->id]))->withFlashSuccess(trans('labels.pricing.products.created'));
         }
         $error = $user->errors()->all(':message');
         return redirect(route('backoffice.pricing.create_pricing'))->withFlashDanger('error', $error)->withInput();
@@ -95,16 +94,15 @@ class PricingController extends Controller
         if ($count > 0) {
             return redirect(route('backoffice.pricing.edit_pricing', [$product->id, $pricing->id]))->withFlashDanger('You can\'t update the price between these dates')->withInput();
         }
-     
+
         $pricing->amount = $request->amount;
         $pricing->from_date = $request->from_date;
         $pricing->to_date = $request->to_date;
         $pricing->product_id = $product->id;
         $pricing->pricing_group_id = $request->pricing_group_id;
-        
+
         if ($pricing->save()) {
-            
-            return redirect(route('backoffice.pricing.edit_pricing', [$product->id, $pricing->id]))->withFlashSuccess(trans('labels.products.pricing.updated'));
+            return redirect(route('backoffice.pricing.edit_pricing', [$product->id, $pricing->id]))->withFlashSuccess(trans('labels.pricing.products.updated'));
         }
         $error = $user->errors()->all(':message');
         return redirect(route('backoffice.pricing.edit_pricing'))->withFlashDanger($error)->withInput();
@@ -119,7 +117,7 @@ class PricingController extends Controller
     public function destroy_pricing(Product $product, Pricing $pricing)
     {
         $pricing->delete();
-        return redirect(route('backoffice.pricing.view_pricing', $product->id))->withFlashSuccess(trans('labels.products.pricing.deleted'));
+        return redirect(route('backoffice.pricing.view_pricing', $product->id))->withFlashSuccess(trans('labels.pricing.products.deleted'));
     }
 
 

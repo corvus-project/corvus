@@ -1,9 +1,10 @@
 <?php
-namespace App\Models\Traits;
 
-use App\Models\Order;
-use App\Models\Role;
-use App\Models\Profile; 
+namespace Corvus\Core\Models\Traits;
+
+use Corvus\Core\Models\Order;
+use Corvus\Core\Models\Role;
+use Corvus\Core\Models\Profile;
 
 trait UserRelationship{
 
@@ -15,7 +16,7 @@ trait UserRelationship{
     public function orders()
     {
         return $this->hasMany(Order::class);
-    }    
+    }
 
     public function profile()
     {

@@ -1,21 +1,21 @@
 <?php
 
-namespace Backoffice\Controllers\Catalogue;
+namespace Corvus\Backoffice\Controllers\Catalogue;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PricingStoreRequest;
 use App\Http\Requests\PricingUpdateRequest;
 use App\Http\Requests\StockStoreRequest;
 use App\Http\Requests\StockUpdateRequest;
-use App\Models\Category;
-use App\Models\Pricing;
-use App\Models\PricingGroup;
-use App\Models\Product;
-use App\Models\Stock;
-use App\Models\StockGroup;
-use App\Models\Warehouse;
-use App\Models\OrderLine;
-use App\Models\OrderStatus;
+use Corvus\Core\Models\Category;
+use Corvus\Core\Models\Pricing;
+use Corvus\Core\Models\PricingGroup;
+use Corvus\Core\Models\Product;
+use Corvus\Core\Models\Stock;
+use Corvus\Core\Models\StockGroup;
+use Corvus\Core\Models\Warehouse;
+use Corvus\Core\Models\OrderLine;
+use Corvus\Core\Models\OrderStatus;
 use DB;
 use Illuminate\Http\Request;
 use Core\Services\PricingService;
@@ -31,7 +31,7 @@ class OrderController extends Controller
                                     ->orderBy('created_at', 'DESC')
                                     ->with('order')->paginate();
         $order_status_list = OrderStatus::all()->pluck('name', 'id');
-                 
+
         return view('backoffice.products.view_history', compact('product', 'orderlines', 'order_status_list'));
     }
 }

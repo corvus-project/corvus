@@ -1,8 +1,8 @@
 <?php   
 
-namespace Core\Repositories;
+namespace Corvus\Core\Repositories;
 
-use Core\Repositories\EloquentRepositoryInterface; 
+use Corvus\Core\Repositories\EloquentRepositoryInterface; 
 use Illuminate\Database\Eloquent\Model;   
 
 class BaseRepository implements EloquentRepositoryInterface 

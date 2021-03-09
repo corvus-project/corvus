@@ -25,7 +25,7 @@ class PricingStoreRequest extends FormRequest
     {
         return [
             'from_date' => 'required|date|before_or_equal:'. date('Y-m-d'),
-            'to_date'   => 'required|date|before_or_equal:'. date('Y-m-d'),
+            'to_date'   => 'required|date|after:'. date('Y-m-d'),
             'amount'    => 'required|numeric'
         ];
     }

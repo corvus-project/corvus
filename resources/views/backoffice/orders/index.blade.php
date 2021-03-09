@@ -84,13 +84,13 @@ $(document).ready(function() {
                 "searchable": false, 
                 "render": function(data) {
                     var template = "{{ route('backoffice.orders.view', '000') }}"
-                    var redirect_url = template.replace('000', data.id);
+                    var redirect_url = template.replace('000', data.oid);
                     return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
                 },
             }                        
         ],
         initComplete: function() {
-            this.api().columns([0, 1, 2]).every(function() {
+            this.api().columns([0, 3]).every(function() {
                 var column = this;
                 var input = document.createElement("input");
                 $(input).appendTo($(column.header()).empty())

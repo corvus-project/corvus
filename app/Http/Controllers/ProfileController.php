@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Models\Auth\User\User;
+use Corvus\Core\Models\Auth\User\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
-{   
+{
     /**
      * Display a listing of the resource.
      *

@@ -62,36 +62,37 @@ $(document).ready(function() {
 
         columns: [
             {
-                name: 'pid',
-                data: 'pid'
+                name: 'products.id',
+                data: 'products.id',
+                searchable: false,
             },
             {
-                name: 'sku',
-                data: 'product_sku'
+                name: 'products.sku',
+                data: 'products.sku'
             },
             {
-                name: 'name',
-                data: 'product_name'
+                name: 'products.name',
+                data: 'products.name'
             },
             {
                 name: 'warehouse_id',
-                data: 'warehouse_name'
+                data: 'warehouse.name'
             },
             {
-                name: 'stock_group_id',
-                data: 'stock_group_name'
+                name: 'stock_groups.id',
+                data: 'stock_groups.name'
             },
             {
-                name: 'quantity',
-                data: 'quantity'
+                name: 'stocks.quantity',
+                data: 'stocks.quantity'
             },
             {
                 "className": 'options',
                 "data": null,
-                "searchable": false, 
+                "searchable": false,
                 "render": function(data) {
                     var template = "{{ route('backoffice.products.view', '000') }}"
-                    var redirect_url = template.replace('000', data.pid);
+                    var redirect_url = template.replace('000', data.products.id);
                     return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
                 },
             }
@@ -108,7 +109,7 @@ $(document).ready(function() {
         data: [{!!$stock_groups_json!!}],
     }]);
 
- 
+
 });
 </script>
 @stop

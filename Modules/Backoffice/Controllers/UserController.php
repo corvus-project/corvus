@@ -1,12 +1,12 @@
 <?php
 
-namespace Backoffice\Controllers;
+namespace Corvus\Backoffice\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\StaffUpdateRequest;
-use App\Models\Role;
-use App\Models\User;
+use Corvus\Core\Models\Role;
+use Corvus\Core\Models\User;
 use Carbon\Carbon;
 class UserController extends Controller
 {
@@ -18,7 +18,7 @@ class UserController extends Controller
                 $q->whereIn('name', ['inventory_staff', 'orders_staff']);
             }
         )->paginate();
- 
+
         return view('backoffice.users.index', compact('users'));
     }
 

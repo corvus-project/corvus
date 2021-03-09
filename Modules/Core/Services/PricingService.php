@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Services;
+namespace Corvus\Core\Services;
 
-use Core\Repositories\Pricing\PricingRepositoryInterface;
+use Corvus\Core\Repositories\Pricing\PricingRepositoryInterface;
 
 class PricingService
 {
@@ -15,7 +15,7 @@ class PricingService
 
     public function getPricingbyProductId()
     {
-        return         $this->pricingRepository->all();
+        return $this->pricingRepository->all();
     }
       
 }

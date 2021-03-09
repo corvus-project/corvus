@@ -1,13 +1,13 @@
 <?php
 
-namespace Backoffice\Controllers;
+namespace Corvus\Backoffice\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PricingGroup;
+use Corvus\Core\Models\PricingGroup;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PricingGroupStoreRequest;
 use App\Http\Requests\PricingGroupUpdateRequest;
- 
+
 use Illuminate\Support\Str;
 
 class PricingGroupController extends Controller
@@ -32,7 +32,7 @@ class PricingGroupController extends Controller
             return redirect(route('backoffice.pricing_groups.edit', $group->id))->withFlashSuccess(trans('labels.pricing_groups.created'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('backoffice.pricing_groups.create'))->withFlashDanger('error', $error)->withInput(); 
+        return redirect(route('backoffice.pricing_groups.create'))->withFlashDanger('error', $error)->withInput();
     }
 
     public function edit(PricingGroup $group)
@@ -48,9 +48,9 @@ class PricingGroupController extends Controller
             return redirect(route('backoffice.pricing_groups.edit', $group->id))->withFlashSuccess(trans('labels.pricing_groups.updated'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('backoffice.pricing_groups.edit'))->withFlashDanger($error)->withInput(); 
+        return redirect(route('backoffice.pricing_groups.edit'))->withFlashDanger($error)->withInput();
     }
-    
+
     public function delete(PricingGroup $group)
     {
         return view('backoffice.pricing_groups.delete', compact('group'));

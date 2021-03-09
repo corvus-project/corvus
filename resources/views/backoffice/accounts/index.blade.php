@@ -32,6 +32,7 @@
                             <th>Email</th>
                             <th>Account Number</th>
                             <th>Account Group</th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -76,17 +77,21 @@ $(document).ready(function() {
             {
                 name: 'account_profiles.account_group',
                 data: 'account_group'
-            }
+            },
+            {
+                "className": 'options',
+                "data": null,
+                "searchable": false, 
+                "render": function(data) {
+                    var template = "{{ route('backoffice.accounts.view', '000') }}"
+                    var redirect_url = template.replace('000', data.id);
+                    return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
+                },
+            }            
         ]
     });
 
-
-    $('#accounts tbody').on('click', 'tr', function() {
-        var data = table.row(this).data();
-        var template = "{{ route('backoffice.accounts.view', '000') }}"
-        var redirect_url = template.replace('000', data.id);
-        window.location.href = redirect_url
-    });
+ 
 });
 </script>
 @stop

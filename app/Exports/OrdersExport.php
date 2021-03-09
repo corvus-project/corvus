@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Order;
+use Corvus\Core\Models\Order;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 
@@ -27,10 +27,10 @@ class OrdersExport implements FromQuery
             ->join('users', 'order_headers.user_id', '=', 'users.id')
             ->join('order_status', 'order_headers.status', '=', 'order_status.id')
             ->select(
-                'users.name as user_name', 
-                'order_headers.id', 
-                'order_headers.processed_date', 
-                'order_headers.order_date', 
+                'users.name as user_name',
+                'order_headers.id',
+                'order_headers.processed_date',
+                'order_headers.order_date',
 
                 'order_status.name as status_name'
                 )
@@ -48,7 +48,7 @@ class OrdersExport implements FromQuery
                 if ($order_date){
                     $query->whereDate('order_date', $order_date);
                 }
-            });            
+            });
 
         return $q;
     }

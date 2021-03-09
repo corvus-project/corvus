@@ -1,11 +1,4 @@
 <?php return array (
-  'albertcht/invisible-recaptcha' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'AlbertCht\\InvisibleReCaptcha\\InvisibleReCaptchaServiceProvider',
-    ),
-  ),
   'barryvdh/laravel-debugbar' => 
   array (
     'providers' => 
@@ -36,6 +29,13 @@
     'providers' => 
     array (
       0 => 'JeroenNoten\\LaravelAdminLte\\AdminLteServiceProvider',
+    ),
+  ),
+  'laravel/passport' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Passport\\PassportServiceProvider',
     ),
   ),
   'laravel/tinker' => 

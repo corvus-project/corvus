@@ -1,6 +1,6 @@
 <?php
 
-namespace Backoffice\Controllers;
+namespace Corvus\Backoffice\Controllers;
 
 use Illuminate\Http\Request;
 

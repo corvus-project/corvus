@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
- 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB; 
+use DB;
 use Carbon\Carbon;
 use Auth;
 use App\Http\Resources\Products;
 use App\Http\Resources\Orders;
-
-use App\Models\Order;
+use Log;
+use Corvus\Core\Models\Order;
+use Corvus\Core\Models\OrderStatus;
 use App\Jobs\ProcessOrder;
 
 class OrderController extends Controller
@@ -20,7 +21,7 @@ class OrderController extends Controller
     {
         $user = \App::make('user');
         $orders = $user->orders()->paginate();
- 
+
         return Orders::collection($orders);
     }
 
@@ -31,20 +32,22 @@ class OrderController extends Controller
         if ($order->user_id <> $user->id){
             return response()->json(null, 404);
         }
-        return new Orders(Order::with('order_lines')->find($order->id)); 
-    }    
+        return new Orders(Order::with('order_lines')->find($order->id));
+    }
 
     public function create(Request $request)
     {
-        $user = \App::make('user');
+        $user = $request->user();
         $profile = $user->profile;
 
         $orderlines = [];
         $lines = $request->get("products");
-        
         $order = Order::create(['user_id' => $user->id, 'order_date' => Carbon::now(), 'status' => 1, 'ref_id' => $request->ref_id]);
         $order_id = $order->id;
         $_status = OrderStatus::where('slug', 'NEW_ORDER')->first();
+
+        Log::debug('Order Id:'. $order_id);
+
         foreach($lines as $line){
             $orderlines[] = [
                 'product_sku' => $line['sku'],
@@ -58,5 +61,5 @@ class OrderController extends Controller
         DB::table('order_lines')->insert($orderlines);
         ProcessOrder::dispatch($order);
         return response()->json(['order_id' => $order_id], 201);
-    }    
+    }
 }

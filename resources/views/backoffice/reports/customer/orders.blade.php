@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="card mt-2">
-    <div class="card-body"> 
+    <div class="card-body">
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
@@ -25,7 +25,7 @@
                 <table id="orders" class="table row-border hover order-column" style="width: 100%">
                     <thead>
                         <tr>
-                 
+
                             <th>ID</th>
                             <th>Order Date</th>
                             <th>Customer</th>
@@ -61,32 +61,34 @@ $(document).ready(function() {
         ajax: "/backoffice/reports/customer/order/data",
 
         columns: [{
-                name: 'order_header_id',
-                data: 'order_header_id'
+                name: 'order_headers.id',
+                data: 'order_headers.id'
             },
             {
-                name: 'order_date',
-                data: 'order_date'
+                name: 'order_headers.order_date',
+                data: 'order_headers.order_date',
+                searchable: false
             },
             {
                 name: 'user_id',
-                data: 'customer_name'
-            },            
+                data: 'users.name'
+            },
             {
-                name: 'processed_date',
-                data: 'processed_date'
+                name: 'order_headers.processed_date',
+                data: 'order_headers.processed_date',
+                searchable: false
             },
             {
                 name: 'status',
-                data: 'order_status_name'
+                data: 'order_status.name'
             },
             {
                 "className": 'options',
                 "data": null,
-                "searchable": false, 
+                "searchable": false,
                 "render": function(data) {
                     var template = "{{ route('backoffice.orders.view', '000') }}"
-                    var redirect_url = template.replace('000', data.order_header_id);
+                    var redirect_url = template.replace('000', data.order_headers.id);
                     return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
                 }
             }

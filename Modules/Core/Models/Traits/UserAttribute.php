@@ -1,7 +1,7 @@
 <?php
  
 
-namespace App\Models\Traits;
+ namespace Corvus\Core\Models\Traits;
 
 trait UserAttribute
 {

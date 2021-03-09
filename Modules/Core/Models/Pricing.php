@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Models;
-
+namespace Corvus\Core\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-
  
 class Pricing extends Model
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Catalogue;
+namespace Corvus\Backoffice\Controllers\Catalogue;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use Corvus\Core\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
-use DB; 
+use DB;
 
 use Illuminate\Support\Str;
 
@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
     public function products(Category $category)
     {
-        return view('admin.categories.products', compact('category'));        
+        return view('admin.categories.products', compact('category'));
     }
 
     public function data(Category $category)
@@ -31,13 +31,13 @@ class CategoryController extends Controller
             ->leftJoin('categories', 'categories.id', '=', 'product_categories.category_id')
             ->where('categories.id', $category->id)
             ->select( [
-                'products.id as pid', 
-                'products.sku as product_sku', 
-                'products.name as product_name' 
+                'products.id as pid',
+                'products.sku as product_sku',
+                'products.name as product_name'
             ]);
 
         return datatables()->of($products)->toJson();
-    } 
+    }
 
     public function create()
     {
@@ -55,7 +55,7 @@ class CategoryController extends Controller
             return redirect(route('admin.categories.edit', $category->id))->withFlashSuccess(trans('labels.categories.created'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('admin.categories.create'))->withFlashDanger('error', $error)->withInput(); 
+        return redirect(route('admin.categories.create'))->withFlashDanger('error', $error)->withInput();
     }
 
     public function edit(Category $category)
@@ -67,16 +67,16 @@ class CategoryController extends Controller
     {
         $category->name = $request->name;
         $category->parent_id = $request->parent_id;
-        $category->taxonomy_id = $request->taxonomy_id;        
-        $category->breadcrumb = $request->breadcrumb;        
+        $category->taxonomy_id = $request->taxonomy_id;
+        $category->breadcrumb = $request->breadcrumb;
 
         if ($category->save()) {
             return redirect(route('admin.categories.edit', $category->id))->withFlashSuccess(trans('labels.categories.updated'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('admin.categories.edit'))->withFlashDanger($error)->withInput(); 
+        return redirect(route('admin.categories.edit'))->withFlashDanger($error)->withInput();
     }
-    
+
     public function delete(Category $category)
     {
         return view('admin.categories.delete', compact('category'));

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Role;
+use Corvus\Core\Models\Role;
 use App\Notifications\Auth\ConfirmEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use App\Models\User;
+use Corvus\Core\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;

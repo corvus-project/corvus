@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace Corvus\Core\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderStatus extends Model
+class ProductStatus extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'order_status';
+    protected $table = 'product_status';
   
 }

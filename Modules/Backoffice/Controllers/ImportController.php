@@ -1,6 +1,6 @@
 <?php
 
-namespace Backoffice\Controllers;
+namespace Corvus\Backoffice\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -11,10 +11,10 @@ use Illuminate\Http\UploadedFile;
 use App\Imports\ProductsImport;
 use App\Imports\StocksImport;
 use App\Imports\PricesImport;
-use App\Models\PricingGroup;
-use App\Models\Warehouse;
-use App\Models\StockGroup;
-use App\Models\User;
+use Corvus\Core\Models\PricingGroup;
+use Corvus\Core\Models\Warehouse;
+use Corvus\Core\Models\StockGroup;
+use Corvus\Core\Models\User;
 
 use Maatwebsite\Excel\Facades\Csv;
 
@@ -32,7 +32,7 @@ class ImportController extends Controller
 
         return view('backoffice.tools.import', compact('pricing_groups'));
     }
- 
+
     public function csv_file(CsvImportRequest $request)
     {
         if ($request->hasfile('csv_file')) {
@@ -42,7 +42,7 @@ class ImportController extends Controller
             $filePath = $folder . $filename;
             $rst = $this->upload($file, $folder, 'local', $filename);
             if($rst){
-                
+
                 switch($request->model){
                     case 'product':
                         (new ProductsImport)->import($filename, null, \Maatwebsite\Excel\Excel::CSV);
@@ -59,10 +59,10 @@ class ImportController extends Controller
                         (new StocksImport)->import($filename, null, \Maatwebsite\Excel\Excel::CSV);
                     break;
                 }
-                 
+
             }
         }
- 
+
         return redirect(route('backoffice.tools.import.index'))->withFlashSuccess(trans('labels.import.sucess'));
     }
 

@@ -82,7 +82,7 @@
 
                 <div class="col-sm-6">
                     <input type="text" class="form-control" id="token" name="token" autocomplete="off"
-                        value="{{{ old('token', isset($user) ? $user->token : null) }}}"> {!!
+                        value="{{{ (session('session-token') ? session('session-token') : '******************************************' ) }}}"> {!!
                     $errors->first('token', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>

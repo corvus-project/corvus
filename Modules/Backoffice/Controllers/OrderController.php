@@ -1,14 +1,14 @@
 <?php
 
-namespace Backoffice\Controllers;
+namespace Corvus\Backoffice\Controllers;
 
-use App\Models\Order;
-use App\Models\OrderStatus;
+use Corvus\Core\Models\Order;
+use Corvus\Core\Models\OrderStatus;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use DB; 
+use DB;
 use App\Jobs\ProcessOrder;
-use App\Models\User;
+use Corvus\Core\Models\User;
 
 class OrderController extends Controller
 {
@@ -25,12 +25,12 @@ class OrderController extends Controller
 
         $status_json = null;
         foreach($status as $s){
-            $status_json .= '{ value: "'. $s->id .'", label: "'. $s->name . '"},'; 
+            $status_json .= '{ value: "'. $s->id .'", label: "'. $s->name . '"},';
         }
 
         $customer_json = null;
         foreach($users as $s){
-            $customer_json .= '{ value: "'. $s->id .'", label: "'. $s->name . '"},'; 
+            $customer_json .= '{ value: "'. $s->id .'", label: "'. $s->name . '"},';
         }
 
         return view('backoffice.orders.index', compact('status_json', 'customer_json'));
@@ -40,7 +40,7 @@ class OrderController extends Controller
     {
         $status = OrderStatus::all();
         $allowed_status = $status->whereIn('slug', ['NEW_ORDER', 'FAILED'])->pluck('id')->toArray();
-        
+
         $orderlines = $order->order_lines()->orderBy('created_at', 'DESC')->get();
         return view('backoffice.orders.view', compact('order', 'orderlines','allowed_status'));
     }
@@ -56,7 +56,7 @@ class OrderController extends Controller
             $order->save();
         }
 
-        return redirect(route('backoffice.orders.view', $order->id))->withFlashSuccess('Order processed!'); 
+        return redirect(route('backoffice.orders.view', $order->id))->withFlashSuccess('Order processed!');
     }
 
     public function data()
@@ -64,16 +64,19 @@ class OrderController extends Controller
         $orders = DB::table('order_headers')
             ->join('users', 'order_headers.user_id', '=', 'users.id')
             ->join('order_status', 'order_headers.status', '=', 'order_status.id')
-        //select columns for new virtual table. ID columns must be renamed, because they have the same title
+
             ->select([
-                    'users.name as user_id', 
-                    'order_headers.id as oid', 
-                    'order_headers.ref_id', 
-                    'order_headers.order_date', 
+                    'users.name as user_id',
+                    'order_headers.id as oid',
+                    'order_headers.ref_id',
+                    "order_headers.order_date",
                     'order_status.name as status_name'
                     ]);
 
-        return datatables()->of($orders)->toJson();
+        return datatables()->of($orders)->editColumn('order_date', function ($orders)
+        {
+            return date('d M Y', strtotime($orders->order_date) );
+        })->toJson();
 
     }
 }

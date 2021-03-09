@@ -7,10 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
-use App\Models\Order;
-use App\Models\OrderStatus;
-use App\Models\Product;
+use Corvus\Core\Models\User;
+use Corvus\Core\Models\Order;
+use Corvus\Core\Models\OrderStatus;
+use Corvus\Core\Models\Product;
 use DB;
 use Log;
 
@@ -79,7 +79,7 @@ class ProcessOrder implements ShouldQueue
                         ->where('stocks.warehouse_id', $warehouse_id)
                         ->select('stocks.quantity', 'stocks.id as stock_id', 'stocks.quantity as quantity')
                         ->first();
-            DB::table('stocks')->where('id', $product->stock_id)->update(['quantity' => ($product->quantity - intval($orderline->quantity))]); 
+            DB::table('stocks')->where('id', $product->stock_id)->update(['quantity' => ($product->quantity - intval($orderline->quantity))]);
             }
     }
 
@@ -98,8 +98,8 @@ class ProcessOrder implements ShouldQueue
                         ->where('stocks.warehouse_id', $warehouse_id)
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
                         ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name', 'warehouses.id as warehouse_id')
-                        ->first(); 
-            
+                        ->first();
+
             Log::debug('Procssing the ordered product', ['sku' => $orderline->product_sku]);
             if ($product){
                 $orderline->product_name = $product->name;
@@ -107,10 +107,10 @@ class ProcessOrder implements ShouldQueue
                 $orderline->amount = $product->amount;
                 $orderline->warehouse_name = $product->warehouse_name;
                 $orderline->warehouse_id = $product->warehouse_id;
-                Log::debug('Processing the product', 
+                Log::debug('Processing the product',
                                 [
-                                    'sku' => $product->sku, 
-                                    'Product quantity' => $product->quantity, 
+                                    'sku' => $product->sku,
+                                    'Product quantity' => $product->quantity,
                                     'Order quantity' => $orderline->quantity]
                                 );
                 if ($product->quantity >= $orderline->quantity){

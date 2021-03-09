@@ -29,12 +29,12 @@ class AppServiceProvider extends ServiceProvider
             // https://laravel-news.com/laravel-5-4-key-too-long-error
             Schema::defaultStringLength(191);
 
-            DB::listen(function ($query) {
+/*             DB::listen(function ($query) {
                 File::append(
                     storage_path('/logs/query.log'),
                     $query->sql . ' [' . implode(', ', $query->bindings) . ']' . PHP_EOL
                 );
-            });
+            }); */
         }
     }
 

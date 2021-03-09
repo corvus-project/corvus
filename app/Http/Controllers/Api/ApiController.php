@@ -5,75 +5,49 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Corvus\Core\Models\User;
+use DB;
+use App\Http\Resources\Products;
 
 class ApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+    public function getRandomCustomer()
     {
-        return view('api::index');
+        $user = User::query()->whereHas('roles', function ($q) {
+            $q->where('name', 'vendor');
+        })
+            ->select(['users.id'])->inRandomOrder()
+            ->first();
+        $token = $user->createToken('authToken')->accessToken;
+        $results = ['id' => $user->id, 'token' => $token];
+        return $results;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+    public function getProductsByCustomerId($id)
     {
-        return view('api::create');
-    }
+        $user = User::find($id);
+        $profile = $user->profile;
+        if ($profile){
+            $products = DB::table('products')
+            ->leftJoin('pricings', 'products.id', '=', 'pricings.product_id')
+            ->leftJoin('stocks', 'stocks.product_id', '=', 'pricings.product_id')
+            ->leftJoin('warehouses', 'warehouses.id', '=', 'stocks.warehouse_id')
+            ->where('pricings.pricing_group_id', $profile->pricing_group_id)
+            ->where('stocks.warehouse_id', $profile->warehouse_id)
+            ->where('stocks.stock_group_id', $profile->stock_group_id)
+            ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
+            ->select([
+                'products.id as id',
+                'products.sku as sku',
+                'products.name as name',
+                'pricings.amount as amount',
+                'stocks.quantity as quantity',
+                'warehouses.name as warehouse_name'
+                ]
+            )->get();
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('api::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('api::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+            return Products::collection($products);
+        }
+        return response()->json(null, 404);
     }
 }

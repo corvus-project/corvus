@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace Corvus\Core\Models\Traits;
 
 /**
  * Class UserAccess.

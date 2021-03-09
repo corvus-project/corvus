@@ -1,13 +1,13 @@
 <?php
 
-namespace Backoffice\Controllers;
+namespace Corvus\Backoffice\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\StockGroup;
+use Corvus\Core\Models\StockGroup;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StockGroupStoreRequest;
 use App\Http\Requests\StockGroupUpdateRequest;
- 
+
 use Illuminate\Support\Str;
 
 class StockGroupController extends Controller
@@ -32,7 +32,7 @@ class StockGroupController extends Controller
             return redirect(route('backoffice.stock_groups.edit', $group->id))->withFlashSuccess(trans('labels.stock_groups.created'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('backoffice.stock_groups.create'))->withFlashDanger('error', $error)->withInput(); 
+        return redirect(route('backoffice.stock_groups.create'))->withFlashDanger('error', $error)->withInput();
     }
 
     public function edit(StockGroup $stock_group)
@@ -49,9 +49,9 @@ class StockGroupController extends Controller
             return redirect(route('backoffice.stock_groups.edit', $stock_group->id))->withFlashSuccess(trans('labels.stock_groups.updated'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('backoffice.stock_groups.edit'))->withFlashDanger($error)->withInput(); 
+        return redirect(route('backoffice.stock_groups.edit'))->withFlashDanger($error)->withInput();
     }
-    
+
     public function delete(StockGroup $stock_group)
     {
         return view('backoffice.stock_groups.delete', compact('stock_group'));

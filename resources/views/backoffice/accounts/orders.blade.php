@@ -72,16 +72,18 @@ $(document).ready(function() {
             {
                 name: 'status',
                 data: 'status_name'
-            }
-        ]
-    });
-
-
-    $('#orders tbody').on('click', 'tr', function() {
-        var data = table.row(this).data();
-        var template = "{{ route('backoffice.orders.view', '000') }}"
-        var redirect_url = template.replace('000', data.id);
-        window.location.href = redirect_url
+            },
+            {
+                "className": 'options',
+                "data": null,
+                "searchable": false, 
+                "render": function(data) {
+                    var template = "{{ route('backoffice.orders.view', '000') }}"
+                    var redirect_url = template.replace('000', data.oid);
+                    return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
+                },            
+        ],
+       
     });
 });
 </script>

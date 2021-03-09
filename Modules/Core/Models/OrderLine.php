@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Corvus\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

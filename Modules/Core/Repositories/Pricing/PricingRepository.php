@@ -1,15 +1,14 @@
 <?php
 
-namespace Core\Repositories\Pricing;
-
-use App\Models\Pricing;
-use Core\Repositories\Pricing\PricingRepositoryInterface;
+namespace Corvus\Core\Repositories\Pricing;
+        
+use Corvus\Core\Models\Pricing;
+use Corvus\Core\Repositories\Pricing\PricingRepositoryInterface;
+use Corvus\Core\Repositories\BaseRepository;
 use Illuminate\Support\Collection;
-use Core\Repositories\BaseRepository;
 
 class PricingRepository extends BaseRepository implements PricingRepositoryInterface
 {
-
    /**
     * PricingRepository constructor.
     *

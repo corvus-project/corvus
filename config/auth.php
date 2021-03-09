@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Corvus\Core\Models\User;
 
 return [
 
@@ -44,7 +44,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'jwt',
+            'driver' => 'passport',
             'provider' => 'users',
         ],
     ],
@@ -125,7 +125,7 @@ return [
          */
         'change_email' => false,
     ],
- 
+
     /*
      * Application captcha specific settings
      */

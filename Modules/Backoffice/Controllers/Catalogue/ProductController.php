@@ -1,35 +1,26 @@
 <?php
 
-namespace Backoffice\Controllers\Catalogue;
+namespace Corvus\Backoffice\Controllers\Catalogue;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PricingStoreRequest;
 use App\Http\Requests\PricingUpdateRequest;
 use App\Http\Requests\StockStoreRequest;
 use App\Http\Requests\StockUpdateRequest;
-use App\Models\Category;
-use App\Models\Pricing;
-use App\Models\PricingGroup;
-use App\Models\Product;
-use App\Models\Stock;
-use App\Models\StockGroup;
-use App\Models\Warehouse;
-use App\Models\OrderLine;
-use App\Models\OrderStatus;
+use Corvus\Core\Models\Category;
+use Corvus\Core\Models\Pricing;
+use Corvus\Core\Models\PricingGroup;
+use Corvus\Core\Models\Product;
+use Corvus\Core\Models\Stock;
+use Corvus\Core\Models\StockGroup;
+use Corvus\Core\Models\Warehouse;
+use Corvus\Core\Models\OrderLine;
+use Corvus\Core\Models\OrderStatus;
 use DB;
 use Illuminate\Http\Request;
-use Core\Services\PricingService;
 
 class ProductController extends Controller
 {
-
-    private $pricingService;
-  
-    public function __construct(PricingService $pricingService)
-    {
-        $this->pricingService = $pricingService;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -114,9 +105,9 @@ class ProductController extends Controller
             ->where('stock_group_id', $request->stock_group_id)
             ->where('warehouse_id', $request->warehouse_id)
             ->count();
- 
-        if ($count > 0) {
-            return redirect(route('backoffice.products.edit_stock.update', [$stock->product_id, $stock->id]))->withFlashDanger('Current stock type and warehouse have stock quantity')->withInput();
+
+        if ($count < 1) {
+            return redirect(route('backoffice.products.edit_stock.update', [$stock->product_id, $stock->id]))->withFlashDanger('Current stock type and warehouse does not have stock quantity')->withInput();
         }
 
         $stock->quantity = $request->quantity;

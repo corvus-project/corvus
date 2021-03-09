@@ -1,14 +1,9 @@
 <?php
 
-namespace Core\Repositories;
-
+namespace Corvus\Core\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
-
-/**
-* Interface EloquentRepositoryInterface
-* @package App\Repositories
-*/
+ 
 interface EloquentRepositoryInterface
 {
    /**

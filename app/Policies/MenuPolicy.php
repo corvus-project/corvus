@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use Corvus\Core\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MenuPolicy
@@ -22,12 +22,12 @@ class MenuPolicy
     {
         //
     }
-    
+
     public function canAccessCustomer(User $user)
     {
         if ($user->hasRoles($this->portal_roles)){
             return true;
-        }  
+        }
         return false;
     }
 
@@ -35,7 +35,7 @@ class MenuPolicy
     {
         if ($user->hasRoles($this->backend_roles)){
             return true;
-        }  
+        }
         return false;
     }
 }

@@ -30,7 +30,6 @@ class UsersSeeder extends Seeder
             'active' => true,
             'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
             'confirmed' => true,
-            'token' => null,
             'email_verified_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -45,7 +44,6 @@ class UsersSeeder extends Seeder
             'active' => true,
             'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
             'confirmed' => true,
-            'token' => null,
             'email_verified_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -59,7 +57,6 @@ class UsersSeeder extends Seeder
             'active' => true,
             'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
             'confirmed' => true,
-            'token' => null,
             'email_verified_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -73,7 +70,6 @@ class UsersSeeder extends Seeder
             'active' => true,
             'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
             'confirmed' => true,
-            'token' => null,
             'email_verified_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -81,7 +77,7 @@ class UsersSeeder extends Seeder
         DB::table('users')->insert($orders_staff);
 
         $users = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $users[] = [
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
@@ -89,7 +85,6 @@ class UsersSeeder extends Seeder
                 'active' => true,
                 'confirmation_code' => \Ramsey\Uuid\Uuid::uuid4(),
                 'confirmed' => true,
-                'token' => null,
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

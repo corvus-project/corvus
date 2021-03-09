@@ -14,7 +14,7 @@ return [
     |
      */
 
-    'title' => 'Intellect Lighthouse',
+    'title' => 'Corvus',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
      */
 
-    'logo' => '<b>Intellect Lighthouse</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/lighthouse.png',
+    'logo' => '<b>Corvus</b>',
+    'logo_img' => 'vendor/adminlte/dist/img/corvus.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Intellect Lighthouse',
+    'logo_img_alt' => 'Corvus',
 
     /*
     |--------------------------------------------------------------------------

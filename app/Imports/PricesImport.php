@@ -2,8 +2,8 @@
 
 namespace App\Imports;
 
-use App\Models\Pricing;
-use App\Models\Product;
+use Corvus\Core\Models\Pricing;
+use Corvus\Core\Models\Product;
 use Carbon\Carbon as Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\Importable;

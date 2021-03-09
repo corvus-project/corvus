@@ -1,19 +1,17 @@
 <?php
 
-namespace Backoffice\Controllers;
+namespace Corvus\Backoffice\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Models\PricingGroup;
-use App\Models\Profile;
-use App\Models\Role;
-use App\Models\StockGroup;
-use App\Models\User;
-use App\Models\Warehouse;
+use Corvus\Core\Models\PricingGroup;
+use Corvus\Core\Models\Profile;
+use Corvus\Core\Models\Role;
+use Corvus\Core\Models\StockGroup;
+use Corvus\Core\Models\User;
+use Corvus\Core\Models\Warehouse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\Signer\Hmac\Sha256;
 use DB;
 
 class AccountController extends Controller
@@ -50,9 +48,9 @@ class AccountController extends Controller
             ->where('order_headers.user_id', $user->id)
             ->select(['users.name as user_name', 'order_headers.id', 'order_headers.order_date', 'order_status.name as status_name', 'order_headers.ref_id'])
             ->orderBy('order_headers.id', 'desc');
-             
+
         return datatables()->of($orders)->toJson();
-    }    
+    }
 
     public function view(User $user)
     {
@@ -163,23 +161,11 @@ class AccountController extends Controller
 
     public function token_regenerate(User $user)
     {
-        $user->token = $this->createToken($user->id);
-        $user->save();
-        return redirect(route('backoffice.accounts.view', $user->id))->withFlashSuccess(__('labels.accounts.updated'));
+        $token = $user->createToken('authToken')->accessToken;
+
+        return redirect(route('backoffice.accounts.view', $user->id))
+                                ->with('session-token', $token)
+                                ->withFlashSuccess(__('labels.accounts.updated'));
     }
 
-    private function createToken($user_id = 0)
-    {
-        $signer = new Sha256();
-        $token = (new Builder())->setIssuer(env('APP_URL', 'http://intellect.test')) // Configures the issuer (iss claim)
-            ->setAudience(env('APP_URL', 'http://intellect.test')) // Configures the audience (aud claim)
-            ->setId('4f1g23a12aa', true) // Configures the id (jti claim), replicating as a header item
-            ->setIssuedAt(time()) // Configures the time that the token was issue (iat claim)
-            ->setNotBefore(time() + 60) // Configures the time that the token can be used (nbf claim)
-        //->setExpiration(time() + 3600)// Configures the expiration time of the token (exp claim)
-            ->set('user_id', "$user_id") // Configures a new claim, called "uid"
-            ->sign($signer, env('JWT_SIGNATURE', '4A4A4A4A4A4')) // creates a signature using "testing" as key
-            ->getToken(); // Retrieves the generated token
-        return (string) $token;
-    }
 }
