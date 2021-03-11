@@ -58,7 +58,7 @@ class PricingController extends Controller
             ->count();
 
         if ($count > 0) {
-            return redirect(route('backoffice.pricing.create_pricing', $product->id))->withFlashDanger('You can\'t add new pricing between these dates')->withInput();
+            return redirect(route('backoffice.products.create_pricing', $product->id))->withFlashDanger('You can\'t add new pricing between these dates')->withInput();
         }
 
         $pricing = new Pricing();
@@ -68,10 +68,10 @@ class PricingController extends Controller
         $pricing->product_id = $product->id;
         $pricing->pricing_group_id = $request->pricing_group_id;
         if ($pricing->save()) {
-            return redirect(route('backoffice.pricing.edit_pricing', [$product->id, $pricing->id]))->withFlashSuccess(trans('labels.pricing.products.created'));
+            return redirect(route('backoffice.products.edit_pricing', [$product->id, $pricing->id]))->withFlashSuccess(trans('labels.pricing.products.created'));
         }
         $error = $user->errors()->all(':message');
-        return redirect(route('backoffice.pricing.create_pricing'))->withFlashDanger('error', $error)->withInput();
+        return redirect(route('backoffice.products.create_pricing'))->withFlashDanger('error', $error)->withInput();
     }
 
     public function edit_pricing(Product $product, Pricing $pricing)

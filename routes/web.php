@@ -173,6 +173,9 @@ Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => [
     Route::get('/users/{user}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
     Route::post('/users/{user}/edit', ['as' => 'users.update', 'uses' => 'UserController@update']);
 
+    // Settings
+    Route::get('/settings', 'SettingController@form')->name('settings.form');
+    Route::post('/settings', 'SettingController@update')->name('settings.form.update');
 });
 
 
@@ -181,15 +184,7 @@ Route::get('/', 'HomeController@index')->name('home')->middleware(['web', 'auth'
 Route::get('/redirect', 'HomeController@redirect');
 
 Route::get('/debug', function(){
-    $users = Corvus\Core\Models\User::query()->whereHas('roles', function ($q) {
-        $q->where('name', 'vendor');
-    })
-
-        ->select(['users.id'])->get();
-    $results = [];
-    foreach($users as $user){
-        $token = $user->createToken('authToken')->accessToken;
-        $results[] = ['id' => $user->id, 'token' => $token];
-    }
-    return $results;
+    $locale = App::currentLocale();
+    $fmt = numfmt_create( $locale, NumberFormatter::CURRENCY );
+    echo numfmt_format_currency($fmt, 1234567.891234567890000, "EUR")."\n";
 } );

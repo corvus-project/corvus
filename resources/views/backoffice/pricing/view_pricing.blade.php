@@ -33,7 +33,7 @@
             <!--col-->
         </div>
         @include('includes.product_box')
-        <br /> 
+        <br />
         <div class="row">
             <div class="col-sm-6">
                 <h4>Current Pricing </h4>
@@ -56,22 +56,22 @@
                 @foreach($current_price_list as $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
-                    <td>{{ $pricing->amount }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->amount) }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
                         <a href="{{ route('backoffice.products.edit_pricing', [$product->id, $pricing->id]) }}"
                             class="btn btn-info btn-xs m-1 float-right" data-toggle="tooltip" title="Update pricing"><i
                                 class="fas fa-pen"></i></a>
- 
+
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
- 
+
 
         <br />
- 
+
         <div class="row">
             <div class="col-sm-6">
                 <h4> Planned Pricing </h4>
@@ -94,12 +94,12 @@
                 @foreach($future_price_list as $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
-                    <td>{{ $pricing->amount }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->amount) }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
                     <a href="{{ route('backoffice.products.edit_pricing', [$product->id, $pricing->id]) }}"
                             class="btn btn-info btn-xs m-1 float-right" data-toggle="tooltip" title="Update pricing"><i
-                                class="fas fa-pen"></i></a> 
+                                class="fas fa-pen"></i></a>
 
                         <a href="{{ route('backoffice.products.delete_pricing', [$product->id, $pricing->id]) }}"
                             class="btn btn-danger btn-xs m-1 float-right" data-toggle="tooltip"
@@ -109,10 +109,10 @@
                 @endforeach
             </tbody>
         </table>
- 
+
 
         <br />
- 
+
         <div class="row">
             <div class="col-sm-6">
                 <h4> Pricing History </h4>
@@ -135,10 +135,10 @@
                 @foreach($history_price_list as $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
-                    <td>{{ $pricing->amount }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->amount) }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
- 
+
 
                         <a href="{{ route('backoffice.products.delete_pricing', [$product->id, $pricing->id]) }}"
                             class="btn btn-danger btn-xs m-1 float-right" data-toggle="tooltip"

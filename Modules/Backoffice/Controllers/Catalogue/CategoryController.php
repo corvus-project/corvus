@@ -52,9 +52,9 @@ class CategoryController extends Controller
         $category->taxonomy_id = $request->taxonomy_id;
         $category->slug = strtoupper (Str::slug($request->name, '_'));
         if ($category->save()) {
-            return redirect(route('admin.categories.edit', $category->id))->withFlashSuccess(trans('labels.categories.created'));
+            return redirect(route('backoffice.categories.edit', $category->id))->withFlashSuccess(trans('labels.categories.created'));
         }
-        $error = $user->errors()->all(':message');
+        $error = $request->errors()->all(':message');
         return redirect(route('backoffice.categories.create'))->withFlashDanger('error', $error)->withInput();
     }
 
@@ -73,7 +73,7 @@ class CategoryController extends Controller
         if ($category->save()) {
             return redirect(route('backoffice.categories.edit', $category->id))->withFlashSuccess(trans('labels.categories.updated'));
         }
-        $error = $user->errors()->all(':message');
+        $error = $request->errors()->all(':message');
         return redirect(route('backoffice.categories.edit'))->withFlashDanger($error)->withInput();
     }
 

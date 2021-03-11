@@ -235,7 +235,7 @@ return [
             'icon' => 'nav-icon fas fa-shopping-cart',
             'topnav_right' => true,
             'can' => 'customer-access-only'
-        ],          
+        ],
         [
             'text' => 'Catalogue',
             'icon' => 'nav-icon fas fa-list-alt',
@@ -330,39 +330,44 @@ return [
             'icon' => 'nav-icon fas fa-user',
             'can' => 'access-backend'
         ],
+        [
+            'text' => 'Settings',
+            'route' => 'backoffice.settings.form',
+            'icon' => 'nav-icon fas fa-cogs',
+            'can' => 'access-backend'
+        ],
 
-        
         [
             'text' => 'Dashboard',
             'route' => 'portal.dashboard',
             'icon' => 'nav-icon fas fa-tachometer-alt',
             'can' => 'customer-access-only'
-        ],    
+        ],
         [
             'text' => 'Catalogue',
             'route' => 'portal.products.index',
             'icon' => 'nav-icon fas fa-list',
             'can' => 'customer-access-only'
-        ],  
+        ],
         [
             'text' => 'Orders',
             'route' => 'portal.orders.index',
             'icon' => 'nav-icon fas fa-wallet',
             'can' => 'customer-access-only'
-        ],  
+        ],
         [
             'text' => 'Bulk Order Upload',
             'route' => 'portal.orders.upload',
             'icon' => 'nav-icon fas fa-upload',
             'can' => 'customer-access-only'
-        ],  
+        ],
         [
             'text' => 'Account',
             'route' => 'portal.account',
             'icon' => 'nav-icon fas fa-user',
             'can' => 'customer-access-only'
-        ], 
-                         
+        ],
+
     ],
 
     /*
@@ -470,7 +475,7 @@ return [
                 ],
             ],
         ],
-       
+
     ],
 
     /*

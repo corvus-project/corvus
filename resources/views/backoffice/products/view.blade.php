@@ -50,7 +50,7 @@
                 @endif
             </div>
         </div>
- 
+
  @if(count($cur_pricelist) < 1)
 <div class="alert alert-warning" role="alert">
     The product does not have a price for today!
@@ -70,7 +70,7 @@
                 $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
-                    <td>{{ $pricing->amount }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->amount) }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>@if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))
                         <a href="{{ route('backoffice.products.edit_pricing', [$product->id, $pricing->id]) }}"
@@ -100,7 +100,7 @@
                     <a href="{{ route('backoffice.products.create_stock', $product->id) }}"
                         class="btn btn-primary btn-xs m-1" data-toggle="tooltip" title="Create a stock"><i
                             class="fas fa-plus"></i></a>
- 
+
                 </div>@endif
             </div>
         </div>
@@ -147,7 +147,7 @@
 
                     <a href="{{ route('backoffice.products.view_history', $product->id) }}" class="btn btn-success btn-xs m-1"
                         data-toggle="tooltip" title="List the Stock History"><i class="fas fa-list"></i></a>
- 
+
 
                 </div>
             </div>

@@ -27,10 +27,14 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [];
-  
+
     protected $dateFormat = 'Y-m-d';
 
     protected $dates = ['from_date', 'to_date'];
- 
- 
+
+    public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'product_categories')->withPivot(['product_id', 'category_id'])
+            ->withTimestamps();
+    }
 }

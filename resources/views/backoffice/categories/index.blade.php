@@ -22,7 +22,7 @@
             <!--col-->
         </div>
 
-
+        @include('includes.partials.messages')
         <br />
 
         <table class="table table-light table-hover table-striped">
