@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', app_name() . ' | ' . __('labels.products.categories.create'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.products.categories.create'))
 
 @section('content')
 
@@ -19,11 +19,11 @@
 
                     <div class="col-sm-7">
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="">
- 
+
                         <a href="{{ route('backoffice.products.view_categories', $product->id) }}"
                                 class="btn btn-success btn-xs m-1" data-toggle="tooltip"
                                 title="List the categories"><i class="fas fa-list"></i></a>
-                                
+
                             <a href="{{ route('backoffice.products.create_category', $product->id) }}"
                                 class="btn btn-primary btn-xs m-1" data-toggle="tooltip"
                                 title="{{  __('labels.products.categories.create') }}"><i class="fas fa-plus"></i></a>

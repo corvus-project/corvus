@@ -19,8 +19,18 @@ class SettingsTableSeeder extends Seeder
             [
                 'name' => 'Currency',
                 'setting_key' => 'currency',
-                'setting_value' => 'GBP'
+                'setting_value' => 'GBP',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Site Name',
+                'setting_key' => 'app_name',
+                'setting_value' => 'Corvus',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
+
         ];
         DB::table('settings')->insert($settings);
 

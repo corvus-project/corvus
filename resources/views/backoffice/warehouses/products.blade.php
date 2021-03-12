@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . 'Warehouse Products: '. $warehouse->name )
+@section('title', config('corvus.app_name') . ' | ' . 'Warehouse Products: '. $warehouse->name )
 
 @section('content')
 <div class="card mt-2">
@@ -59,36 +59,36 @@ $(document).ready(function() {
         columns: [{
                 name: 'pid',
                 data: 'pid',
-                searchable: false,                 
+                searchable: false,
             },
             {
                 name: 'products.sku',
                 data: 'products.sku'
-            },            
+            },
             {
                 name: 'products.name',
                 data: 'products.name'
-            },            
+            },
             {
                 name: 'quantity',
                 data: 'quantity',
-                searchable: false,                                 
-            },            
+                searchable: false,
+            },
             {
                 name: 'stock_group_name',
                 data: 'stock_group_name',
-                searchable: false, 
+                searchable: false,
             },
             {
                 "className": 'options',
                 "data": null,
-                "searchable": false, 
+                "searchable": false,
                 "render": function(data) {
                     var template = "{{ route('backoffice.products.view', '000') }}"
                     var redirect_url = template.replace('000', data.pid);
                     return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
                 },
-            }            
+            }
         ],
         initComplete: function() {
             this.api().columns([1, 2]).every(function() {
@@ -99,7 +99,7 @@ $(document).ready(function() {
                         column.search($(this).val(), false, false, true).draw();
                     });
             });
-        }         
+        }
     });
 });
 </script>

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.products.categories.all'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.products.categories.all'))
 
 @section('content')
 <div class="card mt-2">

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('customer::labels.accounts.view'))
+@section('title', config('corvus.app_name') . ' | ' . __('customer::labels.accounts.view'))
 
 @section('content')
 <div class="card mt-2">
@@ -73,7 +73,7 @@
             <div class="col-sm-3 bg-light p-2"><b>Active</b></div>
             <div class="col-sm-9 p-2">{{ $user->is_active }}</div>
         </div>
-        @if (Auth::user()->hasRoles(['administrator'])) 
+        @if (Auth::user()->hasRoles(['administrator']))
         <form autocomplete="off" role="form" action="{{ route('backoffice.accounts.token.regenerate', $user->id)  }}"
             method="post">
             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
@@ -86,7 +86,7 @@
                     $errors->first('token', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
-           
+
             <div class="form-group row mr-2 {!! $errors->first('token', 'has-warning') !!}">
                 <label for="token" class="col-sm-3 col-form-label"></label>
 
@@ -98,7 +98,7 @@
                     </button>
                 </div>
             </div>
-        
+
 
         </form>
         @endif

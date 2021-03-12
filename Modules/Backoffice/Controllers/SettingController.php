@@ -23,8 +23,14 @@ class SettingController extends Controller
         return view('backoffice.settings.form', compact('currencies', 'settings'));
     }
 
-    public function update()
+    public function update(Request $request)
     {
-        return view('backoffice.settings.form');
+        $settings = Setting::all();
+        foreach ($settings as $setting){
+            $setting->setting_value = $request->get($setting->setting_key);
+            $setting->save();
+        }
+
+        return redirect(route('backoffice.settings.form'))->withFlashSuccess(trans('Settings updated!'));
     }
 }

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.portal.orders'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.portal.orders'))
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
@@ -63,11 +63,11 @@ $(document).ready(function() {
             {
                 name: 'order_date',
                 data: 'order_date'
-            },            
+            },
             {
                 name: 'ref_id',
                 data: 'ref_id'
-            },            
+            },
             {
                 name: 'status',
                 data: 'status_name'
@@ -75,13 +75,13 @@ $(document).ready(function() {
             {
                 "className": 'options',
                 "data": null,
-                "searchable": false, 
+                "searchable": false,
                 "render": function(data) {
                     var template = "{{ route('portal.orders.view', '000') }}"
                     var redirect_url = template.replace('000', data.id);
                     return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
                 },
-            }             
+            }
         ]
     });
 
@@ -91,7 +91,7 @@ $(document).ready(function() {
         data: [{!!$status_json!!}],
     }]);
 
- 
+
 });
 </script>
 @stop

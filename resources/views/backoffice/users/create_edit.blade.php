@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.users.management'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.users.management'))
 
 @section('content')
 
@@ -70,7 +70,7 @@
                             {!! $errors->first('role_id', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
-  
+
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                         <i class="fas fa-save align-middle"></i> <span
                             class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>

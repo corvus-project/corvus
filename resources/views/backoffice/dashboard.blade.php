@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() )
+@section('title', config('corvus.app_name') )
 
 
 @section('content')
@@ -18,7 +18,7 @@
                             <thead class="">
                                 <tr>
                                     <th style="width: 50%">Name</th>
-                                    <th style="width: 35%">Account Number</th> 
+                                    <th style="width: 35%">Account Number</th>
                                     <th style="width: 15%"></th>
                                 </tr>
                             </thead>

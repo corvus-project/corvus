@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.cart.view'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.cart.view'))
 
 @section('content')
 <div class="card mt-2">
@@ -8,7 +8,7 @@
         <!--row-->
         <div class="card">
             <div class="card-body">
-            @if(count($cart) > 0) 
+            @if(count($cart) > 0)
             <form autocomplete="off" role="form" action="{{ route('portal.cart.save') }}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                     <div class="form-group row {!! $errors->first('ref_id', 'has-warning') !!}">
@@ -19,7 +19,7 @@
                             {!!
                             $errors->first('ref_id', '<span class="help-block">:message</span>') !!}
                         </div>
-                    </div> 
+                    </div>
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                         <i class="fas fa-upload align-middle"></i> <span class="align-middle"><strong>Send Order</strong></span>
                     </button>
@@ -28,7 +28,7 @@
 
             <form autocomplete="off" role="form" action="{{ route('portal.cart.update') }}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
- 
+
 
                 <table  class="table row-border hover order-column" style="width: 100%">
                     <thead>

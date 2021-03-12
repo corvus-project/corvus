@@ -167,7 +167,7 @@ return [
         'form' => 'Update Settings',
     ],
     'currency' => 'Currency',
-
+    'app_name' => 'Application Name',
     'imports' => [
         'management' => "Import"
     ],

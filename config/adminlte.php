@@ -307,6 +307,12 @@ return [
             'can' => 'access-backend',
             'submenu' => [
                 [
+                    'text' => 'General Settings',
+                    'route' => 'backoffice.settings.form',
+                    'icon' => 'nav-icon fas fa-cog',
+                    'can' => 'access-backend'
+                ],
+                [
                     'text' => 'Application Users',
                     'route' => 'backoffice.users.index',
                     'icon' => 'nav-icon fas fa-user',

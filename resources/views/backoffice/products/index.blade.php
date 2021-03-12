@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.products.management'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.products.management'))
 
 @section('content')
 <div class="card mt-2">
@@ -30,7 +30,7 @@
                             <th>Name</th>
                             <th></th>
                         </tr>
-                   
+
                 </table>
             </div>
         </div>
@@ -67,11 +67,11 @@ $(document).ready(function() {
             {
                 name: 'name',
                 data: 'name'
-            },            
+            },
             {
                 "className": 'options',
                 "data": null,
-                "searchable": false, 
+                "searchable": false,
                 "render": function(data) {
                     var template = "{{ route('backoffice.products.view', '000') }}"
                     var redirect_url = template.replace('000', data.id);

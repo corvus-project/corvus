@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.categories.management'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.categories.management'))
 
 
 @section('content')

@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', app_name() . ' | ' . __('labels.settings.form'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.settings.form'))
 
 @section('content')
 
@@ -32,6 +32,16 @@
                         <div class="col-sm-9">
                             {{ Form::select('currency', $currencies, $settings->firstWhere('setting_key', 'currency')->setting_value, ['class'=>'form-control col-sm-5 currency']) }}
                             {!! $errors->first('currency', '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row {!! $errors->first('app_name', 'has-warning') !!}">
+                        <label for="quantity"
+                               class="col-sm-3 col-form-label">{{ trans('labels.app_name') }}</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="app_name" name="app_name" autocomplete="off"
+                                   value="{{{ old('app_name', $settings->firstWhere('setting_key', 'app_name')->setting_value) }}}"> {!!
+                            $errors->first('app_name', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
 

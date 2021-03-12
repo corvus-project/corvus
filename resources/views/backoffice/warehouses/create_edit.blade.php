@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.warehouses.management'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.warehouses.management'))
 
 
 @section('content')
@@ -39,7 +39,7 @@
                             value="{{{ old('name', isset($warehouse) ? $warehouse->name : null) }}}"> {!!
                         $errors->first('name', '<span class="help-block">:message</span>') !!}
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                     <i class="fas fa-save align-middle"></i> <span
                             class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>

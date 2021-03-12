@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.products.stock_management'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.products.stock_management'))
 
 
 @section('content')
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                @include('includes.product_box') 
+                @include('includes.product_box')
                 <br />
                 @include('includes.partials.messages')
                 <form autocomplete="off" role="form"
@@ -69,7 +69,7 @@
                             $errors->first('quantity', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
-  
+
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                         <i class="fas fa-save align-middle"></i> <span
                             class="align-middle"><strong>{{__('labels.general.buttons.save')}}</strong></span>
@@ -82,5 +82,4 @@
 
 @endsection
 
- 
- 
+

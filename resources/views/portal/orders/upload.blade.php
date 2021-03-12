@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.imports.management'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.imports.management'))
 
 
 @section('content')
@@ -26,7 +26,7 @@
                 <br/>
                 <form autocomplete="off" role="form" action="{{ route('portal.orders.save_file')  }}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                     
+
                     <div class="form-group row {!! $errors->first('order_file', 'has-warning') !!}">
                         <label for="order_file" class="col-sm-3 col-form-label">Order file</label>
                         <div class="col-sm-9">
@@ -45,7 +45,7 @@
                             {!!
                             $errors->first('ref_id', '<span class="help-block">:message</span>') !!}
                         </div>
-                    </div>                    
+                    </div>
 
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                         <i class="fas fa-upload align-middle"></i> <span class="align-middle"><strong>Upload</strong></span>
@@ -57,7 +57,7 @@
                             <code>
                                 <i>sku, quantity</i>
                             </code>
-                        </p>                 
+                        </p>
             </div>
         </div>
     </div>
@@ -73,6 +73,6 @@
 @section('scripts')
 @parent
 
- 
+
 
 @stop

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.orders.all'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.orders.all'))
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
@@ -65,15 +65,15 @@ $(document).ready(function() {
             {
                 name: 'order_date',
                 data: 'order_date'
-            },            
+            },
             {
                 name: 'user_id',
                 data: 'user_id'
-            },  
+            },
             {
                 name: 'ref_id',
                 data: 'ref_id'
-            },                       
+            },
             {
                 name: 'status',
                 data: 'status_name'
@@ -81,13 +81,13 @@ $(document).ready(function() {
             {
                 "className": 'options',
                 "data": null,
-                "searchable": false, 
+                "searchable": false,
                 "render": function(data) {
                     var template = "{{ route('backoffice.orders.view', '000') }}"
                     var redirect_url = template.replace('000', data.oid);
                     return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
                 },
-            }                        
+            }
         ],
         initComplete: function() {
             this.api().columns([0, 3]).every(function() {
@@ -98,7 +98,7 @@ $(document).ready(function() {
                         column.search($(this).val(), false, false, true).draw();
                     });
             });
-        }        
+        }
     });
 
     yadcf.init(table, [{

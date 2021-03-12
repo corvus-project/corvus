@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() )
+@section('title', config('corvus.app_name') )
 
 
 @section('content')
@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-            
+
                         @foreach($orders as $order)
                         <tr>
                             <td>{{ $order->order_id }}</td>
@@ -44,7 +44,7 @@
                         </tr>
                         @endforeach
                     </tbody>
-                  
+
                 </table>
             </div>  @endif
         </div>

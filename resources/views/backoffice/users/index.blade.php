@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.users.index'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.users.index'))
 
 @section('content')
 <div class="card mt-2">
@@ -27,14 +27,14 @@
                 <table id="users" class="table row-border hover" style="width: 100%">
                     <thead>
                         <tr>
-                           
+
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
                             <th></th>
                         </tr>
                     </thead>
-                
+
                 <tbody>
                 @foreach($users as $user)
                 <tr>
