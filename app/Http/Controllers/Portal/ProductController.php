@@ -41,7 +41,7 @@ class ProductController extends Controller
                 'products.id as id',
                 'products.sku as sku',
                 'products.name as name',
-                'pricings.amount as amount',
+                'pricings.price as price',
                 'stocks.quantity as quantity',
                 ]
             );
@@ -58,7 +58,7 @@ class ProductController extends Controller
             ->where('pricings.pricing_group_id', $profile->pricing_group_id)
             ->where('pricings.product_id', $product->id)
             ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-            ->select('from_date', 'to_date', 'amount')
+            ->select('from_date', 'to_date', 'price')
             ->first();
 
 

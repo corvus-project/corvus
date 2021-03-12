@@ -27,7 +27,7 @@ class PricesExport implements FromQuery
             ->select(
                 'products.sku as product_sku',
                 'products.name as product_name',
-                'pricings.amount as amount',
+                'pricings.price as price',
                 'pricings.from_date as DATE_FORMAT(from_date, "Y-m-d")',
                 'pricings.to_date as (to_date, "Y-m-d")',
                 'pricing_groups.name as pricing_group_name'

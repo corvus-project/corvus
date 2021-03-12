@@ -61,13 +61,13 @@
             function firstLetterToUpper(str) {
                 return str.charAt(0).toUpperCase() + str.slice(1);
             }
-          
+
             return {
                 _cssPrefixes: cssPrefixes,
                 _jsPrefixes: jsPrefixes,
                 _cssProperty : function(name) {
                     var result = cssCache[name];
-                    
+
                     if(cssCache[LEXICON.hOP](name))
                         return result;
 
@@ -93,14 +93,14 @@
                             }
                         }
                     }
-                    
+
                     cssCache[name] = result;
                     return result;
                 },
                 _jsAPI : function(name, isInterface, fallback) {
                     var i = 0;
                     var result = jsCache[name];
-                    
+
                     if(!jsCache[LEXICON.hOP](name)) {
                         result = window[name];
                         for(; i < jsPrefixes[LEXICON.l]; i++)
@@ -109,7 +109,7 @@
                     }
                     return result || fallback;
                 }
-                
+
             }
         })();
         var COMPATIBILITY = (function() {
@@ -134,7 +134,7 @@
 
                 return fBound;
             }
-            
+
             return {
                 /**
                  * Gets the current window width.
@@ -432,7 +432,7 @@
                         onScroll: callbackTemplate,                                      //null || function
                         onScrollStop: callbackTemplate,                                  //null || function
                         onOverflowChanged: callbackTemplate,                             //null || function
-                        onOverflowAmountChanged: callbackTemplate,                       //null || function
+                        onOverflowpriceChanged: callbackTemplate,                       //null || function
                         onDirectionChanged: callbackTemplate,                            //null || function
                         onContentSizeChanged: callbackTemplate,                          //null || function
                         onHostSizeChanged: callbackTemplate,                             //null || function
@@ -1094,7 +1094,7 @@
 
                 //attrs viewport shall inherit from target
                 var _viewportAttrsFromTarget = [LEXICON.ti];
-                
+
                 //options:
                 var _defaultOptions;
                 var _currentOptions;
@@ -1162,7 +1162,7 @@
                 var _clipAlwaysCache;
                 var _contentGlueSizeCache;
                 var _overflowBehaviorCache;
-                var _overflowAmountCache;
+                var _overflowpriceCache;
                 var _ignoreOverlayScrollbarHidingCache;
                 var _autoUpdateCache;
                 var _sizeAutoCapableCache;
@@ -1221,7 +1221,7 @@
                 //==== Event Listener ====//
 
                 /**
-                 * Adds or removes a event listener from the given element. 
+                 * Adds or removes a event listener from the given element.
                  * @param element The element to which the event listener shall be applied or removed.
                  * @param eventNames The name(s) of the events.
                  * @param listener The method which shall be called.
@@ -1455,7 +1455,7 @@
                  * Freezes or unfreezes the given resize observer.
                  * @param targetElement The element to which the target resize observer is applied.
                  * @param freeze True if the resize observer shall be frozen, false otherwise.
-                 
+
                 function freezeResizeObserver(targetElement, freeze) {
                     if (targetElement !== undefined) {
                         if(freeze) {
@@ -1526,12 +1526,12 @@
                                         else
                                             doUpdate = true;
                                     }
-                                    
+
                                     mutatedAttrs.push(mutationAttrName);
                                 });
-                                
+
                                 updateViewportAttrsFromTarget(mutatedAttrs);
-                                
+
                                 if (doUpdate)
                                     _base.update(_strAuto);
                             }
@@ -1848,13 +1848,13 @@
                 }
 
                 /**
-                 * Returns true when a attribute which the MutationObserver would observe has changed.  
+                 * Returns true when a attribute which the MutationObserver would observe has changed.
                  * @returns {boolean} True if one of the attributes which a MutationObserver would observe has changed, false or undefined otherwise.
                  */
                 function meaningfulAttrsChanged() {
                     if (_sleeping || _mutationObserversConnected)
                         return;
-                    
+
                     var elem;
                     var curr;
                     var cache;
@@ -1876,7 +1876,7 @@
                             each(check._attrs, function (index, attr) {
                                 curr = attr.charAt(0) === ':' ? elem.is(attr) : elem.attr(attr);
                                 cache = _updateAutoCache[attr];
-                                
+
                                 if(checkCache(curr, cache)) {
                                     changedAttrs.push(attr);
                                 }
@@ -1887,7 +1887,7 @@
                     });
 
                     updateViewportAttrsFromTarget(changedAttrs);
-                    
+
                     return changedAttrs[LEXICON.l] > 0;
                 }
 
@@ -1989,7 +1989,7 @@
                         }
                     });
                 }
-                
+
                 /**
                  * Updates the variables and size of the textarea element, and manages the scroll on new line or new character.
                  */
@@ -2686,11 +2686,11 @@
                         _hostSizeCache = hostSize;
 
                         var hideOverflowForceTextarea = _isTextarea && (_viewportSize.w === 0 || _viewportSize.h === 0);
-                        var previousOverflowAmount = _overflowAmountCache;
+                        var previousOverflowprice = _overflowpriceCache;
                         var overflowBehaviorIsVS = {};
                         var overflowBehaviorIsVH = {};
                         var overflowBehaviorIsS = {};
-                        var overflowAmount = {};
+                        var overflowprice = {};
                         var hasOverflow = {};
                         var hideOverflow = {};
                         var canScroll = {};
@@ -2703,14 +2703,14 @@
                             var wh = scrollbarVars._w_h;
                             var widthHeight = scrollbarVars._width_height;
                             var scrollMax = _strScroll + scrollbarVars._Left_Top + 'Max';
-                            var fractionalOverflowAmount = viewportRect[widthHeight] ? MATH.abs(viewportRect[widthHeight] - _viewportSize[wh]) : 0;
-                            var checkFractionalOverflowAmount = previousOverflowAmount && previousOverflowAmount[xy] > 0 && _viewportElementNative[scrollMax] === 0;
+                            var fractionalOverflowprice = viewportRect[widthHeight] ? MATH.abs(viewportRect[widthHeight] - _viewportSize[wh]) : 0;
+                            var checkFractionalOverflowprice = previousOverflowprice && previousOverflowprice[xy] > 0 && _viewportElementNative[scrollMax] === 0;
                             overflowBehaviorIsVS[xy] = overflowBehavior[xy] === 'v-s';
                             overflowBehaviorIsVH[xy] = overflowBehavior[xy] === 'v-h';
                             overflowBehaviorIsS[xy] = overflowBehavior[xy] === 's';
-                            overflowAmount[xy] = MATH.max(0, MATH.round((contentScrollSize[wh] - _viewportSize[wh]) * 100) / 100);
-                            overflowAmount[xy] *= (hideOverflowForceTextarea || (checkFractionalOverflowAmount && fractionalOverflowAmount > 0 && fractionalOverflowAmount < 1)) ? 0 : 1;
-                            hasOverflow[xy] = overflowAmount[xy] > 0;
+                            overflowprice[xy] = MATH.max(0, MATH.round((contentScrollSize[wh] - _viewportSize[wh]) * 100) / 100);
+                            overflowprice[xy] *= (hideOverflowForceTextarea || (checkFractionalOverflowprice && fractionalOverflowprice > 0 && fractionalOverflowprice < 1)) ? 0 : 1;
+                            hasOverflow[xy] = overflowprice[xy] > 0;
 
                             //hideOverflow:
                             //x || y : true === overflow is hidden by "overflow: scroll" OR "overflow: hidden"
@@ -2723,8 +2723,8 @@
                         setOverflowVariables(true);
                         setOverflowVariables(false);
 
-                        overflowAmount.c = checkCacheAutoForce(overflowAmount, _overflowAmountCache);
-                        _overflowAmountCache = overflowAmount;
+                        overflowprice.c = checkCacheAutoForce(overflowprice, _overflowpriceCache);
+                        _overflowpriceCache = overflowprice;
                         hasOverflow.c = checkCacheAutoForce(hasOverflow, _hasOverflowCache);
                         _hasOverflowCache = hasOverflow;
                         hideOverflow.c = checkCacheAutoForce(hideOverflow, _hideOverflowCache);
@@ -2827,7 +2827,7 @@
                             setViewportCSS(true);
                             setViewportCSS(false);
 
-                            // if the scroll container is too small and if there is any overflow with no overlay scrollbar (and scrollbar styling isn't possible), 
+                            // if the scroll container is too small and if there is any overflow with no overlay scrollbar (and scrollbar styling isn't possible),
                             // make viewport element greater in size (Firefox hide Scrollbars fix)
                             // because firefox starts hiding scrollbars on too small elements
                             // with this behavior the overflow calculation may be incorrect or the scrollbars would appear suddenly
@@ -2926,12 +2926,12 @@
                                 var cursorPos = textareaInfo._cursorPosition;
                                 var cursorMax = textareaInfo._cursorMax;
                                 var cursorIsLastPosition = (cursorPos >= cursorMax && _textareaHasFocus);
-                                var textareaScrollAmount = {
-                                    x: (!textareaAutoWrapping && (cursorCol === lastCol && cursorRow === widestRow)) ? _overflowAmountCache.x : -1,
-                                    y: (textareaAutoWrapping ? cursorIsLastPosition || textareaRowsChanged && (previousOverflowAmount ? (currScroll.y === previousOverflowAmount.y) : false) : (cursorIsLastPosition || textareaRowsChanged) && cursorRow === lastRow) ? _overflowAmountCache.y : -1
+                                var textareaScrollprice = {
+                                    x: (!textareaAutoWrapping && (cursorCol === lastCol && cursorRow === widestRow)) ? _overflowpriceCache.x : -1,
+                                    y: (textareaAutoWrapping ? cursorIsLastPosition || textareaRowsChanged && (previousOverflowprice ? (currScroll.y === previousOverflowprice.y) : false) : (cursorIsLastPosition || textareaRowsChanged) && cursorRow === lastRow) ? _overflowpriceCache.y : -1
                                 };
-                                currScroll.x = textareaScrollAmount.x > -1 ? (_isRTL && _normalizeRTLCache && _rtlScrollBehavior.i ? 0 : textareaScrollAmount.x) : currScroll.x; //if inverted, scroll to 0 -> normalized this means to max scroll offset.
-                                currScroll.y = textareaScrollAmount.y > -1 ? textareaScrollAmount.y : currScroll.y;
+                                currScroll.x = textareaScrollprice.x > -1 ? (_isRTL && _normalizeRTLCache && _rtlScrollBehavior.i ? 0 : textareaScrollprice.x) : currScroll.x; //if inverted, scroll to 0 -> normalized this means to max scroll offset.
+                                currScroll.y = textareaScrollprice.y > -1 ? textareaScrollprice.y : currScroll.y;
                             }
                             _textareaInfoCache = textareaInfo;
                         }
@@ -3048,7 +3048,7 @@
                         }
 
                         //manage scrollbars handle length & offset - don't remove!
-                        if (hostSizeChanged || overflowAmount.c || heightAutoChanged || widthAutoChanged || resizeChanged || boxSizingChanged || paddingAbsoluteChanged || ignoreOverlayScrollbarHidingChanged || cssDirectionChanged) {
+                        if (hostSizeChanged || overflowprice.c || heightAutoChanged || widthAutoChanged || resizeChanged || boxSizingChanged || paddingAbsoluteChanged || ignoreOverlayScrollbarHidingChanged || cssDirectionChanged) {
                             refreshScrollbarHandleLength(true);
                             refreshScrollbarHandleOffset(true);
                             refreshScrollbarHandleLength(false);
@@ -3089,10 +3089,10 @@
                                 clipped: hideOverflow.x || hideOverflow.y
                             });
                         }
-                        if (overflowAmount.c) {
-                            dispatchCallback('onOverflowAmountChanged', {
-                                x: overflowAmount.x,
-                                y: overflowAmount.y
+                        if (overflowprice.c) {
+                            dispatchCallback('onOverflowpriceChanged', {
+                                x: overflowprice.x,
+                                y: overflowprice.y
                             });
                         }
                     }
@@ -3183,7 +3183,7 @@
                     _sizeObserverElement = _sizeObserverElement || selectOrGenerateDivByClass(classNameResizeObserverHost);
                     _textareaCoverElement = _textareaCoverElement || (_isTextarea ? selectOrGenerateDivByClass(_classNameTextareaCoverElement) : undefined);
 
-                    //on destroy, remove all generated class names from the host element before collecting the adopted attributes 
+                    //on destroy, remove all generated class names from the host element before collecting the adopted attributes
                     //to prevent adopting generated class names
                     if (destroy)
                         removeClass(_hostElement, hostElementClassNames);
@@ -3245,7 +3245,7 @@
                         _paddingElementNative = _paddingElement[0];
                         _viewportElementNative = _viewportElement[0];
                         _contentElementNative = _contentElement[0];
-                        
+
                         updateViewportAttrsFromTarget();
                     }
                     else {
@@ -3506,7 +3506,7 @@
                     var strActive = 'active';
                     var strSnapHandle = 'snapHandle';
                     var scrollDurationFactor = 1;
-                    var increaseDecreaseScrollAmountKeyCodes = [16, 17]; //shift, ctrl
+                    var increaseDecreaseScrollpriceKeyCodes = [16, 17]; //shift, ctrl
                     var trackTimeout;
                     var mouseDownScroll;
                     var mouseDownOffset;
@@ -3518,19 +3518,19 @@
                     function getPreparedScrollbarsOption(name) {
                         return _currentPreparedOptions.scrollbars[name];
                     }
-                    function increaseTrackScrollAmount() {
+                    function increaseTrackScrollprice() {
                         scrollDurationFactor = 0.5;
                     }
-                    function decreaseTrackScrollAmount() {
+                    function decreaseTrackScrollprice() {
                         scrollDurationFactor = 1;
                     }
                     function documentKeyDown(event) {
-                        if (inArray(event.keyCode, increaseDecreaseScrollAmountKeyCodes) > -1)
-                            increaseTrackScrollAmount();
+                        if (inArray(event.keyCode, increaseDecreaseScrollpriceKeyCodes) > -1)
+                            increaseTrackScrollprice();
                     }
                     function documentKeyUp(event) {
-                        if (inArray(event.keyCode, increaseDecreaseScrollAmountKeyCodes) > -1)
-                            decreaseTrackScrollAmount();
+                        if (inArray(event.keyCode, increaseDecreaseScrollpriceKeyCodes) > -1)
+                            decreaseTrackScrollprice();
                     }
                     function onMouseTouchDownContinue(event) {
                         var originalEvent = event.originalEvent || event;
@@ -3581,7 +3581,7 @@
                         mouseDownOffset = undefined;
                         mouseDownInvertedScale = 1;
 
-                        decreaseTrackScrollAmount();
+                        decreaseTrackScrollprice();
 
                         if (trackTimeout !== undefined) {
                             _base.scrollStop();
@@ -3720,7 +3720,7 @@
                                 }
                             };
                             if (ctrlKey)
-                                increaseTrackScrollAmount();
+                                increaseTrackScrollprice();
 
                             mouseDownInvertedScale = getHostElementInvertedScale()[xy];
                             mouseDownOffset = COMPATIBILITY.page(event)[xy];
@@ -4446,7 +4446,7 @@
                  * if "auto" then before a real update the content size and host element attributes gets checked, and if they changed only then the update method will be called.
                  * if "sync" then the async update process (MutationObserver or UpdateLoop) gets synchronized and a corresponding update takes place if one was needed due to pending changes.
                  * if "zoom" then a update takes place where it's assumed that content and host size changed
-                 * @returns {boolean|undefined} 
+                 * @returns {boolean|undefined}
                  * If force is "sync" then a boolean is returned which indicates whether a update was needed due to pending changes.
                  * If force is "auto" then a boolean is returned whether a update was needed due to attribute or size changes.
                  * undefined otherwise.
@@ -4463,7 +4463,7 @@
                     var doUpdateAuto;
                     var mutHost;
                     var mutContent;
-                    
+
                     if (isString) {
                         if (force === _strAuto) {
                             attrsChanged = meaningfulAttrsChanged();
@@ -4618,7 +4618,7 @@
                  *    '/='    The current scroll wil be divided by the value.
                  *
                  *    Units:
-                 *    [NONE]  The value is the final scroll amount.                   final = (value * 1)
+                 *    [NONE]  The value is the final scroll price.                   final = (value * 1)
                  *    'px'    Same as none
                  *    '%'     The value is dependent on the current scroll value.     final = ((currentScrollValue / 100) * value)
                  *    'vw'    The value is multiplicated by the viewport width.       final = (value * viewportWidth)
@@ -4779,7 +4779,7 @@
                             return isX ? coordinates[0] : coordinates[1];
                         else if (type(coordinates) == TYPES.o) {
                             //decides RTL normalization "hack" with .n
-                            //normalizeRTL = type(coordinates.n) == TYPES.b ? coordinates.n : normalizeRTL; 
+                            //normalizeRTL = type(coordinates.n) == TYPES.b ? coordinates.n : normalizeRTL;
                             for (i = 0; i < coordinateProps[strLength]; i++)
                                 if (coordinateProps[i] in coordinates)
                                     return coordinates[coordinateProps[i]];
@@ -4788,7 +4788,7 @@
                     function getFinalScroll(isX, rawScroll) {
                         var isString = type(rawScroll) == TYPES.s;
                         var operator;
-                        var amount;
+                        var price;
                         var scrollInfo = isX ? _scrollHorizontalInfo : _scrollVerticalInfo;
                         var currScroll = scrollInfo._currentScroll;
                         var maxScroll = scrollInfo._maxScroll;
@@ -4818,13 +4818,13 @@
                             [strReplace](/%/g, mult + (maxScroll * (isRTLisX && _rtlScrollBehavior.n ? -1 : 1) / 100.0))
                             [strReplace](/vw/g, mult + _viewportSize.w)
                             [strReplace](/vh/g, mult + _viewportSize.h);
-                            amount = parseToZeroOrNumber(isNaN(rawScroll) ? parseToZeroOrNumber(evalFunc(rawScroll), true).toFixed() : rawScroll);
+                            price = parseToZeroOrNumber(isNaN(rawScroll) ? parseToZeroOrNumber(evalFunc(rawScroll), true).toFixed() : rawScroll);
                         }
                         else {
-                            amount = rawScroll;
+                            price = rawScroll;
                         }
 
-                        if (amount !== undefined && !isNaN(amount) && type(amount) == TYPES.n) {
+                        if (price !== undefined && !isNaN(price) && type(price) == TYPES.n) {
                             var normalizeIsRTLisX = normalizeRTL && isRTLisX;
                             var operatorCurrScroll = currScroll * (normalizeIsRTLisX && _rtlScrollBehavior.n ? -1 : 1);
                             var invert = normalizeIsRTLisX && _rtlScrollBehavior.i;
@@ -4832,19 +4832,19 @@
                             operatorCurrScroll = invert ? (maxScroll - operatorCurrScroll) : operatorCurrScroll;
                             switch (operator) {
                                 case '+=':
-                                    finalValue = operatorCurrScroll + amount;
+                                    finalValue = operatorCurrScroll + price;
                                     break;
                                 case '-=':
-                                    finalValue = operatorCurrScroll - amount;
+                                    finalValue = operatorCurrScroll - price;
                                     break;
                                 case '*=':
-                                    finalValue = operatorCurrScroll * amount;
+                                    finalValue = operatorCurrScroll * price;
                                     break;
                                 case '/=':
-                                    finalValue = operatorCurrScroll / amount;
+                                    finalValue = operatorCurrScroll / price;
                                     break;
                                 default:
-                                    finalValue = amount;
+                                    finalValue = price;
                                     break;
                             }
                             finalValue = invert ? maxScroll - finalValue : finalValue;
@@ -5096,7 +5096,7 @@
                 /**
                  * Returns a object which describes the current state of this instance.
                  * @param stateProperty A specific property from the state object which shall be returned.
-                 * @returns {{widthAuto, heightAuto, overflowAmount, hideOverflow, hasOverflow, contentScrollSize, viewportSize, hostSize, autoUpdate} | *}
+                 * @returns {{widthAuto, heightAuto, overflowprice, hideOverflow, hasOverflow, contentScrollSize, viewportSize, hostSize, autoUpdate} | *}
                  */
                 _base.getState = function (stateProperty) {
                     function prepare(obj) {
@@ -5121,7 +5121,7 @@
                         widthAuto: prepare(_widthAutoCache),
                         heightAuto: prepare(_heightAutoCache),
                         padding: prepare(_cssPaddingCache),
-                        overflowAmount: prepare(_overflowAmountCache),
+                        overflowprice: prepare(_overflowpriceCache),
                         hideOverflow: prepare(_hideOverflowCache),
                         hasOverflow: prepare(_hasOverflowCache),
                         contentScrollSize: prepare(_contentScrollSizeCache),
@@ -5261,7 +5261,7 @@
                     /* On a div Element The if checks only whether:
                      * - the targetElement has the class "os-host"
                      * - the targetElement has a a child with the class "os-padding"
-                     * 
+                     *
                      * If that's the case, its assumed the DOM has already the following structure:
                      * (The ".os-host" element is the targetElement)
                      *
@@ -5286,11 +5286,11 @@
                      *  </div>
                      *
                      * =====================================================================================
-                     * 
+                     *
                      * On a Textarea Element The if checks only whether:
-                     * - the targetElement has the class "os-textarea" 
-                     * - the targetElement is inside a element with the class "os-content" 
-                     * 
+                     * - the targetElement has the class "os-textarea"
+                     * - the targetElement is inside a element with the class "os-content"
+                     *
                      * If that's the case, its assumed the DOM has already the following structure:
                      * (The ".os-textarea" (textarea) element is the targetElement)
                      *
@@ -5359,8 +5359,8 @@
                     setupStructureEvents();
                     setupScrollbarEvents(true);
                     setupScrollbarEvents(false);
-                    setupScrollbarCornerEvents();   
-                    
+                    setupScrollbarCornerEvents();
+
                     //create mutation observers
                     createMutationObservers();
 

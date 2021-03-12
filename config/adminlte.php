@@ -46,7 +46,7 @@ return [
      */
 
     'logo' => '<b>Corvus</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/corvus.png',
+    'logo_img' => 'vendor/adminlte/dist/img/android-chrome-192x192.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -240,32 +240,7 @@ return [
             'text' => 'Catalogue',
             'icon' => 'nav-icon fas fa-list-alt',
             'can' => 'access-backend',
-            'submenu' => [
-                [
-                    'text' => 'Products',
-                    'route' => 'backoffice.products.index',
-                    'icon' => 'nav-icon fas fa-list',
-                    'shift' => 'ml-1',
-                ],
-                [
-                    'text' => 'Pricing Groups',
-                    'route' => 'backoffice.pricing_groups.index',
-                    'icon' => 'nav-icon fas fa-money-bill-wave-alt',
-                    'shift' => 'ml-1',
-                ],
-                [
-                    'text' => 'Stock Groups',
-                    'route' => 'backoffice.stock_groups.index',
-                    'icon' => 'nav-icon fas fa-sort-numeric-up-alt',
-                    'shift' => 'ml-1',
-                ],
-                [
-                    'text' => 'Categories',
-                    'route' => 'backoffice.categories.index',
-                    'icon' => 'nav-icon fas fa-border-all',
-                    'shift' => 'ml-1',
-                ],
-            ],
+            'route' => 'backoffice.products.index',
         ],
 
         [
@@ -324,17 +299,38 @@ return [
                 ],
             ],
         ],
-        [
-            'text' => 'User',
-            'route' => 'backoffice.users.index',
-            'icon' => 'nav-icon fas fa-user',
-            'can' => 'access-backend'
-        ],
+
         [
             'text' => 'Settings',
             'route' => 'backoffice.settings.form',
             'icon' => 'nav-icon fas fa-cogs',
-            'can' => 'access-backend'
+            'can' => 'access-backend',
+            'submenu' => [
+                [
+                    'text' => 'Application Users',
+                    'route' => 'backoffice.users.index',
+                    'icon' => 'nav-icon fas fa-user',
+                    'can' => 'access-backend'
+                ],
+                [
+                    'text' => 'Pricing Groups',
+                    'route' => 'backoffice.pricing_groups.index',
+                    'icon' => 'nav-icon fas fa-money-bill-wave-alt',
+                    'shift' => 'ml-1',
+                ],
+                [
+                    'text' => 'Stock Groups',
+                    'route' => 'backoffice.stock_groups.index',
+                    'icon' => 'nav-icon fas fa-sort-numeric-up-alt',
+                    'shift' => 'ml-1',
+                ],
+                [
+                    'text' => 'Categories',
+                    'route' => 'backoffice.categories.index',
+                    'icon' => 'nav-icon fas fa-border-all',
+                    'shift' => 'ml-1',
+                ],
+            ],
         ],
 
         [

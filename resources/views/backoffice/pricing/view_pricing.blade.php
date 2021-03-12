@@ -47,7 +47,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>Pricing Group</th>
-                    <th>Amount</th>
+                    <th>price</th>
                     <th>Dates</th>
                     <th></th>
                 </tr>
@@ -56,7 +56,7 @@
                 @foreach($current_price_list as $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
-                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->amount) }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->price) }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
                         <a href="{{ route('backoffice.products.edit_pricing', [$product->id, $pricing->id]) }}"
@@ -85,7 +85,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>Pricing Group</th>
-                    <th>Amount</th>
+                    <th>price</th>
                     <th>Dates</th>
                     <th></th>
                 </tr>
@@ -94,7 +94,7 @@
                 @foreach($future_price_list as $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
-                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->amount) }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->price) }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
                     <a href="{{ route('backoffice.products.edit_pricing', [$product->id, $pricing->id]) }}"
@@ -126,7 +126,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>Pricing Group</th>
-                    <th>Amount</th>
+                    <th>price</th>
                     <th>Dates</th>
                     <th></th>
                 </tr>
@@ -135,7 +135,7 @@
                 @foreach($history_price_list as $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
-                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->amount) }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->price) }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>
 

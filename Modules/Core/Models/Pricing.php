@@ -4,7 +4,7 @@ namespace Corvus\Core\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
- 
+
 class Pricing extends Model
 {
     /**
@@ -19,8 +19,8 @@ class Pricing extends Model
      *
      * @var array
      */
-    protected $fillable = ['product_id', 'pricing_group_id', 'amount', 'from_date', 'to_date'];
-  /*  
+    protected $fillable = ['product_id', 'pricing_group_id', 'price', 'from_date', 'to_date'];
+  /*
     protected $dateFormat = 'Y-m-d';
 
     protected $dates = ['from_date', 'to_date'];
@@ -34,7 +34,7 @@ class Pricing extends Model
     {
         return $this->belongsTo(PricingGroup::class);
     }
-     
+
     public function getFromToAttribute()
     {
         if ($this->from_date || $this->to_date){
@@ -42,7 +42,7 @@ class Pricing extends Model
         }
 
         return 'No date limitation';
-    }    
+    }
 
     public function getFormatFromDateAttribute()
     {

@@ -97,14 +97,14 @@ class ProcessOrder implements ShouldQueue
                         ->where('stocks.stock_group_id', $stock_group_id)
                         ->where('stocks.warehouse_id', $warehouse_id)
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-                        ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name', 'warehouses.id as warehouse_id')
+                        ->select('products.*', 'pricings.price as price', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name', 'warehouses.id as warehouse_id')
                         ->first();
 
             Log::debug('Procssing the ordered product', ['sku' => $orderline->product_sku]);
             if ($product){
                 $orderline->product_name = $product->name;
                 $orderline->product_id = $product->id;
-                $orderline->amount = $product->amount;
+                $orderline->price = $product->price;
                 $orderline->warehouse_name = $product->warehouse_name;
                 $orderline->warehouse_id = $product->warehouse_id;
                 Log::debug('Processing the product',

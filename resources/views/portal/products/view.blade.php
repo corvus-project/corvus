@@ -38,7 +38,7 @@
                 <div class="row border-bottom">
                     <div class="col-sm-5 bg-light p-2"><b>Price</b></div>
                     <div class="col-sm-7  p-2">
-                        {{ (!empty($price)) ? $price->amount . ' (The price is available between ' . $price->from_date .' ~ '. $price->to_date .')' : 'No Price defined' }}
+                        {{ (!empty($price)) ? Corvus\Core\Helpers\Currency::format($price->price) . ' (The price is available between ' . $price->from_date .' ~ '. $price->to_date .')' : 'No Price defined' }}
                     </div>
                 </div>
 

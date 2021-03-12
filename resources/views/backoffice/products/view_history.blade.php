@@ -15,7 +15,7 @@
         <!--row-->
         @include('includes.product_box')
         <br />
- 
+
 
 
         <br />
@@ -25,7 +25,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
- 
+
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <th scope="col">Product</th>
                     <th scope="col">Warehouse</th>
                     <th scope="col">SKU</th>
-                    <th scope="col">Amount</th>
+                    <th scope="col">price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
@@ -55,7 +55,7 @@
                     <td>{{ $h->product_name }}</td>
                     <td>{{ $h->warehouse_name }}</td>
                     <td>{{ $h->product_sku }}</td>
-                    <td>{{ $h->amount }}</td>
+                    <td>{{ $h->price }}</td>
                     <td>{{ $h->quantity }}</td>
                     <td>{{ $h->created_at }}</td>
                     <td>{{ $order_status_list[$h->order->status] }}</td>

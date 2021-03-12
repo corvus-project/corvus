@@ -4632,19 +4632,19 @@ readers do not read off random characters that represent icons */
   content: "\F882";
 }
 
-.fa-sort-amount-down:before {
+.fa-sort-price-down:before {
   content: "\F160";
 }
 
-.fa-sort-amount-down-alt:before {
+.fa-sort-price-down-alt:before {
   content: "\F884";
 }
 
-.fa-sort-amount-up:before {
+.fa-sort-price-up:before {
   content: "\F161";
 }
 
-.fa-sort-amount-up-alt:before {
+.fa-sort-price-up-alt:before {
   content: "\F885";
 }
 

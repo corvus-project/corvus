@@ -60,7 +60,7 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col">Price Group</th>
-                    <th scope="col">Amount</th>
+                    <th scope="col">price</th>
                     <th scope="col">Dates</th>
                     <th scope="col"></th>
                 </tr>
@@ -70,7 +70,7 @@
                 $pricing)
                 <tr>
                     <td>{{ $pricing->pricing_group->name }}</td>
-                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->amount) }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($pricing->price) }}</td>
                     <td>{{ $pricing->from_to }}</td>
                     <td>@if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))
                         <a href="{{ route('backoffice.products.edit_pricing', [$product->id, $pricing->id]) }}"
@@ -160,7 +160,7 @@
                     <th scope="col">Product</th>
                     <th scope="col">Warehouse</th>
                     <th scope="col">SKU</th>
-                    <th scope="col">Amount</th>
+                    <th scope="col">price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Date</th>
                 </tr>
@@ -172,7 +172,7 @@
                     <td>{{ $h->product_name }}</td>
                     <td>{{ $h->warehouse_name }}</td>
                     <td>{{ $h->product_sku }}</td>
-                    <td>{{ $h->amount }}</td>
+                    <td>{{ $h->price }}</td>
                     <td>{{ $h->quantity }}</td>
                     <td>{{ $h->created_at }}</td>
                 </tr>

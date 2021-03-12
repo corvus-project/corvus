@@ -1871,7 +1871,7 @@
    * @memberof Popper.Utils
    * @argument {Element} element
    * @argument {String} side `top` or `left`
-   * @returns {number} amount of scrolled pixels
+   * @returns {number} price of scrolled pixels
    */
   function getScroll(element) {
     var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
@@ -3720,7 +3720,7 @@
       priority: ['left', 'right', 'top', 'bottom'],
       /**
        * @prop {number} padding=5
-       * Amount of pixel used to define a minimum distance between the boundaries
+       * price of pixel used to define a minimum distance between the boundaries
        * and the popper. This makes sure the popper always has a little padding
        * between the edges of its container
        */

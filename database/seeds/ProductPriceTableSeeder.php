@@ -28,11 +28,11 @@ class ProductPriceTableSeeeder extends Seeder
             $prices[] = [
                 'product_id' => $i,
                 'pricing_group_id' => 1,
-                'amount'    => $faker->randomFloat(2, $min = 0, $max = 500),
+                'price'    => $faker->randomFloat(2, $min = 0, $max = 500),
                 'from_date' => $from_date,
-                'to_date' => $to_date,                
+                'to_date' => $to_date,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),                
+                'updated_at' => Carbon::now(),
             ];
 
             $from_date = $dt->modify('+1 day')->format("Y-m-d");
@@ -41,11 +41,11 @@ class ProductPriceTableSeeeder extends Seeder
             $prices[] = [
                 'product_id' => $i,
                 'pricing_group_id' => $faker->numberBetween(2,4),
-                'amount'    => $faker->randomFloat(2, $min = 0, $max = 500),
+                'price'    => $faker->randomFloat(2, $min = 0, $max = 500),
                 'from_date' => Carbon::yesterday(),
-                'to_date' => $to_date,                
+                'to_date' => $to_date,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),                
+                'updated_at' => Carbon::now(),
             ];
         }
 

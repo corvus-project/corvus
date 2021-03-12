@@ -66,7 +66,7 @@ return [
         'category_management' => 'Category Management',
         'pricing_history' => 'Pricing History',
         'stock_history' => 'Stock History',
-        'amount' => 'Amount',
+        'price' => 'price',
         'stock_group' => 'Stock Group',
         'warehouse' => 'Warehouse',
         'stock_groups' => 'Stock Group',

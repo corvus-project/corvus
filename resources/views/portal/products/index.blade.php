@@ -29,7 +29,7 @@
                             <th>SKU</th>
                             <th>Name</th>
                             <th>Quantity</th>
-                            <th>Amount</th>
+                            <th>price</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -63,29 +63,29 @@ $(document).ready(function() {
             {
                 name: 'sku',
                 data: 'sku'
-            },            
+            },
             {
                 name: 'name',
                 data: 'name'
-            },    
+            },
             {
                 name: 'stocks.quantity',
                 data: 'quantity'
-            },            
+            },
             {
-                name: 'pricings.amount',
-                data: 'amount'
+                name: 'pricings.price',
+                data: 'price'
             },
             {
                 "className": 'options',
                 "data": null,
-                "searchable": false, 
+                "searchable": false,
                 "render": function(data) {
                     var template = "{{ route('portal.products.view', '000') }}"
                     var redirect_url = template.replace('000', data.id);
                     return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
                 },
-            }            
+            }
         ],
         initComplete: function() {
             this.api().columns([0, 1, 2]).every(function() {
@@ -96,10 +96,10 @@ $(document).ready(function() {
                         column.search($(this).val(), false, false, true).draw();
                     });
             });
-        }        
+        }
     });
 
-         
+
 });
 </script>
 @stop

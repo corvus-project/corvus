@@ -62,7 +62,7 @@ class PricingController extends Controller
         }
 
         $pricing = new Pricing();
-        $pricing->amount = $request->amount;
+        $pricing->price = $request->price;
         $pricing->from_date = $request->from_date;
         $pricing->to_date = $request->to_date;
         $pricing->product_id = $product->id;
@@ -95,7 +95,7 @@ class PricingController extends Controller
             return redirect(route('backoffice.pricing.edit_pricing', [$product->id, $pricing->id]))->withFlashDanger('You can\'t update the price between these dates')->withInput();
         }
 
-        $pricing->amount = $request->amount;
+        $pricing->price = $request->price;
         $pricing->from_date = $request->from_date;
         $pricing->to_date = $request->to_date;
         $pricing->product_id = $product->id;

@@ -43,7 +43,6 @@ class CustomerController extends Controller
                     'order_headers.id as order_headers.id',
                     'order_headers.order_date as order_headers.order_date',
                     'order_headers.processed_date as order_headers.processed_date',
-                    'order_headers.amount as order_headers.order_amount',
                     'order_status.name as order_status.name',
                     'users.name as users.name',
                     'order_headers.status as order_headers.status'

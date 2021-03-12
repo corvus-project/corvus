@@ -40,7 +40,7 @@ class ApiController extends Controller
                 'products.id as id',
                 'products.sku as sku',
                 'products.name as name',
-                'pricings.amount as amount',
+                'pricings.price as price',
                 'stocks.quantity as quantity',
                 'warehouses.name as warehouse_name'
                 ]

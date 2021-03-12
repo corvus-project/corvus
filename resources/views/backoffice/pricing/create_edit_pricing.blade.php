@@ -36,7 +36,7 @@
                 <br>
                 @include('includes.partials.messages')
                 <br />
- 
+
                 <form autocomplete="off" role="form"
                     action="{{ (isset($pricing)) ? route('backoffice.products.edit_pricing.update', [$pricing->product_id, $pricing->id]) : route('backoffice.products.create_pricing.store', $product->id) }}"
                     method="post">
@@ -53,11 +53,11 @@
 
                     <div class="form-group row {!! $errors->first('quantity', 'has-warning') !!}">
                         <label for="quantity"
-                            class="col-sm-3 col-form-label">{{ trans('labels.products.amount') }}</label>
+                            class="col-sm-3 col-form-label">{{ trans('labels.products.price') }}</label>
                         <div class="col-sm-2">
-                            <input type="number" class="form-control" id="amount" name="amount" autocomplete="off"
-                                value="{{{ old('amount', isset($pricing) ? $pricing->amount : null) }}}"> {!!
-                            $errors->first('amount', '<span class="help-block">:message</span>') !!}
+                            <input type="number" class="form-control" id="price" name="price" autocomplete="off"
+                                value="{{{ old('price', isset($pricing) ? $pricing->price : null) }}}"> {!!
+                            $errors->first('price', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@
                             $errors->first('to_date', '<span class="help-block">:message</span>') !!}
 
                         </div>
-                    </div> 
+                    </div>
 
                     <button type="submit" class="btn btn-primary btn-md mb-4 float-right">
                         <i class="fas fa-save align-middle"></i> <span

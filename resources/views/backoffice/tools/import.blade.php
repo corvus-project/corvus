@@ -63,7 +63,7 @@
                             <code>
                                 <i>sku, name, description</i>
                             </code>
-                        </p>                          
+                        </p>
                     </div>
                 </div>
             </div>
@@ -120,9 +120,9 @@
                         <p>
                             <b>Example:</b>
                             <code>
-                                <i>sku, amount</i>
+                                <i>sku, price</i>
                             </code>
-                        </p>                        
+                        </p>
                     </div>
                 </div>
             </div>

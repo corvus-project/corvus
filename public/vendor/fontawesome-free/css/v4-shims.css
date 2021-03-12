@@ -755,10 +755,10 @@
 .fa.fa-sort-alpha-desc:before {
   content: "\f881"; }
 
-.fa.fa-sort-amount-asc:before {
+.fa.fa-sort-price-asc:before {
   content: "\f160"; }
 
-.fa.fa-sort-amount-desc:before {
+.fa.fa-sort-price-desc:before {
   content: "\f884"; }
 
 .fa.fa-sort-numeric-asc:before {

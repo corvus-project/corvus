@@ -24,7 +24,7 @@ class ProductController extends Controller
                         ->where('pricings.pricing_group_id', $profile->pricing_group_id)
                         ->where('stocks.stock_group_id', $profile->stock_group_id)
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-                        ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
+                        ->select('products.*', 'pricings.price as price', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
                         ->get();
 
         return Products::collection($stocks);
@@ -43,7 +43,7 @@ class ProductController extends Controller
                         ->where('pricings.pricing_group_id', $profile->pricing_group_id)
                         ->where('stocks.stock_group_id', $profile->stock_group_id)
                         ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-                        ->select('products.*', 'pricings.amount as amount', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
+                        ->select('products.*', 'pricings.price as price', 'stocks.quantity as quantity', 'warehouses.name as warehouse_name')
                         ->first();
         if (!$selected){
             return response()->json(null, 404);
