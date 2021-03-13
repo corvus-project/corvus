@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        return $this->redirect();
     }
 
     public function redirect()
@@ -34,11 +34,6 @@ class HomeController extends Controller
             return redirect(route('portal.dashboard'));
         }
         
-        return redirect(route('admin.dashboard'));
-    
-
-        return redirect('/');
+        return redirect(route('backoffice.dashboard'));
     }
-
-     
 }

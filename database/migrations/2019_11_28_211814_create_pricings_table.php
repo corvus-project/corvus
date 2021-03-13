@@ -19,10 +19,10 @@ class CreatePricingsTable extends Migration
             $table->foreign('product_id')->references('id')->onDelete('cascade')->on('products');
             $table->integer('pricing_group_id')->nullable()->unsigned();
             $table->foreign('pricing_group_id')->references('id')->onDelete('cascade')->on('pricing_groups');
-            $table->decimal('amount', 8, 2);
+            $table->decimal('price', 8, 2);
             $table->date('from_date')->nullable();
             $table->date('to_date')->nullable();
-            $table->softDeletes();            
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Portal;
 
-use App\Models\Order;
-use App\Models\OrderStatus;
+use Corvus\Core\Models\Order;
+use Corvus\Core\Models\OrderStatus;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use DB; 
+use DB;
 use App\Jobs\ProcessOrder;
 use Auth;
 use App\Imports\VendorOrderImport;
@@ -28,7 +28,7 @@ class OrderController extends Controller
 
         $status_json = null;
         foreach($status as $s){
-            $status_json .= '{ value: "'. $s->id .'", label: "'. $s->name . '"},'; 
+            $status_json .= '{ value: "'. $s->id .'", label: "'. $s->name . '"},';
         }
 
         return view('portal.orders.index', compact('status_json'));
@@ -42,15 +42,15 @@ class OrderController extends Controller
         $orderlines = $order->order_lines()->orderBy('created_at', 'DESC')->get();
 
         return view('portal.orders.view', compact('order', 'orderlines','allowed_status'));
-    } 
+    }
 
     public function cancel(Order $order)
     {
         $_status = OrderStatus::where('slug', 'CANCELED')->first();
         $order->status = $_status->id;
-        $order->save();  
+        $order->save();
         return redirect(route('portal.orders.index'))->withFlashSuccess('Order cancelled');
-    } 
+    }
 
     public function data()
     {

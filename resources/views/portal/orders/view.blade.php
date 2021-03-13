@@ -1,6 +1,6 @@
-@extends('layouts.backend')
+@extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('Order View'))
+@section('title', config('corvus.app_name') . ' | ' . __('Order View'))
 
 @section('content')
 <div class="card mt-2">
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-sm-5"><b>Ref ID</b></div>
             <div class="col-sm-7">{{ $order->ref_id }}</div>
-        </div>        
+        </div>
         <br />
 
         <table class="table table-light table-hover">
@@ -48,7 +48,7 @@
                 <tr>
                     <th>Product Name</th>
                     <th>Product SKU</th>
-                    <th>Amount</th>
+                    <th>price</th>
                     <th>Quantity</th>
                     <th>Status</th>
                     <th>Updated</th>
@@ -59,7 +59,7 @@
                 <tr>
                     <td>{{ $orderline->product_name }}</td>
                     <td>{{ $orderline->product_sku }}</td>
-                    <td>{{ $orderline->amount }}</td>
+                    <td>{{ Corvus\Core\Helpers\Currency::format($orderline->price) }}</td>
                     <td>{{ $orderline->quantity }}</td>
                     <td>{{ $orderline->status_value }}</td>
                     <td>{{ $orderline->updated_at->format('d M Y H:i') }}</td>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Portal;
 
-use App\Models\Order;
-use App\Models\OrderStatus;
+use Corvus\Core\Models\Order;
+use Corvus\Core\Models\OrderStatus;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use DB; 
+use DB;
 use App\Jobs\ProcessOrder;
 use Auth;
 use App\Imports\VendorOrderImport;

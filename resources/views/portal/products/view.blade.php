@@ -1,6 +1,6 @@
-@extends('layouts.backend')
+@extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.products.view'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.products.view'))
 
 @section('content')
 <div class="card mt-2">
@@ -14,14 +14,14 @@
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="">
 
                             <a href="{{ route('portal.cart.add', $product->id) }}" class="btn btn-warning btn-md m-1"
-                                data-toggle="tooltip" title="Add to Cart"><i class="fas fa-cart-plus"></i></a>
+                                data-toggle="tooltip" title="Add to Cart"><i class="fas fa-cart-plus"></i> Add to Cart</a>
 
                         </div>
 
                     </div>
                 </div>
 
-
+                @include('includes.partials.messages')
                 <div class="row border-bottom">
                     <div class="col-sm-5 bg-light p-2"><b>SKU</b></div>
                     <div class="col-sm-7  p-2">{{ $product->sku }}</div>
@@ -38,7 +38,7 @@
                 <div class="row border-bottom">
                     <div class="col-sm-5 bg-light p-2"><b>Price</b></div>
                     <div class="col-sm-7  p-2">
-                        {{ (!empty($price)) ? $price->amount . ' (The price is available between ' . $price->from_date .' ~ '. $price->to_date .')' : 'No Price defined' }}
+                        {{ (!empty($price)) ? Corvus\Core\Helpers\Currency::format($price->price) . ' (The price is available between ' . $price->from_date .' ~ '. $price->to_date .')' : 'No Price defined' }}
                     </div>
                 </div>
 

@@ -1,21 +1,8 @@
-@import "global";
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// If you want to override variables do it here
-@import "variables";
+// Variables
+@import 'variables';
 
-// Import styles
-@import "~@coreui/coreui/scss/coreui";
-
-// Fix mobile footer
-.app-footer {
-    flex: 0 0;
-    padding-top: map-get($spacers, 3);
-    padding-bottom: map-get($spacers, 3);
-}
-
-.welcome{
-    background-color: #6474E8;
-}
-
-table.dataTable tr.odd { background-color: #E2E4FF; cursor: pointer; }
-table.dataTable tr.even { background-color: white; cursor: pointer;}
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';

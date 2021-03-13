@@ -1,6 +1,6 @@
-@extends('layouts.backend')
+@extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.products.management'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.products.management'))
 
 
 @section('content')
@@ -11,7 +11,7 @@
                 <h4 class="card-title"> Profile</h4>
             </div>
             <div class="card-body">
- 
+
                 <form autocomplete="off" role="form" action="{{ route('user.profile.save') }}" method="post">
                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 

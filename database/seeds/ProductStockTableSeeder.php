@@ -21,15 +21,20 @@ class ProductStockTableSeeder extends Seeder
         $products = [];
 
         for ($i = 1; $i < 500; $i++) {
-            $stocks[] = [
-                'product_id' => $i,
-                'stock_group_id' => $faker->numberBetween(1,4),
-                'warehouse_id' => $faker->numberBetween(1,3),
-                'quantity'    => $faker->numberBetween(0, 500),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),                
-            ];
-                         
+
+            for($stokgroup = 1; $stokgroup <= 4; $stokgroup++){
+
+                for($warehouse = 1; $warehouse <= 3; $warehouse++){
+                    $stocks[] = [
+                        'product_id' => $i,
+                        'stock_group_id' => $stokgroup,
+                        'warehouse_id' => $warehouse,
+                        'quantity'    => $faker->numberBetween(0, 500),
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),                
+                    ];
+                }
+            }
         }
 
         DB::table('stocks')->insert($stocks);

@@ -17,7 +17,7 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', '
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     Route::get('/account', 'AccountController@index')->name('account');
-    
+
     // Cart
     Route::get('/cart/{product}/add', ['as' => 'cart.add', 'uses' => 'CartController@add']);
     Route::get('/cart/view', ['as' => 'cart.view', 'uses' => 'CartController@view']);
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', '
     Route::get('/products/data', ['as' => 'products.data', 'uses' => 'ProductController@data']);
     Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'ProductController@view']);
     Route::get('/products/save', ['as' => 'products.save', 'uses' => 'ProductController@save']);
-    
+
     // Orders
     Route::get('/orders', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
     Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
@@ -50,7 +50,7 @@ Route::group(['as' => 'user.', 'middleware' => ['web', 'auth', 'verified']], fun
 /**
  * Backend routes
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator;orders_staff;inventory_staff'], 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'backoffice', 'as' => 'backoffice.', 'middleware' => ['web', 'auth', 'verified', 'role:administrator;orders_staff;inventory_staff'], 'namespace' => '\Corvus\Backoffice\Controllers'], function () {
 
     // Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
@@ -59,15 +59,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/products', ['as' => 'products.index', 'uses' => 'Catalogue\ProductController@index']);
     Route::get('/products/data', ['as' => 'products.data', 'uses' => 'Catalogue\ProductController@data']);
     Route::get('/products/{product}/view', ['as' => 'products.view', 'uses' => 'Catalogue\ProductController@view']);
-    Route::get('/products/{product}/pricing', ['as' => 'products.view_pricing', 'uses' => 'Catalogue\ProductController@view_pricing']);
+
+
+
+
     Route::get('/products/{product}/stocks', ['as' => 'products.view_stocks', 'uses' => 'Catalogue\ProductController@view_stocks']);
     Route::get('/products/{product}/categories', ['as' => 'products.view_categories', 'uses' => 'Catalogue\ProductController@view_categories']);
-    Route::get('/products/{product}/history', ['as' => 'products.view_history', 'uses' => 'Catalogue\ProductController@view_history']);
-    
+    Route::get('/products/{product}/history', ['as' => 'products.view_history', 'uses' => 'Catalogue\OrderController@view_history']);
+
 
     // Category CRUD
     Route::get('/products/{product}/create/categories', ['as' => 'products.create_category', 'uses' => 'Catalogue\ProductController@create_category']);
-    Route::post('/products/{product}/create/categories', ['as' => 'products.create_category.store', 'uses' => 'Catalogue\ProductController@store_category']);    
+    Route::post('/products/{product}/create/categories', ['as' => 'products.create_category.store', 'uses' => 'Catalogue\ProductController@store_category']);
     Route::get('/products/{product}/delete/{category}/categories', ['as' => 'products.delete_category', 'uses' => 'Catalogue\ProductController@delete_category']);
     Route::post('/products/{product}/delete/{category}/categories', ['as' => 'products.delete_category.destroy', 'uses' => 'Catalogue\ProductController@destroy_category']);
 
@@ -80,12 +83,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/products/{product}/delete/{stock}/stocks', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_stock.destroy', 'uses' => 'Catalogue\ProductController@destroy_stock']);
 
     //  PPRICING CRUD
-    Route::get('/products/{product}/create/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.create_pricing', 'uses' => 'Catalogue\ProductController@create_pricing']);
-    Route::post('/products/{product}/create/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.create_pricing.store', 'uses' => 'Catalogue\ProductController@store_pricing']);
-    Route::get('/products/{product}/edit/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.edit_pricing', 'uses' => 'Catalogue\ProductController@edit_pricing']);
-    Route::post('/products/{product}/edit/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.edit_pricing.update', 'uses' => 'Catalogue\ProductController@update_pricing']);
-    Route::get('/products/{product}/delete/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_pricing', 'uses' => 'Catalogue\ProductController@delete_pricing']);
-    Route::post('/products/{product}/delete/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_pricing.destroy', 'uses' => 'Catalogue\ProductController@destroy_pricing']);
+    Route::get('/products/{product}/pricing', ['as' => 'products.view_pricing', 'uses' => 'Catalogue\PricingController@view_pricing']);
+    Route::get('/products/{product}/create/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.create_pricing', 'uses' => 'Catalogue\PricingController@create_pricing']);
+    Route::post('/products/{product}/create/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.create_pricing.store', 'uses' => 'Catalogue\PricingController@store_pricing']);
+    Route::get('/products/{product}/edit/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.edit_pricing', 'uses' => 'Catalogue\PricingController@edit_pricing']);
+    Route::post('/products/{product}/edit/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.edit_pricing.update', 'uses' => 'Catalogue\PricingController@update_pricing']);
+    Route::get('/products/{product}/delete/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_pricing', 'uses' => 'Catalogue\PricingController@delete_pricing']);
+    Route::post('/products/{product}/delete/{pricing}/pricing', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'products.delete_pricing.destroy', 'uses' => 'Catalogue\PricingController@destroy_pricing']);
 
     // Pricing Groups
     Route::get('/pricing-groups', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'pricing_groups.index', 'uses' => 'PricingGroupController@index']);
@@ -104,7 +108,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/stock-groups/{stock_group}/edit', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'stock_groups.update', 'uses' => 'StockGroupController@update']);
     Route::get('/stock-groups/{stock_group}/delete', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'stock_groups.delete', 'uses' => 'StockGroupController@delete']);
     Route::post('/stock-groups/{stock_group}/delete', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'stock_groups.destroy', 'uses' => 'StockGroupController@destroy']);
- 
+
     // Categories
     Route::get('/categories', ['as' => 'categories.index', 'uses' => 'Catalogue\CategoryController@index']);
     Route::get('/categories/{category}/products', ['as' => 'categories.products', 'uses' => 'Catalogue\CategoryController@products']);
@@ -115,7 +119,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/categories/{category}/edit', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'categories.update', 'uses' => 'Catalogue\CategoryController@update']);
     Route::get('/categories/{category}/delete', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'categories.delete', 'uses' => 'Catalogue\CategoryController@delete']);
     Route::post('/categories/{category}/delete', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'categories.destroy', 'uses' => 'Catalogue\CategoryController@destroy']);
- 
+
     // Warehouses
     Route::get('/warehouses', ['as' => 'warehouses.index', 'uses' => 'WarehouseController@index']);
     Route::get('/warehouses/create', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'warehouses.create', 'uses' => 'WarehouseController@create']);
@@ -126,35 +130,35 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('/warehouses/{warehouse}/delete', ['middleware' => ['role:administrator;inventory_staff'], 'as' => 'warehouses.destroy', 'uses' => 'WarehouseController@destroy']);
     Route::get('/warehouses/{warehouse}/products', ['as' => 'warehouses.products', 'uses' => 'WarehouseController@products']);
     Route::get('/warehouses/{warehouse}/products/data', ['as' => 'warehouses.products.data', 'uses' => 'WarehouseController@data']);
-    
+
     // Tools
     Route::get('/tools', ['as' => 'tools.index', 'uses' => 'ToolController@index']);
     Route::get('/tools/imports', 'ImportController@index')->name('tools.import.index');
-    Route::post('/tools/imports/csv_file', ['as' => 'tools.import.csv_file', 'uses' => 'ImportController@csv_file']);   
+    Route::post('/tools/imports/csv_file', ['as' => 'tools.import.csv_file', 'uses' => 'ImportController@csv_file']);
     Route::get('/tools/exports', 'ExportController@index')->name('tools.export.index');
-    Route::post('/tools/exports/product_list', ['as' => 'tools.exports.product_list', 'uses' => 'ExportController@product_list']);      
-    Route::post('/tools/exports/price_list', ['as' => 'tools.exports.price_list', 'uses' => 'ExportController@price_list']);      
-    Route::post('/tools/exports/order_list', ['as' => 'tools.exports.order_list', 'uses' => 'ExportController@order_list']);      
-    Route::post('/tools/exports/stock_list', ['as' => 'tools.exports.stock_list', 'uses' => 'ExportController@stock_list']);      
+    Route::post('/tools/exports/product_list', ['as' => 'tools.exports.product_list', 'uses' => 'ExportController@product_list']);
+    Route::post('/tools/exports/price_list', ['as' => 'tools.exports.price_list', 'uses' => 'ExportController@price_list']);
+    Route::post('/tools/exports/order_list', ['as' => 'tools.exports.order_list', 'uses' => 'ExportController@order_list']);
+    Route::post('/tools/exports/stock_list', ['as' => 'tools.exports.stock_list', 'uses' => 'ExportController@stock_list']);
 
     // Accounts
     Route::get('/accounts/', 'AccountController@index')->name('accounts.index');
     Route::get('/accounts/data', ['as' => 'accounts.data', 'uses' => 'AccountController@data']);
-    Route::get('/accounts/{user}/view', ['as' => 'accounts.view', 'uses' => 'AccountController@view']);    
-    Route::get('/accounts/{user}/orders', ['middleware' => ['role:administrator'], 'as' => 'accounts.orders', 'uses' => 'AccountController@orders']);     
-    Route::get('/accounts/{user}/orders_data', ['middleware' => ['role:administrator'], 'as' => 'accounts.orders_data', 'uses' => 'AccountController@orders_data']);     
-    Route::get('/accounts/create', ['middleware' => ['role:administrator'], 'as' => 'accounts.create', 'uses' => 'AccountController@create']);     
-    Route::post('/accounts/create', ['middleware' => ['role:administrator'], 'as' => 'accounts.store', 'uses' => 'AccountController@store']);     
-    Route::get('/accounts/{user}/edit', ['middleware' => ['role:administrator'], 'as' => 'accounts.edit', 'uses' => 'AccountController@edit']);     
-    Route::post('/accounts/{user}/edit', ['middleware' => ['role:administrator'], 'as' => 'accounts.update', 'uses' => 'AccountController@update']);     
-    Route::post('/accounts/{user}/token', ['middleware' => ['role:administrator'], 'as' => 'accounts.token.regenerate', 'uses' => 'AccountController@token_regenerate']);    
+    Route::get('/accounts/{user}/view', ['as' => 'accounts.view', 'uses' => 'AccountController@view']);
+    Route::get('/accounts/{user}/orders', ['middleware' => ['role:administrator'], 'as' => 'accounts.orders', 'uses' => 'AccountController@orders']);
+    Route::get('/accounts/{user}/orders_data', ['middleware' => ['role:administrator'], 'as' => 'accounts.orders_data', 'uses' => 'AccountController@orders_data']);
+    Route::get('/accounts/create', ['middleware' => ['role:administrator'], 'as' => 'accounts.create', 'uses' => 'AccountController@create']);
+    Route::post('/accounts/create', ['middleware' => ['role:administrator'], 'as' => 'accounts.store', 'uses' => 'AccountController@store']);
+    Route::get('/accounts/{user}/edit', ['middleware' => ['role:administrator'], 'as' => 'accounts.edit', 'uses' => 'AccountController@edit']);
+    Route::post('/accounts/{user}/edit', ['middleware' => ['role:administrator'], 'as' => 'accounts.update', 'uses' => 'AccountController@update']);
+    Route::post('/accounts/{user}/token', ['middleware' => ['role:administrator'], 'as' => 'accounts.token.regenerate', 'uses' => 'AccountController@token_regenerate']);
 
     // Orders
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/orders/data', ['as' => 'orders.data', 'uses' => 'OrderController@data']);
-    Route::get('/orders/{order}/view', ['as' => 'orders.view', 'uses' => 'OrderController@view']);    
-    Route::get('/orders/{order}/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);   
-    
+    Route::get('/orders/{order}/view', ['as' => 'orders.view', 'uses' => 'OrderController@view']);
+    Route::get('/orders/{order}/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);
+
     // Reports
     Route::get('/reports', 'Reports\ReportController@index')->name('reports.index');
     Route::get('/reports/warehouse/stock', ['as' => 'reports.warehouse.stock', 'uses' => 'Reports\WarehouseController@stock']);
@@ -169,10 +173,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/users/{user}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
     Route::post('/users/{user}/edit', ['as' => 'users.update', 'uses' => 'UserController@update']);
 
+    // Settings
+    Route::get('/settings', 'SettingController@form')->name('settings.form');
+    Route::post('/settings', 'SettingController@update')->name('settings.form.update');
 });
 
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home')->middleware(['web', 'auth']);
 Route::get('/redirect', 'HomeController@redirect');
 
+Route::get('/debug', function(){
+    $locale = App::currentLocale();
+    $fmt = numfmt_create( $locale, NumberFormatter::CURRENCY );
+    echo numfmt_format_currency($fmt, 1234567.891234567890000, "EUR")."\n";
+} );

@@ -24,9 +24,9 @@ class PricingStoreRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'from_date' => 'required',
-            'to_date'   => 'required',
-            'amount'    => 'required|numeric'
+            'from_date' => 'required|date|after_or_equal:'. date('Y-m-d'),
+            'to_date'   => 'required|date|after:'. date('Y-m-d'),
+            'price'    => 'required|numeric'
         ];
     }
 }

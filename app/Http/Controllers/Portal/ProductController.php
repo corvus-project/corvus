@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Pricing;
-use App\Models\PricingGroup;
-use App\Models\Product;
-use App\Models\Stock;
-use App\Models\StockGroup;
-use App\Models\Warehouse;
+use Corvus\Core\Models\Category;
+use Corvus\Core\Models\Pricing;
+use Corvus\Core\Models\PricingGroup;
+use Corvus\Core\Models\Product;
+use Corvus\Core\Models\Stock;
+use Corvus\Core\Models\StockGroup;
+use Corvus\Core\Models\Warehouse;
 use DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -41,9 +41,10 @@ class ProductController extends Controller
                 'products.id as id',
                 'products.sku as sku',
                 'products.name as name',
-                'pricings.amount as amount',
-                'stocks.quantity as quantity']
-            ); 
+                'pricings.price as price',
+                'stocks.quantity as quantity',
+                ]
+            );
             return datatables()->query($products)->toJson();
         }else{
             return [];
@@ -57,7 +58,7 @@ class ProductController extends Controller
             ->where('pricings.pricing_group_id', $profile->pricing_group_id)
             ->where('pricings.product_id', $product->id)
             ->whereRaw('(CURRENT_DATE BETWEEN pricings.from_date AND pricings.to_date)')
-            ->select('from_date', 'to_date', 'amount')
+            ->select('from_date', 'to_date', 'price')
             ->first();
 
 
@@ -65,10 +66,11 @@ class ProductController extends Controller
                     ->leftJoin('warehouses', 'warehouses.id', '=', 'stocks.warehouse_id')
                     ->where('stocks.warehouse_id', $profile->warehouse_id)
                     ->where('stocks.stock_group_id', $profile->stock_group_id)
-                    ->where('stocks.product_id', $product->id) 
-                    
+                    ->where('stocks.product_id', $product->id)
+
                     ->select('quantity', 'warehouses.name as warehouse_name')
                     ->first();
+
 
         return view('portal.products.view', compact('product', 'price', 'stock'));
     }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
- 
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderLines extends JsonResource
@@ -17,7 +17,7 @@ class OrderLines extends JsonResource
         return [
             'product_name' => $this->product_name,
             'product_sku' => $this->product_sku,
-            'amount' => $this->amount,
+            'price' => $this->price,
             'quantity'   => $this->quantity,
             'status'   => $this->status_value,
         ];

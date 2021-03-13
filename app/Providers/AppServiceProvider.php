@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use URL;
-
+use Illuminate\Support\Facades\Blade;
+use Corvus\Core\Models\Setting;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,24 +18,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->environment() == 'production') {
-            URL::forceScheme('https');
-        }
-        // Force SSL in production
-        if ($this->app->environment() != 'production') {
-            //URL::forceScheme('https');
-
-            // Set the default string length for Laravel5.4
-            // https://laravel-news.com/laravel-5-4-key-too-long-error
-            Schema::defaultStringLength(191);
-
-            DB::listen(function ($query) {
-                File::append(
-                    storage_path('/logs/query.log'),
-                    $query->sql . ' [' . implode(', ', $query->bindings) . ']' . PHP_EOL
-                );
-            });
-        }
+        config([
+            'corvus' => Setting::all(['setting_key','setting_value'])
+                                                        ->keyBy('setting_key')
+                                                        ->transform(function ($setting) {
+                                                                return $setting->setting_value;
+                                                        })->toArray()
+            ]);
     }
 
     /**

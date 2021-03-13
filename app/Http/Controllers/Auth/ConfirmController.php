@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Auth\User\User;
+use Corvus\Core\Models\Auth\User\User;
 use App\Notifications\Auth\ConfirmEmail;
 use App\Http\Controllers\Controller;
 use Ramsey\Uuid\Uuid;

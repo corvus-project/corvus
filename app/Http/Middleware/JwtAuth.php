@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Log;
-use App\Models\User;
+use Corvus\Core\Models\User;
 use Lcobucci\JWT\Parser;
 
 class JwtAuth
@@ -19,7 +19,7 @@ class JwtAuth
     public function handle($request, Closure $next)
     {
         $token = $request->bearerToken();
- 
+
         if(!$token) {
             // Unauthorized response if token not there
             return response()->json([
@@ -29,14 +29,14 @@ class JwtAuth
 
         try {
             $user = User::where('token', $token)->first();
-            $token = (new Parser())->parse((string) $token); 
+            $token = (new Parser())->parse((string) $token);
             $user_id = $token->getClaim('user_id');
 
             if ($user->id != $user_id){
                 return response()->json([
                     'error' => 'Token not valid.'
                 ], 401);
-            } 
+            }
         } catch(ExpiredException $e) {
             return response()->json([
                 'error' => 'Provided token is expired.'
@@ -46,10 +46,10 @@ class JwtAuth
                 'error' => 'An error while decoding token.'
             ], 400);
         }
- 
+
         \Log::debug('User', (array)$user->email);
         app()->instance('user', $user);
 
-        return $next($request); 
+        return $next($request);
     }
 }

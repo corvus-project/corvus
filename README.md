@@ -1,5 +1,5 @@
  
-# Intellect Inventory Management System
+# Corvus Inventory Management System
 
 Start to manage purchases, orders and inventory in your own server. Intellect developed by power of Laravel and PHP.
 
@@ -44,7 +44,7 @@ $ yum install npm
 ```
 3. Clone repository
 ```
-$ git clone https://github.com/gazatem/intellect.git
+$ git clone https://github.com/gazatem/corvus.git
 ```
 4. Change into the working directory
 ```
