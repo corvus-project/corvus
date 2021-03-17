@@ -3,8 +3,8 @@
 namespace Corvus\Backoffice\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
-use App\Http\Requests\StaffUpdateRequest;
+use Corvus\Core\Requests\UserRequest;
+use Corvus\Core\Requests\StaffUpdateRequest;
 use Corvus\Core\Models\Role;
 use Corvus\Core\Models\User;
 use Carbon\Carbon;

@@ -13,7 +13,7 @@
 
 Auth::routes(['verify' => true]);
 
-Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:vendor'], 'namespace' => 'Portal'], function () {
+Route::group(['prefix' => 'portal', 'as' => 'portal.', 'middleware' => ['web', 'auth', 'verified', 'role:vendor'], 'namespace' => '\Corvus\Portal\Controllers'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     Route::get('/account', 'AccountController@index')->name('account');

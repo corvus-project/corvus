@@ -5,8 +5,8 @@ namespace Corvus\Backoffice\Controllers;
 use Illuminate\Http\Request;
 use Corvus\Core\Models\Warehouse;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\WarehouseStoreRequest;
-use App\Http\Requests\WarehouseUpdateRequest;
+use Corvus\Core\Requests\WarehouseStoreRequest;
+use Corvus\Core\Requests\WarehouseUpdateRequest;
 use DB;
 use Illuminate\Support\Str;
 

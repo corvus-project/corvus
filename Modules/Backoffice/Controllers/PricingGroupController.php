@@ -5,8 +5,8 @@ namespace Corvus\Backoffice\Controllers;
 use Illuminate\Http\Request;
 use Corvus\Core\Models\PricingGroup;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PricingGroupStoreRequest;
-use App\Http\Requests\PricingGroupUpdateRequest;
+use Corvus\Core\Requests\PricingGroupStoreRequest;
+use Corvus\Core\Requests\PricingGroupUpdateRequest;
 
 use Illuminate\Support\Str;
 

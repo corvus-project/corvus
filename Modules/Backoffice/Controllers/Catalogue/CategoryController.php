@@ -5,8 +5,8 @@ namespace Corvus\Backoffice\Controllers\Catalogue;
 use Illuminate\Http\Request;
 use Corvus\Core\Models\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryStoreRequest;
-use App\Http\Requests\CategoryUpdateRequest;
+use Corvus\Core\Requests\CategoryStoreRequest;
+use Corvus\Core\Requests\CategoryUpdateRequest;
 use DB;
 
 use Illuminate\Support\Str;

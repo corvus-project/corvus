@@ -32,7 +32,7 @@
 
                   <div class="row">
             <div class="col-sm-6">
-                <h4>Pricing Groups</h4>
+                <h4>Pricing</h4>
             </div>
             <div class="col-sm-6">
             @if (Auth::user()->hasRoles(['administrator', 'inventory_staff']))

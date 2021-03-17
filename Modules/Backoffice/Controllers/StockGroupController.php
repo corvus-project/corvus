@@ -5,8 +5,8 @@ namespace Corvus\Backoffice\Controllers;
 use Illuminate\Http\Request;
 use Corvus\Core\Models\StockGroup;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StockGroupStoreRequest;
-use App\Http\Requests\StockGroupUpdateRequest;
+use Corvus\Core\Requests\StockGroupStoreRequest;
+use Corvus\Core\Requests\StockGroupUpdateRequest;
 
 use Illuminate\Support\Str;
 

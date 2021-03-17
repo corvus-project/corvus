@@ -5,7 +5,7 @@ namespace Corvus\Backoffice\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\CsvImportRequest;
+use Corvus\Core\Requests\CsvImportRequest;
 use Storage;
 use Illuminate\Http\UploadedFile;
 use App\Imports\ProductsImport;

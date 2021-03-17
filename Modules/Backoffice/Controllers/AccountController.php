@@ -2,8 +2,8 @@
 
 namespace Corvus\Backoffice\Controllers;
 
-use App\Http\Requests\UserRequest;
-use App\Http\Requests\UserUpdateRequest;
+use Corvus\Core\Requests\UserRequest;
+use Corvus\Core\Requests\UserUpdateRequest;
 use Corvus\Core\Models\PricingGroup;
 use Corvus\Core\Models\Profile;
 use Corvus\Core\Models\Role;

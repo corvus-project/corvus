@@ -3,10 +3,10 @@
 namespace Corvus\Backoffice\Controllers\Catalogue;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PricingStoreRequest;
-use App\Http\Requests\PricingUpdateRequest;
-use App\Http\Requests\StockStoreRequest;
-use App\Http\Requests\StockUpdateRequest;
+use Corvus\Core\Requests\PricingStoreRequest;
+use Corvus\Core\Requests\PricingUpdateRequest;
+use Corvus\Core\Requests\StockStoreRequest;
+use Corvus\Core\Requests\StockUpdateRequest;
 use Corvus\Core\Models\Category;
 use Corvus\Core\Models\Pricing;
 use Corvus\Core\Models\PricingGroup;
