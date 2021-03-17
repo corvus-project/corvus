@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon as Carbon;
+use Illuminate\Support\Str;
 
 class CategoryTableSeeder extends Seeder
 {
@@ -20,11 +21,13 @@ class CategoryTableSeeder extends Seeder
 
         $categories = [];
 
-        for ($i = 1; $i < 50; $i++) {
+        for ($i = 1; $i < 5; $i++) {
+            $dep = $faker->department;
             $categories[] = [
-                'name' => $faker->department,
+                'name' => $dep,
+                'slug' => strtoupper (Str::slug($dep, '_')),
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),                
+                'updated_at' => Carbon::now(),
             ];
         }
 

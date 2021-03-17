@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use URL;
 use Illuminate\Support\Facades\Blade;
 use Corvus\Core\Models\Setting;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -18,14 +19,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        config([
-            'corvus' => Setting::all(['setting_key','setting_value'])
-                                                        ->keyBy('setting_key')
-                                                        ->transform(function ($setting) {
-                                                                return $setting->setting_value;
-                                                        })->toArray()
+        if (Schema::hasTable('settings')) {
+            config([
+                'corvus' => Setting::all(['setting_key', 'setting_value'])
+                    ->keyBy('setting_key')
+                    ->transform(function ($setting) {
+                        return $setting->setting_value;
+                    })->toArray()
             ]);
+        }
     }
+
 
     /**
      * Register any application services.
