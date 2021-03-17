@@ -5,10 +5,10 @@ RUN yum -y install vim wget sendmail
 RUN yum -y install git
 RUN git --version
 
-# Install PHP 7.2 on CentOS
+# Install PHP 8.0 on CentOS
 RUN yum repolist
 RUN yum module list | grep php
-RUN yum module -y install php:7.2
+RUN yum module -y install php:8.0
 RUN php -v
 
 RUN yum -y install \
@@ -57,7 +57,7 @@ RUN yum -y update
 RUN yum clean all
 
 # Define work directory
-WORKDIR /var/www/intellect
+WORKDIR /var/www/corvus
 
 # Expose ports
 EXPOSE 9000
