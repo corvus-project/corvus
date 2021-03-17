@@ -24,8 +24,8 @@ class PricingUpdateRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'from_date' => 'required',
-            'to_date'   => 'required',
+            'from_date' => 'required|date|after_or_equal:'. date('Y-m-d'),
+            'to_date'   => 'required|date|after_or_equal:'. date('Y-m-d'),
         ];
     }
 }

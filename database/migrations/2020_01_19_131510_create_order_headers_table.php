@@ -16,7 +16,7 @@ class CreateOrderHeadersTable extends Migration
         Schema::create('order_headers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable()->unsigned();
-            $table->foreign('user_id')->references('id')->onDelete('cascade')->on('users');    
+            $table->foreign('user_id')->references('id')->onDelete('cascade')->on('users');
             $table->dateTime('order_date');
             $table->dateTime('processed_date')->nullable();
             $table->decimal('amount', 8, 2)->default(0);

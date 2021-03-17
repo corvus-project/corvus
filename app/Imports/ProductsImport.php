@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Product;
+use Corvus\Core\Models\Product;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
-use Maatwebsite\Excel\Concerns\SkipsErrors; 
+use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Carbon\Carbon as Carbon;
 
 class ProductsImport implements ToModel, WithCustomCsvSettings, SkipsOnError, ShouldQueue, WithChunkReading
@@ -44,5 +44,5 @@ class ProductsImport implements ToModel, WithCustomCsvSettings, SkipsOnError, Sh
         return [
             'input_encoding' => 'ISO-8859-1'
         ];
-    }    
+    }
 }

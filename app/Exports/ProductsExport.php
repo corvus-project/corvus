@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Product;
+use Corvus\Core\Models\Product;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 

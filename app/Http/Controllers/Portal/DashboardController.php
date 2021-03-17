@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Portal;
 
-use App\Models\User;
-use App\Models\Order;
-use App\Models\Product;
+use Corvus\Core\Models\User;
+use Corvus\Core\Models\Order;
+use Corvus\Core\Models\Product;
 use Arcanedev\LogViewer\Entities\Log;
 use Arcanedev\LogViewer\Entities\LogEntry;
 use Carbon\Carbon;
@@ -23,7 +23,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-         
+
     }
 
     /**
@@ -42,14 +42,14 @@ class DashboardController extends Controller
 
             ->select(
                 'order_headers.id as order_id',
-                'users.name as user_name', 
-                'order_headers.id', 
-                'order_headers.processed_date', 
-                'order_headers.order_date', 
+                'users.name as user_name',
+                'order_headers.id',
+                'order_headers.processed_date',
+                'order_headers.order_date',
 
                 'order_status.name as status_name'
-                )->orderBy('order_headers.created_at', 'desc')->take(10)->get();     
-  
+                )->orderBy('order_headers.created_at', 'desc')->take(10)->get();
+
         return view('portal.dashboard', compact( 'orders'));
     }
 }

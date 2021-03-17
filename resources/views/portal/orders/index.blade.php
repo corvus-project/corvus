@@ -1,6 +1,6 @@
-@extends('layouts.backend')
+@extends('adminlte::page')
 
-@section('title', app_name() . ' | ' . __('labels.portal.orders'))
+@section('title', config('corvus.app_name') . ' | ' . __('labels.portal.orders'))
 @section('content')
 <div class="card mt-2">
     <div class="card-body">
@@ -28,6 +28,7 @@
                             <th>Date</th>
                             <th>Ref ID</th>
                             <th>Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -42,7 +43,7 @@
 @parent
 @stop
 
-@section('scripts')
+@section('js')
 @parent
 <script src="//cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4/jquery.dataTables.yadcf.js"></script>
@@ -62,15 +63,25 @@ $(document).ready(function() {
             {
                 name: 'order_date',
                 data: 'order_date'
-            },            
+            },
             {
                 name: 'ref_id',
                 data: 'ref_id'
-            },            
+            },
             {
                 name: 'status',
                 data: 'status_name'
-            }            
+            },
+            {
+                "className": 'options',
+                "data": null,
+                "searchable": false,
+                "render": function(data) {
+                    var template = "{{ route('portal.orders.view', '000') }}"
+                    var redirect_url = template.replace('000', data.id);
+                    return `<a class="btn btn-sm btn-info float-right" href="${redirect_url}"><i class="fas fa-eye"></i></a>`;
+                },
+            }
         ]
     });
 
@@ -80,12 +91,7 @@ $(document).ready(function() {
         data: [{!!$status_json!!}],
     }]);
 
-    $('#orders tbody').on('click', 'tr', function () {
-        var data = table.row( this ).data();
-        var template = "{{ route('portal.orders.view', '000') }}"
-        var redirect_url = template.replace('000', data.id);
-        window.location.href = redirect_url
-    } );
+
 });
 </script>
 @stop
